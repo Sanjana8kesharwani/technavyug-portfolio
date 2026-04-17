@@ -1,9 +1,26 @@
+import { useState } from "react";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
+
 const MainLayout = ({ children }) => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="bg-gradient-to-br from-gray-900 via-black to-gray-950 text-white min-h-screen">
-      <main className="px-6 py-4">{children}</main>
+    <div>
+
+      {/* Navbar */}
+      <Navbar setOpen={setOpen} />
+
+      {/* Sidebar */}
+      <Sidebar open={open} setOpen={setOpen} />
+
+      {/* Content */}
+      <div className="pt-24">
+        {children}
+      </div>
+
     </div>
   );
 };
 
-export default MainLayout; 
+export default MainLayout;

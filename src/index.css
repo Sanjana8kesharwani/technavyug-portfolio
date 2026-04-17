@@ -36,3 +36,41 @@
     transform: translateY(0);
   }
 }
+
+
+.fade-text {
+  animation: dropFade 1s ease;
+}
+
+@keyframes dropFade {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #3b82f6;
+  left: 0;
+  bottom: -4px;
+  transition: 0.3s;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
