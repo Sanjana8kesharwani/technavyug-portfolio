@@ -18,19 +18,18 @@ const Navbar = ({ setOpen }) => {
     <div className="fixed top-6 left-0 w-full z-50 flex justify-center pointer-events-none">
 
       <div
-        className={`pointer-events-auto 
-        w-[90%] md:w-[85%] max-w-6xl
-        rounded-full px-6 md:px-8 py-3 
-        flex items-center justify-between
-        transition-all duration-300
+  className={`pointer-events-auto 
+  w-[95%] md:w-[92%] max-w-[1400px]
+  rounded-full px-6 md:px-10 py-4 md:py-5
+  flex items-center justify-between
+  transition-all duration-300
 
-        ${
-          scrolled
-            ? "bg-white shadow-lg border border-gray-200"
-            : "bg-white/70 backdrop-blur-xl border border-white/30"
-        }`}
-      >
-
+  ${
+    scrolled
+      ? "bg-white shadow-lg border border-gray-200"
+      : "bg-white/70 backdrop-blur-xl border border-white/30"
+  }`}
+>
         {/* LEFT */}
         <div className="flex items-center gap-4">
 
@@ -51,16 +50,16 @@ const Navbar = ({ setOpen }) => {
         </div>
 
         {/* CENTER MENU */}
-        <div className="hidden md:flex gap-8 text-sm font-medium text-gray-700">
+       <div className="hidden md:flex gap-10 text-base md:text-lg font-medium text-gray-700">
 
-          <Link to="/" className="hover:text-blue-500 transition">Home</Link>
-          <Link to="/about" className="hover:text-blue-500 transition">About</Link>
-          <Link to="/projects" className="hover:text-blue-500 transition">Projects</Link>
-          <Link to="/achievements" className="hover:text-blue-500 transition">Achievements</Link>
-          <Link to="/verify" className="hover:text-blue-500 transition">Verify</Link>
-          <Link to="/contact" className="hover:text-blue-500 transition">Contact</Link>
+  <Link to="/" className="hover:text-blue-500 transition">Home</Link>
+  <Link to="/about" className="hover:text-blue-500 transition">About</Link>
+  <Link to="/projects" className="hover:text-blue-500 transition">Projects</Link>
+  <Link to="/achievements" className="hover:text-blue-500 transition">Achievements</Link>
+  <Link to="/verify" className="hover:text-blue-500 transition">Verify</Link>
+  <Link to="/contact" className="hover:text-blue-500 transition">Contact</Link>
 
-        </div>
+</div>
 
         {/* RIGHT */}
         <div className="flex items-center gap-3">

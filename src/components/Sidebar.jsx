@@ -28,7 +28,7 @@ const Sidebar = ({ open, setOpen }) => {
         </div>
 
       
-        <div className="flex flex-col gap-4 p-6 text-gray-700">
+        <div className="flex flex-col gap-4 p-6 md:text-lg font-medium text-gray-700">
 
           <Link to="/" onClick={() => setOpen(false)} className="hover:text-blue-600 transition"> Home  </Link>
 
