@@ -17,7 +17,9 @@ const Sidebar = ({ open, setOpen }) => {
               <img src="/Technavyug Logo.jpeg" className="w-full h-full object-cover"/>
    
             </div>
-            <h2 className="font-semibold text-lg">Technavyug</h2>
+            <h1 className="text-lg md:text-xl font-bold text-gray-900">
+            Tech<span className="text-cyan-500">navyug</span> </h1>
+
           </div>
 
           <button onClick={() => setOpen(false)}>
