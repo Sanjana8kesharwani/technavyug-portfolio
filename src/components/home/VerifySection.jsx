@@ -5,32 +5,33 @@ import { CheckCircle, XCircle, ScanLine } from "lucide-react";
 const VerifySection = () => {
   const [certificateId, setCertificateId] = useState("");
   const [mode, setMode] = useState("id");
-  const [status, setStatus] = useState(""); // success | error
+  const [status, setStatus] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   const scannerRef = useRef(null);
 
-  const handleVerify = async () => {
+  //  VERIFY FUNCTION
+  const handleVerify = () => {
     if (!certificateId) return;
 
     setLoading(true);
     setStatus("");
     setMessage("");
 
-    // fake delay (replace with API)
     setTimeout(() => {
       if (certificateId === "TECH123") {
         setStatus("success");
-        setMessage("Valid Certificate ✅");
+        setMessage("Valid Certificate ");
       } else {
         setStatus("error");
-        setMessage("Invalid Certificate ❌");
+        setMessage("Invalid Certificate ");
       }
       setLoading(false);
     }, 1200);
   };
 
+  //  QR SCANNER
   useEffect(() => {
     if (mode === "qr") {
       const scanner = new Html5QrcodeScanner(
@@ -79,19 +80,21 @@ const VerifySection = () => {
         </div>
 
         {/* RIGHT CARD */}
-        <div className="relative bg-white/70 backdrop-blur-xl border border-gray-200 rounded-3xl p-8 shadow-2xl">
+        <div className="bg-white border rounded-3xl p-6 shadow-xl w-full max-w-md mx-auto">
 
-          {/* glow */}
-          <div className="absolute -top-10 -right-10 w-32 h-32 bg-purple-300 rounded-full blur-3xl opacity-30"></div>
+          {/* TITLE */}
+          <h3 className="text-lg font-semibold mb-4 text-gray-700">
+            Verify Certificate
+          </h3>
 
           {/* TOGGLE */}
-          <div className="flex gap-3 mb-6">
+          <div className="flex gap-3 mb-5">
             <button
               onClick={() => setMode("id")}
-              className={`flex-1 py-2 rounded-xl font-medium transition ${
+              className={`flex-1 py-2 rounded-lg font-medium transition ${
                 mode === "id"
-                  ? "bg-blue-600 text-white shadow-md"
-                  : "bg-gray-100 hover:bg-gray-200"
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-100 text-gray-600"
               }`}
             >
               Enter ID
@@ -99,10 +102,10 @@ const VerifySection = () => {
 
             <button
               onClick={() => setMode("qr")}
-              className={`flex-1 py-2 rounded-xl font-medium transition ${
+              className={`flex-1 py-2 rounded-lg font-medium transition ${
                 mode === "qr"
-                  ? "bg-gradient-to-r from-purple-500 to-indigo-600 text-white shadow-md"
-                  : "bg-gray-100 hover:bg-gray-200"
+                  ? "bg-gradient-to-r from-purple-500 to-indigo-600 text-white"
+                  : "bg-gray-100 text-gray-600"
               }`}
             >
               Scan QR
@@ -111,26 +114,32 @@ const VerifySection = () => {
 
           {/* ID MODE */}
           {mode === "id" && (
-            <div className="flex gap-3">
-              <input
-                value={certificateId}
-                onChange={(e) => setCertificateId(e.target.value)}
-                placeholder="Enter Certificate ID"
-                className="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none"
-              />
+            <>
+              <div className="flex gap-3">
+                <input
+                  value={certificateId}
+                  onChange={(e) => setCertificateId(e.target.value)}
+                  placeholder="Enter Certificate ID"
+                  className="flex-1 px-4 py-3 border rounded-xl outline-none focus:ring-2 focus:ring-blue-400"
+                />
 
-              <button
-                onClick={handleVerify}
-                className="px-6 py-3 rounded-xl text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:scale-105 transition"
-              >
-                {loading ? "Checking..." : "Verify"}
-              </button>
-            </div>
+                <button
+                  onClick={handleVerify}
+                  className="px-6 py-3 rounded-xl text-white bg-gradient-to-r from-blue-500 to-purple-600"
+                >
+                  {loading ? "Checking..." : "Verify"}
+                </button>
+              </div>
+
+              <p className="text-sm text-gray-400 mt-3">
+                Try demo ID: <span className="text-blue-600">TECH123</span>
+              </p>
+            </>
           )}
 
           {/* QR MODE */}
           {mode === "qr" && (
-            <div className="relative border-2 border-dashed border-gray-300 rounded-xl p-4 text-center">
+            <div className="mt-4 border-2 border-dashed border-gray-300 rounded-xl p-4 text-center">
 
               <ScanLine className="mx-auto mb-2 text-gray-400" />
 
@@ -145,7 +154,7 @@ const VerifySection = () => {
           {/* RESULT */}
           {message && (
             <div
-              className={`mt-6 flex items-center gap-2 justify-center p-3 rounded-xl text-sm font-medium ${
+              className={`mt-5 flex items-center gap-2 justify-center p-3 rounded-xl text-sm font-medium ${
                 status === "success"
                   ? "bg-green-100 text-green-700"
                   : "bg-red-100 text-red-600"
