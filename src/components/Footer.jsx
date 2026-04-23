@@ -72,7 +72,7 @@ const Footer = () => {
 
           <p>© {new Date().getFullYear()} Technavyug. All rights reserved.</p>
 
-          <div className="flex items-center gap-2 mt-4 md:mt-0 text-gray-600 hover:text-cyan-500 transition cursor-pointer">
+          <div className="flex items-center gap-2 mt-4 md:mt-0 text-gray-400 hover:text-cyan-500 transition cursor-pointer">
           <LuMail />
           <span>support@technavyug.com</span>
         </div>
