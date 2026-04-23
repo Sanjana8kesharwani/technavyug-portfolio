@@ -48,13 +48,12 @@ export default function Contact() {
 
       {/* HEADER */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50/30 text-center">
-      <p className="text-xs font-bold text-cyan-600 uppercase tracking-widest mb-4">
-              Get in Touch
-            </p>
+        <p className="text-xs font-bold text-cyan-600 uppercase tracking-widest mb-4">
+          Get in Touch
+        </p>
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-              Contact Us
-            </h1>
-        
+          Contact Us
+        </h1>
         <p className="text-gray-500">
           Have questions? We are here to help.
         </p>
@@ -82,7 +81,6 @@ export default function Contact() {
       </section>
 
       {/* FORM */}
-     
       <section className="py-12 bg-white">
         <div className="max-w-2xl mx-auto px-6">
 
@@ -148,6 +146,21 @@ export default function Contact() {
             </button>
 
           </form>
+        </div>
+      </section>
+
+      {/* ✅ MAP SECTION ADDED (nothing else changed) */}
+      <section className="py-12 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="rounded-xl overflow-hidden shadow-md">
+            <iframe
+              title="Ghazipur Location"
+              src="https://www.google.com/maps?q=Ghazipur,Uttar+Pradesh+233001&output=embed"
+              className="w-full h-[400px] border-0"
+              loading="lazy"
+              allowFullScreen
+            ></iframe>
+          </div>
         </div>
       </section>
 
