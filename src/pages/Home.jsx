@@ -10,6 +10,7 @@ import EventsSection from "../components/home/EventsSection";
 
 
 
+
 const Home = () => {
   return (
     <MainLayout>

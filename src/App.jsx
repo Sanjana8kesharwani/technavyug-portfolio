@@ -3,6 +3,8 @@ import Home from "./pages/Home";
 import Achievements from "./pages/Achievements";
 import Profile from "./pages/Profile";
 import Verify from "./pages/Verify";
+import PrivacyPolicy from "./pages/PrivacyPolicies";
+import TermsConditions from "./pages/TermsConditions";
 
 // ✅ Admin imports (FIXED)
 import AdminLogin from "./pages/admin/AdminLogin";
@@ -10,6 +12,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import AddUser from "./pages/admin/AddUser";
 import AddProject from "./pages/admin/AddProject";
 import GenerateCertificate from "./pages/admin/GenerateCertificate";
+
 
 import CursorGlow from "./components/CursorGlow";
 import { Toaster } from "react-hot-toast";
@@ -36,6 +39,8 @@ function App() {
         <Route path="/achievements" element={<Achievements />} />
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/verify" element={<Verify />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsConditions />} />
 
         {/* 🔐 Admin Routes (UPDATED) */}
         <Route path="/admin" element={<AdminLogin />} />

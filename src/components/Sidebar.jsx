@@ -43,11 +43,11 @@ const Sidebar = ({ open, setOpen }) => {
              
           <Link to="/Team" className="hover:text-cyan-600 transition"> Team </Link>
             
-          <Link to="/contact" className="hover:text-cyan-600 transition"> Contact & Supports </Link>
+          <Link to="/terms" className="hover:text-cyan-400"> Terms & Conditions </Link>
             
-          <Link to="/contact" className="hover:text-cyan-600 transition"> Terms & Conditions </Link>
-            
-          <Link to="/contact" className="hover:text-cyan-600 transition"> Privacy Policy </Link>
+          <Link to="/privacy-policy" className="hover:text-cyan-400">  Privacy Policy </Link>
+ 
+
         </div>
 
      
