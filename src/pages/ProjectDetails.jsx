@@ -68,7 +68,7 @@ export default function ProjectDetail() {
       <div className="pt-16">
 
         {/* ── HERO SECTION ── */}
-        <div className="bg-blue-600 text-white px-6 py-16">
+        <div className="bg-[#1B3765] text-white px-6 py-16">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-center">
 
             <div className="flex-1">
