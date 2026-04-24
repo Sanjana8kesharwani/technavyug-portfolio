@@ -12,7 +12,7 @@ export default function About() {
 
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight max-w-3xl mx-auto">
           Showcasing Skills.{" "}
-          <span className="text-cyan-600">Verifying Achievements</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600"> Verifying Achievements</span>
         </h1>
 
         <p className="mt-6 text-gray-500 max-w-2xl mx-auto text-lg">

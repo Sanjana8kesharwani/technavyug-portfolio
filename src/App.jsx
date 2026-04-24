@@ -7,6 +7,9 @@ import PrivacyPolicy from "./pages/PrivacyPolicies";
 import TermsConditions from "./pages/TermsConditions";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import Projects from "./pages/Projects";
+import ProjectDetails from "./pages/ProjectDetails";
+
 
 // Admin imports (FIXED)
 import AdminLogin from "./pages/admin/AdminLogin";
@@ -45,6 +48,8 @@ function App() {
         <Route path="/terms" element={<TermsConditions />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+         <Route path="/project/:id" element={<ProjectDetails />} />
 
         {/* 🔐 Admin Routes (UPDATED) */}
         <Route path="/admin" element={<AdminLogin />} />
