@@ -1,108 +1,169 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
-import { users } from "../data/dummyData";
+import achievements from "../data/achievementsData";
 
-// ─── SHIMMER ─────────────────────────────
-function ShimmerCard() {
-  return (
-    <div className="rounded-2xl overflow-hidden animate-pulse bg-gray-200 h-64"></div>
-  );
-}
-
-export default function AchievementsPage() {
-  const [loading, setLoading] = useState(true);
+export default function Achievements() {
   const [search, setSearch] = useState("");
   const [domain, setDomain] = useState("All");
+  const [year, setYear] = useState("All");
 
-  useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 1500);
-    return () => clearTimeout(t);
-  }, []);
+  const navigate = useNavigate();
 
-  const filtered = users.filter((u) => {
-    const s = u.name.toLowerCase().includes(search.toLowerCase());
-    const d = domain === "All" || u.domain === domain;
-    return s && d;
+  const filtered = achievements.filter((item) => {
+    const matchSearch = item.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const matchDomain = domain === "All" || item.domain === domain;
+    const matchYear = year === "All" || item.year === year;
+
+    return matchSearch && matchDomain && matchYear;
   });
 
   return (
     <MainLayout>
-      <div className="pt-24 px-6 max-w-7xl mx-auto pb-16">
+      <div className="pt-24 px-6 max-w-7xl mx-auto">
 
-        {/* HEADER */}
-        <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
-          🎓 Certificates & Achievements
-        </h1>
+        {/* 🔥 HEADER */}
+        <div className="bg-white rounded-2xl p-6 mb-8 shadow-sm border">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <div>
+              <h1 className="text-3xl font-bold">
+                Explore <span className="text-blue-600">Achievements</span>
+              </h1>
+              <p className="text-gray-500 text-sm">
+                Discover top achievers and their success stories
+              </p>
+            </div>
 
-        {/* SEARCH */}
-        <div className="flex justify-center mb-6">
-          <input
-            type="text"
-            placeholder="Search achievers..."
-            className="border px-4 py-2 rounded-lg w-full max-w-md"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+            {/* SEARCH */}
+            <input
+              type="text"
+              placeholder="Search achievers..."
+              className="px-4 py-2 border rounded-xl w-full md:w-80 outline-none"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
         </div>
 
-        {/* FILTER */}
-        <div className="flex justify-center gap-3 mb-10 flex-wrap">
-          {["All", "AI", "Frontend", "Backend"].map((d) => (
-            <button
-              key={d}
-              onClick={() => setDomain(d)}
-              className={`px-4 py-2 rounded-full text-sm ${
-                domain === d
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-100 text-gray-700"
-              }`}
-            >
-              {d}
-            </button>
-          ))}
-        </div>
+        <div className="flex gap-8">
 
-        {/* GRID */}
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {/* 🔥 LEFT FILTER PANEL */}
+          <div className="w-64 hidden md:block bg-white p-5 rounded-2xl shadow border h-fit">
 
-          {loading
-            ? Array(6).fill(0).map((_, i) => <ShimmerCard key={i} />)
-            : filtered.map((user) => (
-                <div
-                  key={user.id}
-                  className="relative group rounded-2xl overflow-hidden shadow-lg"
+            <h2 className="font-semibold mb-4">Filters</h2>
+
+            {/* DOMAIN */}
+            <div className="mb-6">
+              <p className="text-sm font-medium mb-2">Domain</p>
+              {["AI", "Web Dev"].map((d) => (
+                <div key={d} className="flex items-center gap-2 mb-2">
+                  <input
+                    type="radio"
+                    checked={domain === d}
+                    onChange={() => setDomain(d)}
+                  />
+                  <label>{d}</label>
+                </div>
+              ))}
+              <button
+                onClick={() => setDomain("All")}
+                className="text-xs text-blue-500 mt-2"
+              >
+                Reset
+              </button>
+            </div>
+
+            {/* YEAR */}
+            <div>
+              <p className="text-sm font-medium mb-2">Year</p>
+              {["2024", "2023"].map((y) => (
+                <div key={y} className="flex items-center gap-2 mb-2">
+                  <input
+                    type="radio"
+                    checked={year === y}
+                    onChange={() => setYear(y)}
+                  />
+                  <label>{y}</label>
+                </div>
+              ))}
+              <button
+                onClick={() => setYear("All")}
+                className="text-xs text-blue-500 mt-2"
+              >
+                Reset
+              </button>
+            </div>
+
+          </div>
+
+          {/* 🔥 RIGHT CONTENT */}
+          <div className="flex-1">
+
+            {/* TOP FILTER BUTTONS */}
+            <div className="flex gap-3 mb-6 flex-wrap">
+              {["All", "AI", "Web Dev"].map((d) => (
+                <button
+                  key={d}
+                  onClick={() => setDomain(d)}
+                  className={`px-4 py-2 rounded-full border ${
+                    domain === d
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-100"
+                  }`}
                 >
-                  {/* IMAGE */}
+                  {d}
+                </button>
+              ))}
+            </div>
+
+            {/* CARDS */}
+            <div className="grid md:grid-cols-3 gap-6">
+
+              {filtered.map((item) => (
+                <div
+                  key={item.id}
+                  onClick={() => navigate(`/achievements/${item.id}`)}
+                  className="cursor-pointer bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden"
+                >
                   <img
-                    src={user.image}
-                    alt={user.name}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition duration-300"
+                    src={item.image}
+                    className="w-full h-48 object-cover"
                   />
 
-                  {/* VERIFIED BADGE */}
-                  <span className="absolute top-3 right-3 bg-green-500 text-white text-xs px-3 py-1 rounded-full">
-                    ✓ Verified
-                  </span>
-
-                  {/* OVERLAY */}
-                  <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-4">
-
-                    <h3 className="text-white font-semibold text-lg">
-                      {user.name}
+                  <div className="p-4">
+                    <h3 className="font-semibold text-lg">
+                      {item.name}
                     </h3>
 
-                    <p className="text-gray-200 text-sm">
-                      {user.role}
+                    <p className="text-sm text-gray-500">
+                      {item.role}
                     </p>
 
-                    {/* BUTTON */}
-                    <button className="mt-3 bg-white text-black text-xs px-4 py-1 rounded-full w-fit hover:bg-gray-200">
-                      View Certificate
-                    </button>
+                    <p className="text-sm mt-2 text-gray-600">
+                      {item.highlight}
+                    </p>
 
+                    <div className="flex justify-between items-center mt-4 text-xs text-gray-400">
+                      <span>{item.domain}</span>
+                      <span>{item.year}</span>
+                    </div>
                   </div>
                 </div>
               ))}
+
+              {filtered.length === 0 && (
+                <p className="text-center text-gray-500 col-span-full">
+                  No achievers found
+                </p>
+              )}
+
+            </div>
+
+          </div>
         </div>
 
       </div>
