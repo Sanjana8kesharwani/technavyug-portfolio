@@ -61,7 +61,7 @@ function App() {
         <Route path="/admin/add-user" element={<AddUser />} />
         <Route path="/admin/add-project" element={<AddProject />} />
         <Route path="/admin/generate" element={<GenerateCertificate />} />
-        <Route path="/achievements" element={<Achievements />} />
+        <Route path="/admin/achievements" element={<Achievements />} />
       </Routes>
     </BrowserRouter>
   );
