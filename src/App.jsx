@@ -10,6 +10,7 @@ import Projects from "./pages/Projects";
 import ProjectDetails from "./pages/ProjectDetails";
 import AchievementsPage from "./pages/AchievementsPage";
 import AchievementDetails from "./pages/AchievementDetails";
+import Team from "./pages/Team";
 
 
 // Admin imports (FIXED)
@@ -51,9 +52,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
          <Route path="/project/:id" element={<ProjectDetails />} />
-         <Route path="/achievements" element={<AchievementsPage />} />
-         
+         <Route path="/achievements" element={<AchievementsPage />} /> 
         <Route path="/achievements/:id" element={<AchievementDetails />} />
+        <Route path="/team" element={<Team />} />
 
         {/* 🔐 Admin Routes (UPDATED) */}
         <Route path="/admin" element={<AdminLogin />} />
