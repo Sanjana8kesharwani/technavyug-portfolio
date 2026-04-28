@@ -26,9 +26,9 @@ export default function EventsMedia() {
 
   return (
     <MainLayout>
-      <div className="pt-24 md:pt-28">
+   <div className="pt-16 md:pt-16">
         {/* HERO */}
-        <section className="bg-gradient-to-b from-blue-50 to-white text-center py-16 md:py-20 px-4 sm:px-6">
+        <section className="bg-gradient-to-b from-blue-50 to-white text-center py-10 md:py-14 px-4 sm:px-6">
           <p className="text-xs font-bold tracking-widest text-cyan-600 uppercase mb-4">
             CONNECT, LEARN, SUCCEED
           </p>

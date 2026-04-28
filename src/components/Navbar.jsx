@@ -15,7 +15,7 @@ const Navbar = ({ setOpen }) => {
   }, []);
 
   return (
-    <div className="fixed top-6 left-0 w-full z-50 flex justify-center pointer-events-none">
+    <div className="fixed top-0 left-0 w-full z-50 flex justify-center pointer-events-none">
 
       <div className={`pointer-events-auto w-[95%] md:w-[92%] max-w-[1400px] rounded-full px-6 md:px-10 py-4 
       md:py-5 flex items-center justify-between transition-all duration-300
