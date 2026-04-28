@@ -81,10 +81,7 @@ export default function EventsMedia() {
             On <span className="text-black">Tech</span>
             <span className="text-cyan-500">navyug</span>{" "}
 
-            <span
-              key={activeTab}
-              className="text-cyan-500 inline-block min-w-[90px]"
-            >
+            <span key={activeTab} className="text-cyan-500 inline-block min-w-[90px]">
               {displayText}
               <span className="animate-pulse">|</span>
             </span>
@@ -127,7 +124,7 @@ export default function EventsMedia() {
           {/* EVENTS */}
           {activeTab === "Events" && <EventsSection key="events" />}
 
-          {/* MEDIA GALLERY ✅ FIXED */}
+          {/* MEDIA GALLERY FIXED */}
           {activeTab === "Media Gallery" && (
             <MediaGallery key="gallery" />
           )}
