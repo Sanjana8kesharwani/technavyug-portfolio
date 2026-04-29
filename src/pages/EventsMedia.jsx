@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 import EventsSection from "../components/events/EventsSection";
 import MediaGallery from "../components/events/MediaGallery";
 import LatestNews from "../components/events/LatestNews";
+import Blogs from "../components/events/Blogs";
 
 export default function EventsMedia() {
   const tabs = [
@@ -130,10 +131,7 @@ export default function EventsMedia() {
           )}
 
           {/* BLOGS */}
-          {activeTab === "Blogs" && (
-            <div className="text-center">Blogs coming soon...</div>
-          )}
-
+         {activeTab === "Blogs" && <Blogs />}
           {/* OTHER TABS */}
           {activeTab === "Latest News & Updates" && <LatestNews />}
 

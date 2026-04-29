@@ -12,6 +12,9 @@ import AchievementsPage from "./pages/AchievementsPage";
 import AchievementDetails from "./pages/AchievementDetails";
 import Team from "./pages/Team";
 import EventsMedia from "./pages/EventsMedia";
+import BlogDetails from "./components/BlogDetails";
+
+
 
 
 
@@ -58,6 +61,7 @@ function App() {
         <Route path="/achievements/:id" element={<AchievementDetails />} />
         <Route path="/team" element={<Team />} />
         <Route path="/events-media" element={<EventsMedia />} />
+          <Route path="/blog/:id" element={<BlogDetails />} />
 
 
         {/* 🔐 Admin Routes (UPDATED) */}
