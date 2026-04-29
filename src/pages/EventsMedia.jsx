@@ -5,6 +5,7 @@ import MediaGallery from "../components/events/MediaGallery";
 import LatestNews from "../components/events/LatestNews";
 import Blogs from "../components/events/Blogs";
 import Newsletters from "../components/events/Newsletters";
+import GalleryVideos from "../components/events/GalleryVideos";
 
 export default function EventsMedia() {
   const tabs = [
@@ -104,15 +105,8 @@ export default function EventsMedia() {
           <div className="bg-gray-100 rounded-full p-2 md:p-3 flex gap-2 md:gap-3 shadow overflow-x-auto">
 
             {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-4 md:px-6 py-2 md:py-3 text-sm md:text-base rounded-full whitespace-nowrap ${
-                  activeTab === tab
-                    ? "bg-cyan-500 text-white"
-                    : "text-gray-600 hover:bg-gray-200"
-                }`}
-              >
+              <button key={tab} onClick={() => setActiveTab(tab)} className={`px-4 md:px-6 py-2 md:py-3 text-sm md:text-base rounded-full whitespace-nowrap ${
+                 activeTab === tab  ? "bg-cyan-500 text-white" : "text-gray-600 hover:bg-gray-200"}`}>
                 {tab}
               </button>
             ))}
@@ -120,29 +114,21 @@ export default function EventsMedia() {
           </div>
         </div>
 
-        {/* CONTENT */}
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-12">
 
-          {/* EVENTS */}
           {activeTab === "Events" && <EventsSection key="events" />}
 
-          {/* MEDIA GALLERY FIXED */}
           {activeTab === "Media Gallery" && (
             <MediaGallery key="gallery" />
           )}
-
-          {/* BLOGS */}
           
          {activeTab === "Blogs" && <Blogs />}
-          {/* OTHER TABS */}
 
           {activeTab === "Latest News & Updates" && <LatestNews />}
 
           {activeTab === "Newsletters" && <Newsletters />}
 
-          {activeTab === "Gallery Videos" && (
-            <div className="text-center">Videos coming soon...</div>
-          )}
+          {activeTab === "Gallery Videos" && <GalleryVideos />}
 
         </div>
       </div>
