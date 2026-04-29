@@ -4,6 +4,7 @@ import EventsSection from "../components/events/EventsSection";
 import MediaGallery from "../components/events/MediaGallery";
 import LatestNews from "../components/events/LatestNews";
 import Blogs from "../components/events/Blogs";
+import Newsletters from "../components/events/Newsletters";
 
 export default function EventsMedia() {
   const tabs = [
@@ -131,13 +132,13 @@ export default function EventsMedia() {
           )}
 
           {/* BLOGS */}
+          
          {activeTab === "Blogs" && <Blogs />}
           {/* OTHER TABS */}
+
           {activeTab === "Latest News & Updates" && <LatestNews />}
 
-          {activeTab === "Newsletters" && (
-            <div className="text-center">Newsletters coming soon...</div>
-          )}
+          {activeTab === "Newsletters" && <Newsletters />}
 
           {activeTab === "Gallery Videos" && (
             <div className="text-center">Videos coming soon...</div>
