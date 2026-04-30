@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @keyframes gradientMove {
   0% { background-position: 0% }
   100% { background-position: 200% }
@@ -134,4 +135,13 @@
 
 .animate-slide {
   animation: slide 2.5s ease-in-out;
+}
+
+
+/* sidebar */
+
+
+
+body {
+  font-family: 'Inter', sans-serif;
 }

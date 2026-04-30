@@ -1,116 +1,339 @@
-import DashboardLayout from "../../layouts/DashboardLayout";
-import { Search, Bell } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import {
+  LayoutDashboard,
+  Users,
+  Trophy,
+  Rocket,
+  FileText,
+  Award,
+  LayoutGrid,
+} from "lucide-react";
 
-const Dashboard = () => {
-  const navigate = useNavigate();
+const sidebarItems = [
+  { icon: <LayoutDashboard size={18} />, label: "Dashboard" },
+  { icon: <Users size={18} />, label: "Users" },
+  { icon: <Trophy size={18} />, label: "Achievements" },
+  { icon: <Rocket size={18} />, label: "Projects" },
+  { icon: <FileText size={18} />, label: "Certificates" },
+];
+
+const statCards = [
+  {
+    label: "Total Users",
+    value: "3",
+    gradient: "linear-gradient(135deg, rgba(76,175,80,0.75), rgba(102,187,106,0.75))",
+    iconBg: "rgba(255,255,255,0.30)",
+    icon: <Users size={20} color="#fff" />,
+  },
+  {
+    label: "Certificates",
+    value: "2",
+    gradient: "linear-gradient(135deg, rgba(239,83,80,0.75), rgba(229,57,53,0.75))",
+    iconBg: "rgba(255,255,255,0.30)",
+    icon: <Award size={20} color="#fff" />,
+  },
+  {
+    label: "Projects",
+    value: "5",
+    gradient: "linear-gradient(135deg, rgba(255,167,38,0.75), rgba(251,140,0,0.75))",
+    iconBg: "rgba(255,255,255,0.30)",
+    icon: <LayoutGrid size={20} color="#fff" />,
+  },
+  {
+    label: "Achievements",
+    value: "4",
+    gradient: "linear-gradient(135deg, rgba(66,165,245,0.75), rgba(30,136,229,0.75))",
+    iconBg: "rgba(255,255,255,0.30)",
+    icon: <Trophy size={20} color="#fff" />,
+  },
+];
+
+const recentActivity = [
+  { text: "New user registered",           time: "2 mins ago",  icon: <Users size={16} color="#6b7280" /> },
+  { text: "Certificate generated for Ali", time: "1 hour ago",  icon: <Award size={16} color="#6b7280" /> },
+  { text: "Project 'WebApp' created",      time: "3 hours ago", icon: <Rocket size={16} color="#6b7280" /> },
+  { text: "Achievement unlocked by Sara",  time: "Yesterday",   icon: <Trophy size={16} color="#6b7280" /> },
+];
+
+const topProjects = [
+  { name: "Web App",     status: "Active", color: "#34d399" },
+  { name: "Mobile UI",  status: "Review", color: "#fb923c" },
+  { name: "API Gateway", status: "Done",  color: "#a78bfa" },
+];
+
+export default function AdminDashboard() {
+  const [activeNav, setActiveNav] = useState("Dashboard");
 
   return (
-    <DashboardLayout>
-      {/* Top Bar */}
-      <div className="flex justify-between items-center mb-10">
-        <div>
-          <h1 className="text-3xl font-bold text-white">
-            Dashboard Overview 📊
-          </h1>
-          <p className="text-gray-400 text-sm">
-            Manage your platform efficiently
-          </p>
+    <div style={{
+      display: "flex",
+      height: "100vh",
+      width: "100vw",
+      overflow: "hidden",
+      fontFamily: "'Segoe UI', system-ui, sans-serif",
+    }}>
+
+      {/* ── SIDEBAR ── */}
+      <div style={{
+        width: "220px",
+        minWidth: "220px",
+        height: "100vh",
+        background: "#fff",
+        display: "flex",
+        flexDirection: "column",
+        padding: "28px 16px",
+        borderRight: "1px solid rgba(0,0,0,0.07)",
+        boxSizing: "border-box",
+      }}>
+        <div style={{ fontWeight: "900", fontSize: "22px", marginBottom: "36px", letterSpacing: "0.5px" }}>
+          <span style={{ color: "#0f172a" }}>Tech</span>
+          <span style={{ color: "#06b6d4" }}>navyug</span>
         </div>
 
-        <div className="flex items-center gap-4">
-          {/* Search */}
-          <div className="flex items-center bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20">
-            <Search size={18} className="text-gray-300" />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="ml-2 outline-none text-sm bg-transparent text-white placeholder-gray-400"
-            />
-          </div>
+        <div style={{ flex: 1 }}>
+          {sidebarItems.map((item) => (
+            <div
+              key={item.label}
+              onClick={() => setActiveNav(item.label)}
+              onMouseEnter={(e) => {
+                if (activeNav !== item.label) {
+                  e.currentTarget.style.background = "#f1f5f9";
+                  e.currentTarget.style.transform = "translateX(4px)";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (activeNav !== item.label) {
+                  e.currentTarget.style.background = "transparent";
+                  e.currentTarget.style.transform = "translateX(0)";
+                }
+              }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                padding: "12px 16px",
+                borderRadius: "10px",
+                cursor: "pointer",
+                marginBottom: "6px",
+                fontSize: "14px",
+                fontWeight: "500",
+                background: activeNav === item.label
+                  ? "linear-gradient(135deg, #0f766e, #14b8a6)"
+                  : "transparent",
+                color: activeNav === item.label ? "#fff" : "#475569",
+                transition: "all 0.25s ease",
+              }}
+            >
+              {item.icon}
+              {item.label}
+            </div>
+          ))}
+        </div>
 
-          {/* Notification */}
-          <div className="p-2 bg-white/10 rounded-full border border-white/20 cursor-pointer hover:scale-110 transition">
-            <Bell className="text-white" />
-          </div>
-
-          {/* Profile */}
-          <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 text-white flex items-center justify-center rounded-full">
-            A
-          </div>
+        <div style={{
+          display: "flex", alignItems: "center", gap: "10px",
+          padding: "12px 14px", borderRadius: "14px", background: "#f3f4f6",
+        }}>
+          <div style={{
+            width: "36px", height: "36px", borderRadius: "50%",
+            background: "linear-gradient(135deg, #667eea, #764ba2)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            color: "#fff", fontWeight: "700", fontSize: "13px",
+          }}>AD</div>
+          <span style={{ fontWeight: "600", fontSize: "14px", color: "#1a1a2e" }}>Admin</span>
         </div>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-lg">
-          <p className="text-gray-300 text-sm">Total Users</p>
-          <h2 className="text-3xl font-bold text-white mt-2">3</h2>
+      {/* ── MAIN CONTENT ── */}
+      <div style={{
+        flex: 1,
+        height: "100vh",
+        overflowY: "auto",
+        padding: "28px 32px",
+        boxSizing: "border-box",
+        background: "linear-gradient(135deg, #c8d8e8 0%, #d8cce8 50%, #b8ccd8 100%)",
+      }}>
+
+        <div style={{ marginBottom: "24px" }}>
+          <div style={{ fontSize: "32px", fontWeight: "800", color: "#1a1a2e" }}>Dashboard</div>
         </div>
 
-        <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-lg">
-          <p className="text-gray-300 text-sm">Certificates</p>
-          <h2 className="text-3xl font-bold text-white mt-2">2</h2>
+        {/* ── STAT CARDS ── */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "14px", marginBottom: "20px" }}>
+          {statCards.map((card) => (
+            <div key={card.label} style={{
+              background: card.gradient,
+              borderRadius: "18px",
+              padding: "18px 20px 20px",
+              color: "#fff",
+              position: "relative",
+              overflow: "hidden",
+              minHeight: "120px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}>
+              {/* Decorative large curve blob — bottom right */}
+              <div style={{
+                position: "absolute",
+                width: "100px",
+                height: "100px",
+                borderRadius: "50%",
+                background: "rgba(255,255,255,0.12)",
+                right: "-25px",
+                bottom: "-25px",
+              }} />
+              <div style={{
+                position: "absolute",
+                width: "60px",
+                height: "60px",
+                borderRadius: "50%",
+                background: "rgba(255,255,255,0.10)",
+                right: "30px",
+                bottom: "-10px",
+              }} />
+
+              {/* Top row: label + icon inside curved bg */}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                <span style={{ fontSize: "13px", fontWeight: "600", opacity: 0.95 }}>{card.label}</span>
+                {/* Icon with curved/rounded square background */}
+                <div style={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "12px",
+                  background: "rgba(255,255,255,0.28)",
+                  backdropFilter: "blur(4px)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.10)",
+                }}>
+                  {card.icon}
+                </div>
+              </div>
+
+              {/* Value */}
+              <div style={{ fontSize: "40px", fontWeight: "700", letterSpacing: "-1px", lineHeight: 1 }}>
+                {card.value}
+              </div>
+            </div>
+          ))}
         </div>
 
-        <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-lg">
-          <p className="text-gray-300 text-sm">Projects</p>
-          <h2 className="text-3xl font-bold text-white mt-2">5</h2>
+        {/* ── BOTTOM GRID ── */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+
+          {/* LEFT */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+
+            {/* System Overview */}
+            <div style={{ background: "#fff", borderRadius: "20px", padding: "22px 24px", boxShadow: "0 4px 16px rgba(0,0,0,0.06)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+                <span style={{ fontWeight: "700", fontSize: "16px", color: "#1a1a2e" }}>System Overview</span>
+                <span style={{ color: "#10b981", fontSize: "13px", fontWeight: "600", cursor: "pointer" }}>View details</span>
+              </div>
+              <p style={{ color: "#6b7280", fontSize: "13px", margin: "0 0 16px 0" }}>
+                Manage users, projects and certificates from one place.
+              </p>
+              {[
+                { label: "Users Active",       val: 75, color: "#a78bfa" },
+                { label: "Projects Done",       val: 60, color: "#34d399" },
+                { label: "Certificates Issued", val: 40, color: "#f472b6" },
+              ].map((bar) => (
+                <div key={bar.label} style={{ marginBottom: "12px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#6b7280", marginBottom: "4px" }}>
+                    <span>{bar.label}</span>
+                    <span style={{ fontWeight: "600" }}>{bar.val}%</span>
+                  </div>
+                  <div style={{ height: "7px", background: "#f3f4f6", borderRadius: "6px" }}>
+                    <div style={{ height: "7px", width: `${bar.val}%`, background: bar.color, borderRadius: "6px" }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Recent Activity */}
+            <div style={{ background: "#fff", borderRadius: "20px", padding: "22px 24px", boxShadow: "0 4px 16px rgba(0,0,0,0.06)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" }}>
+                <span style={{ fontWeight: "700", fontSize: "16px", color: "#1a1a2e" }}>Recent Activity</span>
+                <span style={{ color: "#10b981", fontSize: "13px", fontWeight: "600", cursor: "pointer" }}>View all</span>
+              </div>
+              {recentActivity.map((item, i) => (
+                <div key={i} style={{
+                  display: "flex", alignItems: "center", gap: "12px",
+                  padding: "10px 0",
+                  borderBottom: i < recentActivity.length - 1 ? "1px solid #f3f4f6" : "none",
+                }}>
+                  <div style={{
+                    width: "36px", height: "36px", borderRadius: "10px",
+                    background: "#f3f4f6", display: "flex",
+                    alignItems: "center", justifyContent: "center",
+                  }}>{item.icon}</div>
+                  <div>
+                    <div style={{ fontSize: "13px", fontWeight: "600", color: "#1a1a2e" }}>{item.text}</div>
+                    <div style={{ fontSize: "11px", color: "#9ca3af" }}>{item.time}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+
+            {/* Top Projects */}
+            <div style={{ background: "#fff", borderRadius: "20px", padding: "22px 24px", boxShadow: "0 4px 16px rgba(0,0,0,0.06)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" }}>
+                <span style={{ fontWeight: "700", fontSize: "16px", color: "#1a1a2e" }}>Top Projects</span>
+                <span style={{ color: "#10b981", fontSize: "13px", fontWeight: "600", cursor: "pointer" }}>View all</span>
+              </div>
+              {topProjects.map((proj, i) => (
+                <div key={proj.name} style={{
+                  display: "flex", justifyContent: "space-between", alignItems: "center",
+                  padding: "10px 0",
+                  borderBottom: i < topProjects.length - 1 ? "1px solid #f3f4f6" : "none",
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: proj.color }} />
+                    <span style={{ fontSize: "13px", fontWeight: "600", color: "#374151" }}>{proj.name}</span>
+                  </div>
+                  <span style={{
+                    fontSize: "11px", fontWeight: "700", color: proj.color,
+                    background: proj.color + "22", padding: "3px 10px", borderRadius: "20px",
+                  }}>{proj.status}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Banner */}
+            <div style={{
+              background: "linear-gradient(135deg, #0d9488 0%, #0891b2 60%, #1d4ed8 100%)",
+              borderRadius: "20px", padding: "24px", color: "#fff",
+              position: "relative", overflow: "hidden",
+            }}>
+              <div style={{ position: "absolute", right: "20px", top: "-10px", width: "90px", height: "90px", background: "rgba(255,255,255,0.12)", borderRadius: "50%" }} />
+              <div style={{ position: "absolute", right: "70px", bottom: "-20px", width: "70px", height: "70px", background: "rgba(255,255,255,0.08)", borderRadius: "50%" }} />
+              <div style={{ position: "absolute", right: "16px", bottom: "16px", opacity: 0.2 }}>
+                <FileText size={48} color="#fff" />
+              </div>
+              <div style={{ fontSize: "11px", fontWeight: "600", opacity: 0.7, marginBottom: "6px", letterSpacing: "0.08em" }}>DON'T FORGET</div>
+              <div style={{ fontSize: "22px", fontWeight: "800", marginBottom: "16px", lineHeight: "1.3" }}>
+                Generate<br />Certificates
+              </div>
+              <button style={{
+                background: "rgba(255,255,255,0.2)",
+                border: "1px solid rgba(255,255,255,0.4)",
+                color: "#fff", padding: "9px 20px",
+                borderRadius: "20px", cursor: "pointer",
+                fontWeight: "600", fontSize: "13px",
+              }}>
+                Generate Now
+              </button>
+            </div>
+
+          </div>
         </div>
       </div>
-
-      {/* Quick Actions */}
-<div className="mb-10">
-  <h2 className="text-xl font-semibold text-white mb-6">
-    Quick Actions
-  </h2>
-
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-    {/* Add User */}
-    <div
-      onClick={() => navigate("/add-user")}
-      className="cursor-pointer p-6 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 hover:scale-105 hover:shadow-xl transition duration-300"
-    >
-      <h3 className="text-lg font-semibold text-white mb-2">
-        ➕ Add User
-      </h3>
-      <p className="text-gray-400 text-sm">
-        Add new users to the platform
-      </p>
     </div>
-
-    {/* Add Project */}
-    <div
-      onClick={() => navigate("/add-project")}
-      className="cursor-pointer p-6 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 hover:scale-105 hover:shadow-xl transition duration-300"
-    >
-      <h3 className="text-lg font-semibold text-white mb-2">
-        🚀 Add Project
-      </h3>
-      <p className="text-gray-400 text-sm">
-        Add new project details
-      </p>
-    </div>
-
-    {/* Generate Certificate */}
-    <div
-      onClick={() => navigate("/generate")}
-      className="cursor-pointer p-6 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 hover:scale-105 hover:shadow-xl transition duration-300"
-    >
-      <h3 className="text-lg font-semibold text-white mb-2">
-        📜 Generate Certificate
-      </h3>
-      <p className="text-gray-400 text-sm">
-        Create new certificates
-      </p>
-    </div>
-
-  </div>
-</div>
-
-    </DashboardLayout>
   );
-};
-
-export default Dashboard;
+}

@@ -13,6 +13,7 @@ import AchievementDetails from "./pages/AchievementDetails";
 import Team from "./pages/Team";
 import EventsMedia from "./pages/EventsMedia";
 import BlogDetails from "./components/BlogDetails";
+import AdminLayout from "./layouts/AdminLayout";
 
 
 
@@ -21,10 +22,12 @@ import BlogDetails from "./components/BlogDetails";
 // Admin imports (FIXED)
 import AdminLogin from "./pages/admin/AdminLogin";
 import Dashboard from "./pages/admin/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 import AddUser from "./pages/admin/AddUser";
 import AddProject from "./pages/admin/AddProject";
 import GenerateCertificate from "./pages/admin/GenerateCertificate";
 import Achievements from "./pages/admin/AdminAchievements";
+
 
 
 import CursorGlow from "./components/CursorGlow";
@@ -66,11 +69,14 @@ function App() {
 
         {/* 🔐 Admin Routes (UPDATED) */}
         <Route path="/admin" element={<AdminLogin />} />
+         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminLayout />}/>
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/add-user" element={<AddUser />} />
         <Route path="/admin/add-project" element={<AddProject />} />
         <Route path="/admin/generate" element={<GenerateCertificate />} />
         <Route path="/admin/achievements" element={<Achievements />} />
+        <Route path="/admin/dashboard" element={<ProtectedRoute> <Dashboard />  </ProtectedRoute>}/>
       </Routes>
     </BrowserRouter>
   );

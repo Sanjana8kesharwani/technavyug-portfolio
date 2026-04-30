@@ -57,7 +57,7 @@ const Navbar = ({ setOpen }) => {
         {/* RIGHT */}
         <div className="flex items-center gap-3">
 
-          <Link to="/admin" className="px-4 py-2 rounded-full border border-blue-300 text-gray-700 hover:bg-cyan-100 transition text-sm">  Login </Link>
+          {/* <Link to="/admin" className="px-4 py-2 rounded-full border border-blue-300 text-gray-700 hover:bg-cyan-100 transition text-sm">  Login </Link> */}
            
           <button className="bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-4 md:px-5 py-2 rounded-full hover:scale-105 transition shadow-md text-sm">
             Get Started
