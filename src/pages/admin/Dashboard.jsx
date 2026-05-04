@@ -134,7 +134,7 @@ export default function AdminDashboard() {
           {/* Recent Activity */}
           <div style={{ background: "#fff", borderRadius: "20px", padding: "22px 24px", boxShadow: "0 4px 16px rgba(0,0,0,0.06)" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" }}>
-              <span style={{ fontWeight: "700", fontSize: "16px", color: "#1a1a2e" }}>Recent Activity</span>
+              <span style={{ fontWeight: "700", fontSize: "16px", color: "#1a1a2e" }}>Recent Uploads</span>
               <span style={{ color: "#10b981", fontSize: "13px", fontWeight: "600", cursor: "pointer" }}>View all</span>
             </div>
             {recentActivity.map((item, i) => (
