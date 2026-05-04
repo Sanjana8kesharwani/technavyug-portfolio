@@ -1,10 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import { useUsers } from "../../context/useUsers";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 export default function Users() {
   const navigate = useNavigate();
+  const { users, deleteUser } = useUsers();
 
-  const { users, deleteUser } = useUsers(); 
+  const [search, setSearch] = useState("");
+  const [sortAsc, setSortAsc] = useState(true);
+
+  // 🔍 Filter
+  const filteredUsers = users.filter((u) =>
+    u.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  // 🔃 Sort (Name)
+  const sortedUsers = [...filteredUsers].sort((a, b) =>
+    sortAsc
+      ? a.name.localeCompare(b.name)
+      : b.name.localeCompare(a.name)
+  );
 
   return (
     <div style={{ minHeight: "100vh", background: "#fff", padding: "20px" }}>
@@ -18,6 +34,7 @@ export default function Users() {
           padding: "20px",
         }}
       >
+        
         {/* HEADER */}
         <div
           style={{
@@ -34,19 +51,31 @@ export default function Users() {
             </p>
           </div>
 
-          <button
-            onClick={() => navigate("/admin/add-user")}
-            style={{
-              padding: "10px 16px",
-              background: "#4f46e5",
-              color: "#fff",
-              border: "none",
-              borderRadius: "10px",
-              cursor: "pointer",
-            }}
-          >
-            + Add User
-          </button>
+          <div style={{ display: "flex", gap: "10px" }}>
+            <input
+              placeholder="Search..."
+              onChange={(e) => setSearch(e.target.value)}
+              style={{
+                padding: "8px 12px",
+                borderRadius: "8px",
+                border: "1px solid #ccc",
+              }}
+            />
+
+            <button
+              onClick={() => navigate("/admin/add-user")}
+              style={{
+                padding: "10px 16px",
+                background: "#4f46e5",
+                color: "#fff",
+                border: "none",
+                borderRadius: "10px",
+                cursor: "pointer",
+              }}
+            >
+              + Add User
+            </button>
+          </div>
         </div>
 
         {/* WHITE CARD */}
@@ -54,56 +83,132 @@ export default function Users() {
           style={{
             background: "#fff",
             borderRadius: "20px",
-            padding: "25px",
+            padding: "20px",
             boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
           }}
         >
-          {users.length === 0 ? (
-            <div style={{ textAlign: "center", color: "#777" }}>
-              No users found
-            </div>
-          ) : (
-            users.map((user, i) => (
-              <div
-                key={i}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  padding: "15px 0",
-                  borderBottom: "1px solid #eee",
-                }}
-              >
-                {/* USER INFO */}
-                <div>
-                  <div style={{ fontWeight: "600" }}>{user.name}</div>
-                  <div style={{ fontSize: "13px", color: "#666" }}>
-                    {user.designation}
-                  </div>
-                  <div style={{ fontSize: "13px", color: "#666" }}>
-                    {user.email}
-                  </div>
-                </div>
-
-                {/* DELETE BUTTON */}
-                <button
-                  onClick={() => deleteUser(i)} 
-                  style={{
-                    background: "#ef4444",
-                    color: "#fff",
-                    border: "none",
-                    padding: "6px 12px",
-                    borderRadius: "8px",
-                    cursor: "pointer",
-                  }}
+          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+            
+            {/* HEADER */}
+            <thead>
+              <tr style={{ background: "#e2e8f0", textAlign: "left" }}>
+                <th
+                  style={{ padding: "12px", cursor: "pointer" }}
+                  onClick={() => setSortAsc(!sortAsc)}
                 >
-                  Delete
-                </button>
-              </div>
-            ))
-          )}
+                  Name {sortAsc ? "↑" : "↓"}
+                </th>
+                <th style={{ padding: "12px" }}>Designation</th>
+                <th style={{ padding: "12px" }}>Email</th>
+                <th style={{ padding: "12px" }}>Phone</th>
+                <th style={{ padding: "12px" }}>LinkedIn</th>
+                <th style={{ padding: "12px" }}>Actions</th>
+              </tr>
+            </thead>
+
+            {/* BODY */}
+            <tbody>
+              {sortedUsers.length === 0 ? (
+                <tr>
+                  <td colSpan="6" style={{ padding: "20px", textAlign: "center" }}>
+                    No users found
+                  </td>
+                </tr>
+              ) : (
+                sortedUsers.map((user, i) => (
+                  <tr
+                    key={i}
+                    style={{
+                      borderBottom: "1px solid #ddd",
+                    }}
+                  >
+                    <td style={{ padding: "12px", fontWeight: "500" }}>
+                      {user.name}
+                    </td>
+
+                    <td style={{ padding: "12px" }}>
+                      {user.designation}
+                    </td>
+
+                    <td style={{ padding: "12px", color: "#555" }}>
+                      {user.email || "—"}
+                    </td>
+
+                    <td style={{ padding: "12px" }}>
+                      {user.phone || "—"}
+                    </td>
+
+                    <td style={{ padding: "12px" }}>
+                      {user.linkedin ? (
+                        <a href={user.linkedin} target="_blank">
+                          View
+                        </a>
+                      ) : (
+                        "—"
+                      )}
+                    </td>
+
+                    {/* ACTIONS */}
+                    <td style={{ padding: "12px" }}>
+                      <div className="action-box">
+                        
+                        <button
+                          onClick={() => navigate(`/admin/edit-user/${i}`)}
+                          style={{
+                            background: "#3b82f6",
+                            color: "#fff",
+                            border: "none",
+                            padding: "6px 14px",
+                            borderRadius: "8px",
+                            cursor: "pointer",
+                          }}
+                        >
+                          Edit
+                        </button>
+
+                        <button
+  className="delete-btn"
+  onClick={() => {
+    if (window.confirm("Are you sure you want to delete?")) {
+      deleteUser(i);
+      toast.success("User deleted successfully");
+    }
+  }}
+>
+  🗑
+</button>
+
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
+
+      {/* CSS */}
+      <style>
+        {`
+        .action-box {
+          display: flex;
+          gap: 14px;
+        }
+
+        .delete-btn {
+          opacity: 0;
+          border: none;
+          background: transparent;
+          cursor: pointer;
+          font-size: 16px;
+        }
+
+        .action-box:hover .delete-btn {
+          opacity: 1;
+        }
+        `}
+      </style>
     </div>
   );
 }

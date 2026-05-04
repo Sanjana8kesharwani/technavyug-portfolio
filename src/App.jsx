@@ -26,6 +26,7 @@ import GenerateCertificate from "./pages/admin/GenerateCertificate";
 import Achievements from "./pages/admin/AdminAchievements";
 import Users from "./pages/admin/Users";
 import UsersProvider from "./context/UsersProvider";
+import EditUser from "./pages/admin/EditUser";
 
 
 import CursorGlow from "./components/CursorGlow";
@@ -64,6 +65,7 @@ function App() {
         <Route path="/team" element={<Team />} />
         <Route path="/events-media" element={<EventsMedia />} />
         <Route path="/blog/:id" element={<BlogDetails />} />
+        
 
         {/* 🔐 Admin Login */}
         <Route path="/admin/login" element={<AdminLogin />} />
@@ -85,6 +87,8 @@ function App() {
           <Route path="generate" element={<GenerateCertificate />} />
           <Route path="achievements" element={<Achievements />} />
           <Route path="users" element={<Users />} />
+          <Route path="/admin/add-user" element={<AddUser />} />
+          <Route path="/admin/edit-user/:id" element={<EditUser />} />
          
         </Route>
       </Routes>
