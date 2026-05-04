@@ -25,6 +25,8 @@ import AddProject from "./pages/admin/AddProject";
 import GenerateCertificate from "./pages/admin/GenerateCertificate";
 import Achievements from "./pages/admin/AdminAchievements";
 import Users from "./pages/admin/Users";
+import UsersProvider from "./context/UsersProvider";
+
 
 import CursorGlow from "./components/CursorGlow";
 import { Toaster } from "react-hot-toast";
@@ -32,6 +34,7 @@ import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <BrowserRouter>
+    <UsersProvider>
       <CursorGlow />
 
       <Toaster
@@ -74,14 +77,18 @@ function App() {
             </ProtectedRoute>
           }
         >
+
+          
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="add-user" element={<AddUser />} />
           <Route path="add-project" element={<AddProject />} />
           <Route path="generate" element={<GenerateCertificate />} />
           <Route path="achievements" element={<Achievements />} />
-          <Route path="/admin/users" element={<Users />} />
+          <Route path="users" element={<Users />} />
+         
         </Route>
       </Routes>
+      </UsersProvider>
     </BrowserRouter>
   );
 }

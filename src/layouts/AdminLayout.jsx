@@ -39,7 +39,7 @@ export default function AdminLayout() {
             <div key={item.label} onClick={() => {setActiveNav(item.label);
  
                 if (item.label === "Dashboard") navigate("/admin/dashboard");
-                if (item.label === "Users") navigate("/admin/add-user");
+                if (item.label === "Users") navigate("/admin/users");
                 if (item.label === "Projects") navigate("/admin/add-project");
                 if (item.label === "Achievements") navigate("/admin/achievements");
                 if (item.label === "Certificates") navigate("/admin/generate");

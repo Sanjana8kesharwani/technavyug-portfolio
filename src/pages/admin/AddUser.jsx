@@ -1,6 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { useUsers } from "../../context/useUsers";
 
 export default function AddUser() {
+  const navigate = useNavigate();
+  const { addUser } = useUsers();
+
   const [form, setForm] = useState({
     name: "",
     designation: "",
@@ -46,6 +52,10 @@ export default function AddUser() {
   const handleAddUser = () => {
     if (!validate()) return;
 
+    addUser(form);
+
+    toast.success("User added successfully 🎉");
+
     setForm({
       name: "",
       designation: "",
@@ -57,15 +67,22 @@ export default function AddUser() {
 
     setPreview(null);
     setErrors({});
+
+    setTimeout(() => {
+      navigate("/admin/users");
+    }, 1500);
   };
 
   return (
-    <div style={{minHeight: "100vh", background: "#fff", padding: "20px",}}>
-
-      {/* GREY SECTION */}
-      <div style={{background: "#c8d8e8", borderRadius: "18px",minHeight: "calc(100vh - 40px)", padding: "20px",}}>
-        
-        {/* HEADER (Admin Profile style) */}
+    <div style={{ minHeight: "100vh", background: "#fff", padding: "20px" }}>
+      <div
+        style={{
+          background: "#c8d8e8",
+          borderRadius: "18px",
+          minHeight: "calc(100vh - 40px)",
+          padding: "20px",
+        }}
+      >
         <div style={{ marginBottom: "25px" }}>
           <h3 style={{ margin: 0 }}>Add User</h3>
           <p style={{ margin: 0, color: "#555", fontSize: "14px" }}>
@@ -73,53 +90,92 @@ export default function AddUser() {
           </p>
         </div>
 
-        {/* WHITE CARD */}
-       <div style={{ background: "#fff",borderRadius: "20px", padding: "40px 50px", width: "100%",minHeight: "70vh",
-       display: "flex",flexDirection: "column",justifyContent: "center", boxShadow: "0 10px 40px rgba(0,0,0,0.08)", marginTop: "40px",}}>
-
-  <div style={{ maxWidth: "900px", margin: "0 auto", width: "100%" }}></div>
-          
-
+        <div
+          style={{
+            background: "#fff",
+            borderRadius: "20px",
+            padding: "40px 50px",
+            width: "100%",
+            minHeight: "70vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
+            marginTop: "40px",
+          }}
+        >
           <div style={{ display: "flex", gap: "25px" }}>
             {/* IMAGE */}
             <div style={{ textAlign: "center" }}>
-              <div style={{width: "150px", height: "150px",borderRadius: "50%",background: "#f1f5f9",display: "flex",
-              alignItems: "center",justifyContent: "center",overflow: "hidden",border: "2px dashed #ccc",}}>
-                
+              <div
+                style={{
+                  width: "150px",
+                  height: "150px",
+                  borderRadius: "50%",
+                  background: "#f1f5f9",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflow: "hidden",
+                  border: "2px dashed #ccc",
+                }}
+              >
                 {preview ? (
-                  <img src={preview} alt="" style={{ width: "100%", height: "100%",objectFit: "cover",}}/>
+                  <img
+                    src={preview}
+                    alt=""
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 ) : (
                   "Upload"
                 )}
               </div>
 
-              <input type="file" name="photo" onChange={handleChange} style={{ marginTop: "10px" }}/>
+              <input
+                type="file"
+                name="photo"
+                onChange={handleChange}
+                style={{ marginTop: "10px" }}
+              />
             </div>
 
             {/* FORM */}
             <div style={{ flex: 1 }}>
-              <div style={{display: "grid",gridTemplateColumns: "1fr 1fr",gap: "15px",}}>
-
-                <Input name="name" value={form.name} onChange={handleChange} placeholder="Full Name" error={errors.name}/>
-                  
-                <Input name="designation" value={form.designation} onChange={handleChange} placeholder="Designation" error={errors.designation}/>
-
-                <Input name="email" value={form.email} onChange={handleChange} placeholder="Email" error={errors.email}/>
- 
-                <Input  name="phone" value={form.phone} onChange={handleChange} placeholder="Phone" error={errors.phone}/>
- 
-                <Input name="linkedin" value={form.linkedin} onChange={handleChange} placeholder="LinkedIn URL"/>
- 
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "15px",
+                }}
+              >
+                <Input name="name" value={form.name} onChange={handleChange} placeholder="Full Name" error={errors.name} />
+                <Input name="designation" value={form.designation} onChange={handleChange} placeholder="Designation" error={errors.designation} />
+                <Input name="email" value={form.email} onChange={handleChange} placeholder="Email" error={errors.email} />
+                <Input name="phone" value={form.phone} onChange={handleChange} placeholder="Phone" error={errors.phone} />
+                <Input name="linkedin" value={form.linkedin} onChange={handleChange} placeholder="LinkedIn URL" />
               </div>
 
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
-
-            <button onClick={handleAddUser} style={{marginTop: "20px", padding: "10px 18px", background: "#4f46e5", color: "#fff",
-            border: "none",borderRadius: "10px", cursor: "pointer",}}>
-             Save User
-            </button>
-          </div>
-          </div>
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <button
+                  onClick={handleAddUser}
+                  style={{
+                    marginTop: "20px",
+                    padding: "10px 18px",
+                    background: "#4f46e5",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: "10px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Save User
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -133,9 +189,20 @@ const Input = ({ name, value, onChange, placeholder, error }) => (
       {placeholder}
     </label>
 
-    <input name={name} value={value} onChange={onChange} placeholder={`Enter ${placeholder}`}
-    style={{ padding: "12px",borderRadius: "10px", border: error ? "1px solid red" : "1px solid #ddd",}}/>
-      
-    {error && <span style={{ color: "red", fontSize: "12px" }}>{error}</span>}
+    <input
+      name={name}
+      value={value}
+      onChange={onChange}
+      placeholder={`Enter ${placeholder}`}
+      style={{
+        padding: "12px",
+        borderRadius: "10px",
+        border: error ? "1px solid red" : "1px solid #ddd",
+      }}
+    />
+
+    {error && (
+      <span style={{ color: "red", fontSize: "12px" }}>{error}</span>
+    )}
   </div>
 );
