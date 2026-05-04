@@ -15,6 +15,7 @@ import EventsMedia from "./pages/EventsMedia";
 import BlogDetails from "./components/BlogDetails";
 import AdminLayout from "./layouts/AdminLayout";
 
+
 // Admin imports
 import AdminLogin from "./pages/admin/AdminLogin";
 import Dashboard from "./pages/admin/Dashboard";
@@ -23,6 +24,7 @@ import AddUser from "./pages/admin/AddUser";
 import AddProject from "./pages/admin/AddProject";
 import GenerateCertificate from "./pages/admin/GenerateCertificate";
 import Achievements from "./pages/admin/AdminAchievements";
+import Users from "./pages/admin/Users";
 
 import CursorGlow from "./components/CursorGlow";
 import { Toaster } from "react-hot-toast";
@@ -77,6 +79,7 @@ function App() {
           <Route path="add-project" element={<AddProject />} />
           <Route path="generate" element={<GenerateCertificate />} />
           <Route path="achievements" element={<Achievements />} />
+          <Route path="/admin/users" element={<Users />} />
         </Route>
       </Routes>
     </BrowserRouter>
