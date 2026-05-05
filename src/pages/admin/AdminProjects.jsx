@@ -90,7 +90,7 @@ export default function AdminProjects() {
                   <tr
                     key={p.id}
                     style={{ borderBottom: "1px solid #eee" }}
-                    className="table-row"   // 🔥 ADD THIS
+                    className="table-row"
                   >
 
                     <td style={tdStyle}>{p.title}</td>

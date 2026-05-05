@@ -10,22 +10,16 @@ export default function Users() {
   const [search, setSearch] = useState("");
   const [sortAsc, setSortAsc] = useState(true);
 
-  
   const filteredUsers = users.filter((u) =>
-    u.name.toLowerCase().includes(search.toLowerCase())
+    u.name.toLowerCase().includes(search.toLowerCase()),
   );
 
- 
   const sortedUsers = [...filteredUsers].sort((a, b) =>
-    sortAsc
-      ? a.name.localeCompare(b.name)
-      : b.name.localeCompare(a.name)
+    sortAsc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name),
   );
 
   return (
     <div style={{ minHeight: "100vh", background: "#fff", padding: "20px" }}>
-      
-     
       <div
         style={{
           background: "#c8d8e8",
@@ -34,8 +28,6 @@ export default function Users() {
           padding: "20px",
         }}
       >
-        
-    
         <div
           style={{
             marginBottom: "25px",
@@ -78,7 +70,6 @@ export default function Users() {
           </div>
         </div>
 
-       
         <div
           style={{
             background: "#fff",
@@ -88,8 +79,6 @@ export default function Users() {
           }}
         >
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
-            
-            
             <thead>
               <tr style={{ background: "#e2e8f0", textAlign: "left" }}>
                 <th
@@ -106,11 +95,13 @@ export default function Users() {
               </tr>
             </thead>
 
-           
             <tbody>
               {sortedUsers.length === 0 ? (
                 <tr>
-                  <td colSpan="6" style={{ padding: "20px", textAlign: "center" }}>
+                  <td
+                    colSpan="6"
+                    style={{ padding: "20px", textAlign: "center" }}
+                  >
                     No users found
                   </td>
                 </tr>
@@ -126,17 +117,13 @@ export default function Users() {
                       {user.name}
                     </td>
 
-                    <td style={{ padding: "12px" }}>
-                      {user.designation}
-                    </td>
+                    <td style={{ padding: "12px" }}>{user.designation}</td>
 
                     <td style={{ padding: "12px", color: "#555" }}>
                       {user.email || "—"}
                     </td>
 
-                    <td style={{ padding: "12px" }}>
-                      {user.phone || "—"}
-                    </td>
+                    <td style={{ padding: "12px" }}>{user.phone || "—"}</td>
 
                     <td style={{ padding: "12px" }}>
                       {user.linkedin ? (
@@ -151,9 +138,10 @@ export default function Users() {
                     {/* ACTIONS */}
                     <td style={{ padding: "12px" }}>
                       <div className="action-box">
-                        
                         <button
-                         onClick={() => navigate(`/admin/edit-user/${user.id}`)}
+                          onClick={() =>
+                            navigate(`/admin/edit-user/${user.id}`)
+                          }
                           style={{
                             background: "#3b82f6",
                             color: "#fff",
@@ -167,17 +155,18 @@ export default function Users() {
                         </button>
 
                         <button
-  className="delete-btn"
-  onClick={() => {
-    if (window.confirm("Are you sure you want to delete?")) {
-      deleteUser(user.id);
-      toast.success("User deleted successfully");
-    }
-  }}
->
-  🗑
-</button>
-
+                          className="delete-btn"
+                          onClick={() => {
+                            if (
+                              window.confirm("Are you sure you want to delete?")
+                            ) {
+                              deleteUser(user.id);
+                              toast.success("User deleted successfully");
+                            }
+                          }}
+                        >
+                          🗑
+                        </button>
                       </div>
                     </td>
                   </tr>

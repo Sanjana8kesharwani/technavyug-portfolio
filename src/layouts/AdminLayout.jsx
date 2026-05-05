@@ -11,7 +11,7 @@ const sidebarItems = [
   { icon: <LayoutDashboard size={18} />, label: "Dashboard", path: "/admin/dashboard" },
   { icon: <Users size={18} />, label: "Users", path: "/admin/users" },
   { icon: <Trophy size={18} />, label: "Achievements", path: "/admin/achievements" },
-  { icon: <Rocket size={18} />, label: "Projects", path: "/admin/add-project" },
+  { icon: <Rocket size={18} />, label: "Projects", path: "/admin/projects" },
   { icon: <FileText size={18} />, label: "Certificates", path: "/admin/generate" },
 ];
 
@@ -30,9 +30,9 @@ if (path.includes("/admin/users") || path.includes("/admin/add-user") || path.in
 else if (path.includes("/admin/achievements") || path.includes("/admin/add-achievement") || path.includes("/admin/edit-achievement")) {
   activeNav = "Achievements";
 } 
-else if (path.includes("/admin/add-project")) {
+else if (path.includes("/admin/projects") || path.includes("/admin/add-project") || path.includes("/admin/edit-project")) {
   activeNav = "Projects";
-} 
+}
 else if (path.includes("/admin/generate")) {
   activeNav = "Certificates";
 }

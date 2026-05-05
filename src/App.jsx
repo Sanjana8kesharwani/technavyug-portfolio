@@ -15,7 +15,6 @@ import EventsMedia from "./pages/EventsMedia";
 import BlogDetails from "./components/BlogDetails";
 import AdminLayout from "./layouts/AdminLayout";
 
-
 // Admin imports
 import AdminLogin from "./pages/admin/AdminLogin";
 import Dashboard from "./pages/admin/Dashboard";
@@ -30,12 +29,10 @@ import AddAchievement from "./pages/admin/AddAchievement";
 import EditAchievement from "./pages/admin/EditAchievement";
 import AchievementsProvider from "./provider/AchievementsProvider";
 
-
-
 import ProjectsProvider from "./provider/ProjectsProvider";
 import AdminProjects from "./pages/admin/AdminProjects";
 import AddProject from "./pages/admin/AddProject";
-
+import EditProject from "./pages/admin/EditProject";
 
 import CursorGlow from "./components/CursorGlow";
 import { Toaster } from "react-hot-toast";
@@ -43,75 +40,78 @@ import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <BrowserRouter>
-  <UsersProvider>
-    <AchievementsProvider>
-      <ProjectsProvider>  {/* 🔥 ADD THIS */}
+      <UsersProvider>
+        <AchievementsProvider>
+          <ProjectsProvider>
+            {" "}
+            {/* 🔥 ADD THIS */}
+            <CursorGlow />
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                style: {
+                  background: "#1f2937",
+                  color: "#fff",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                },
+              }}
+            />
+            <Routes>
+              {/* 🌍 Public Routes */}
+              <Route path="/" element={<Home />} />
+              <Route path="/profile/:id" element={<Profile />} />
+              <Route path="/verify" element={<Verify />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsConditions />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/project/:id" element={<ProjectDetails />} />
+              <Route path="/achievements" element={<AchievementsPage />} />
+              <Route
+                path="/achievements/:id"
+                element={<AchievementDetails />}
+              />
+              <Route path="/team" element={<Team />} />
+              <Route path="/events-media" element={<EventsMedia />} />
+              <Route path="/blog/:id" element={<BlogDetails />} />
 
-        <CursorGlow />
+              {/* 🔐 Admin Login */}
+              <Route path="/admin/login" element={<AdminLogin />} />
 
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            style: {
-              background: "#1f2937",
-              color: "#fff",
-              border: "1px solid rgba(255,255,255,0.1)",
-            },
-          }}
-        />
+              {/* 🔐 Admin Protected Routes */}
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute>
+                    <AdminLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route path="dashboard" element={<Dashboard />} />
 
-        <Routes>
-          {/* 🌍 Public Routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/profile/:id" element={<Profile />} />
-          <Route path="/verify" element={<Verify />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<TermsConditions />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/project/:id" element={<ProjectDetails />} />
-          <Route path="/achievements" element={<AchievementsPage />} />
-          <Route path="/achievements/:id" element={<AchievementDetails />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/events-media" element={<EventsMedia />} />
-          <Route path="/blog/:id" element={<BlogDetails />} />
+                <Route path="users" element={<Users />} />
+                <Route path="add-user" element={<AddUser />} />
+                <Route path="edit-user/:id" element={<EditUser />} />
 
-          {/* 🔐 Admin Login */}
-          <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="achievements" element={<Achievements />} />
+                <Route path="add-achievement" element={<AddAchievement />} />
+                <Route
+                  path="edit-achievement/:id"
+                  element={<EditAchievement />}
+                />
 
-          {/* 🔐 Admin Protected Routes */}
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute>
-                <AdminLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="add-user" element={<AddUser />} />
-            <Route path="add-project" element={<AddProject />} />
-            <Route path="generate" element={<GenerateCertificate />} />
-            <Route path="achievements" element={<Achievements />} />
-            <Route path="users" element={<Users />} />
+                <Route path="projects" element={<AdminProjects />} />
+                <Route path="add-project" element={<AddProject />} />
+                <Route path="edit-project/:id" element={<EditProject />} />
 
-            <Route path="/admin/add-user" element={<AddUser />} />
-            <Route path="/admin/edit-user/:id" element={<EditUser />} />
-
-            <Route path="/admin/achievements" element={<Achievements />} />
-            <Route path="/admin/add-achievement" element={<AddAchievement />} />
-            <Route path="/admin/edit-achievement/:id" element={<EditAchievement />} />
-
-            <Route path="/admin/projects" element={<AdminProjects />} />
-            <Route path="/admin/add-project" element={<AddProject />} />
-          </Route>
-        </Routes>
-
-      </ProjectsProvider>
-    </AchievementsProvider>
-  </UsersProvider>
-</BrowserRouter>
+                <Route path="generate" element={<GenerateCertificate />} />
+              </Route>
+            </Routes>
+          </ProjectsProvider>
+        </AchievementsProvider>
+      </UsersProvider>
+    </BrowserRouter>
   );
 }
 
