@@ -30,17 +30,33 @@ export default function EditAchievement() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!form.title || !form.type) {
-      toast.error("Please fill required fields");
-      return;
-    }
+  if (!form.title.trim()) {
+    toast.error("Title is required");
+    return;
+  }
 
-    updateAchievement(id, form);
-    toast.success("Achievement updated successfully");
-    navigate("/admin/achievements");
-  };
+  if (!form.type) {
+    toast.error("Please select achievement type");
+    return;
+  }
+
+  if (!form.organization.trim()) {
+    toast.error("Organization is required");
+    return;
+  }
+
+  if (form.description.trim().length < 10) {
+    toast.error("Description must be at least 10 characters");
+    return;
+  }
+
+  updateAchievement(id.toString(), form);
+  toast.success("Achievement updated successfully");
+
+  navigate("/admin/achievements");
+};
 
   if (!existing) return <div style={{ padding: "20px" }}>Loading...</div>;
 

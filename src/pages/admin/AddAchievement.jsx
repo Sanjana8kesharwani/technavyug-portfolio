@@ -50,20 +50,34 @@ export default function AddAchievement() {
     }
   };
 
-  const handleSubmit = () => {
-    if (!form.title.trim()) {
-      toast.error("Title is required");
-      return;
-    }
+  const handleSubmit = (e) => {
+  e.preventDefault();
 
-    addAchievement({
-      ...form,
-      id: Date.now(),
-    });
+  if (!form.title.trim()) {
+    toast.error("Title is required");
+    return;
+  }
 
-    toast.success("Achievement added 🎉");
-    navigate("/admin/achievements");
-  };
+  if (!form.type) {
+    toast.error("Please select achievement type");
+    return;
+  }
+
+  if (!form.organization.trim()) {
+    toast.error("Organization is required");
+    return;
+  }
+
+  if (form.description.trim().length < 10) {
+    toast.error("Description must be at least 10 characters");
+    return;
+  }
+
+  addAchievement(form);
+  toast.success("Achievement added successfully");
+
+  navigate("/admin/achievements");
+};
 
   return (
     <div className="min-h-screen bg-white p-5">
