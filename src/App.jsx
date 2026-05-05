@@ -23,10 +23,13 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AddUser from "./pages/admin/AddUser";
 import AddProject from "./pages/admin/AddProject";
 import GenerateCertificate from "./pages/admin/GenerateCertificate";
-import Achievements from "./pages/admin/AdminAchievements";
+import Achievements from "./pages/admin/Achievements";
 import Users from "./pages/admin/Users";
-import UsersProvider from "./context/UsersProvider";
+import UsersProvider from "./provider/UsersProvider";
 import EditUser from "./pages/admin/EditUser";
+import AddAchievement from "./pages/admin/AddAchievement";
+import EditAchievement from "./pages/admin/EditAchievement";
+import AchievementsProvider from "./provider/AchievementsProvider";
 
 
 import CursorGlow from "./components/CursorGlow";
@@ -36,6 +39,7 @@ function App() {
   return (
     <BrowserRouter>
     <UsersProvider>
+      <AchievementsProvider> 
       <CursorGlow />
 
       <Toaster
@@ -89,9 +93,14 @@ function App() {
           <Route path="users" element={<Users />} />
           <Route path="/admin/add-user" element={<AddUser />} />
           <Route path="/admin/edit-user/:id" element={<EditUser />} />
+
+          <Route path="/admin/achievements" element={<Achievements />} />
+<Route path="/admin/add-achievement" element={<AddAchievement />} />
+<Route path="/admin/edit-achievement/:id" element={<EditAchievement />} />
          
         </Route>
       </Routes>
+      </AchievementsProvider>
       </UsersProvider>
     </BrowserRouter>
   );

@@ -20,10 +20,22 @@ export default function AdminLayout() {
   const location = useLocation();
 
  
-  const activeNav =
-    sidebarItems.find((item) =>
-      location.pathname.startsWith(item.path)
-    )?.label || "Dashboard";
+  const path = location.pathname;
+
+let activeNav = "Dashboard";
+
+if (path.includes("/admin/users") || path.includes("/admin/add-user") || path.includes("/admin/edit-user")) {
+  activeNav = "Users";
+} 
+else if (path.includes("/admin/achievements") || path.includes("/admin/add-achievement") || path.includes("/admin/edit-achievement")) {
+  activeNav = "Achievements";
+} 
+else if (path.includes("/admin/add-project")) {
+  activeNav = "Projects";
+} 
+else if (path.includes("/admin/generate")) {
+  activeNav = "Certificates";
+}
 
   return (
     <div style={{ display: "flex" }}>
