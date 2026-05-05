@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAchievements } from "../../context/useAchievements";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 export default function Achievements() {
   const navigate = useNavigate();
@@ -14,7 +15,6 @@ export default function Achievements() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#fff", padding: "20px" }}>
-      
       <div
         style={{
           background: "#c8d8e8",
@@ -23,7 +23,7 @@ export default function Achievements() {
           padding: "20px",
         }}
       >
-        {/* Header */}
+        {/* HEADER */}
         <div
           style={{
             marginBottom: "25px",
@@ -54,7 +54,7 @@ export default function Achievements() {
           </button>
         </div>
 
-        {/* Search */}
+        {/* SEARCH */}
         <input
           placeholder="Search achievement..."
           value={search}
@@ -68,7 +68,7 @@ export default function Achievements() {
           }}
         />
 
-        {/* Table */}
+        {/* TABLE */}
         <div
           style={{
             background: "#fff",
@@ -82,25 +82,28 @@ export default function Achievements() {
               No achievements found
             </div>
           ) : (
-            <table width="100%" style={{ borderCollapse: "collapse" }}>
-              <thead style={{ background: "#e5e7eb" }}>
-                <tr>
+            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <thead>
+                <tr style={{ background: "#e2e8f0", textAlign: "left" }}>
                   <th style={{ padding: "12px" }}>Title</th>
-                  <th>Type</th>
-                  <th>Organization</th>
-                  <th>Featured</th>
-                  <th>Actions</th>
+                  <th style={{ padding: "12px" }}>Type</th>
+                  <th style={{ padding: "12px" }}>Organization</th>
+                  <th style={{ padding: "12px" }}>Featured</th>
+                  <th style={{ padding: "12px" }}>Actions</th>
                 </tr>
               </thead>
 
               <tbody>
                 {filtered.map((a) => (
-                  <tr key={a.id} style={{ borderBottom: "1px solid #eee" }}>
+                  <tr
+                    key={a.id}
+                    style={{ borderBottom: "1px solid #ddd" }}
+                  >
                     <td style={{ padding: "12px" }}>{a.title}</td>
-                    <td>{a.type}</td>
-                    <td>{a.organization}</td>
+                    <td style={{ padding: "12px" }}>{a.type}</td>
+                    <td style={{ padding: "12px" }}>{a.organization}</td>
 
-                    <td>
+                    <td style={{ padding: "12px" }}>
                       <input
                         type="checkbox"
                         checked={a.featured}
@@ -108,37 +111,47 @@ export default function Achievements() {
                       />
                     </td>
 
-                    <td>
-                      <button
-                        onClick={() =>
-                          navigate(`/admin/edit-achievement/${a.id}`)
-                        }
-                        style={{
-                          marginRight: "8px",
-                          padding: "5px 10px",
-                          borderRadius: "6px",
-                          border: "none",
-                          background: "#4f46e5",
-                          color: "#fff",
-                          cursor: "pointer",
-                        }}
-                      >
-                        Edit
-                      </button>
+                    {/* ACTIONS */}
+                    <td style={{ padding: "12px" }}>
+                      <div className="action-box">
 
-                      <button
-                        onClick={() => deleteAchievement(a.id)}
-                        style={{
-                          padding: "5px 10px",
-                          borderRadius: "6px",
-                          border: "none",
-                          background: "#ef4444",
-                          color: "#fff",
-                          cursor: "pointer",
-                        }}
-                      >
-                        Delete
-                      </button>
+                        {/* EDIT */}
+                        <button
+                          onClick={() =>
+                            navigate(`/admin/edit-achievement/${a.id}`)
+                          }
+                          style={{
+                            background: "#3b82f6",
+                            color: "#fff",
+                            border: "none",
+                            padding: "6px 14px",
+                            borderRadius: "8px",
+                            cursor: "pointer",
+                          }}
+                        >
+                          Edit
+                        </button>
+
+                        {/* DELETE (hover show) */}
+                        <button
+                          className="delete-btn"
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                "Are you sure you want to delete?"
+                              )
+                            ) {
+                              deleteAchievement(a.id);
+                              toast.success(
+                                "Achievement deleted successfully"
+                              );
+                            }
+                          }}
+                        >
+                          🗑
+                        </button>
+
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -147,6 +160,28 @@ export default function Achievements() {
           )}
         </div>
       </div>
+
+      {/* SAME CSS AS USERS */}
+      <style>
+        {`
+        .action-box {
+          display: flex;
+          gap: 14px;
+        }
+
+        .delete-btn {
+          opacity: 0;
+          border: none;
+          background: transparent;
+          cursor: pointer;
+          font-size: 16px;
+        }
+
+        .action-box:hover .delete-btn {
+          opacity: 1;
+        }
+      `}
+      </style>
     </div>
   );
 }
