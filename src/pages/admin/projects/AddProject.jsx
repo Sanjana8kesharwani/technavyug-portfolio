@@ -1,30 +1,23 @@
 import { useState } from "react";
-import { useProjects } from "../../provider/useProjects";
-import { useNavigate, useParams } from "react-router-dom";
+import { useProjects } from "../../../provider/useProjects";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
-export default function EditProject() {
-  const { projects, updateProject } = useProjects();
-  const { id } = useParams();
+export default function AddProject() {
+  const { addProject } = useProjects();
   const navigate = useNavigate();
 
-  const existing = projects.find((p) => p.id.toString() === id);
-
-  const [preview, setPreview] = useState(existing?.thumbnail || null);
+  const [preview, setPreview] = useState(null);
 
   const [form, setForm] = useState({
-    title: existing?.title || "",
-    category: existing?.category || "",
-    shortDesc: existing?.shortDesc || "",
-    fullDesc: existing?.fullDesc || "",
-    status: existing?.status || "",
-    featured: existing?.featured || false,
-    thumbnail: existing?.thumbnail || null,
+    title: "",
+    category: "",
+    shortDesc: "",
+    fullDesc: "",
+    status: "",
+    featured: false,
+    thumbnail: null,
   });
-
-  if (!existing) {
-    return <div style={{ padding: "20px" }}>Project not found</div>;
-  }
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
@@ -43,7 +36,7 @@ export default function EditProject() {
           return;
         }
 
-        setPreview(file);
+        setPreview(URL.createObjectURL(file));
         setForm({ ...form, thumbnail: file });
       }
     } else {
@@ -63,7 +56,7 @@ export default function EditProject() {
     }
 
     if (!form.category) {
-      toast.error("Category is required");
+      toast.error("Please select category");
       return;
     }
 
@@ -87,22 +80,27 @@ export default function EditProject() {
       return;
     }
 
-    updateProject(id, {
-      ...existing,
-      ...form,
-    });
+    if (!form.thumbnail) {
+      toast.error("Thumbnail image is required");
+      return;
+    }
 
-    toast.success("Project updated successfully");
+    addProject(form);
+    toast.success("Project added successfully");
+
     navigate("/admin/projects");
   };
 
   return (
     <div className="min-h-screen bg-white p-5">
       <div className="bg-[#c8d8e8] rounded-2xl p-6 min-h-[calc(100vh-40px)]">
+        
         {/* HEADER */}
         <div className="mb-6">
-          <h2 className="text-xl font-semibold">Edit Project</h2>
-          <p className="text-sm text-gray-600">Update project details</p>
+          <h2 className="text-xl font-semibold">Add Project</h2>
+          <p className="text-sm text-gray-600">
+            Manage projects and details
+          </p>
         </div>
 
         {/* FORM */}
@@ -110,25 +108,26 @@ export default function EditProject() {
           onSubmit={handleSubmit}
           className="bg-white p-6 rounded-2xl shadow-md space-y-5"
         >
-          {/* ROW 1 (SAME AS ADD PROJECT) */}
+          {/* ROW 1 */}
           <div className="grid grid-cols-2 gap-4">
-            {/* TITLE */}
             <div>
-              <label className="text-sm font-medium">Project Title</label>
+              <label className="text-sm font-medium">
+                Project Title
+              </label>
               <input
                 name="title"
-                value={form.title}
+                placeholder="Enter title"
                 onChange={handleChange}
                 className="w-full mt-1 p-2 border rounded-lg"
               />
             </div>
 
-            {/* CATEGORY */}
             <div>
-              <label className="text-sm font-medium">Category</label>
+              <label className="text-sm font-medium">
+                Category
+              </label>
               <select
                 name="category"
-                value={form.category}
                 onChange={handleChange}
                 className="w-full mt-1 p-2 border rounded-lg"
               >
@@ -142,10 +141,12 @@ export default function EditProject() {
 
           {/* SHORT DESC */}
           <div>
-            <label className="text-sm font-medium">Short Description</label>
+            <label className="text-sm font-medium">
+              Short Description
+            </label>
             <textarea
               name="shortDesc"
-              value={form.shortDesc}
+              placeholder="Max 200 characters"
               onChange={handleChange}
               className="w-full mt-1 p-2 border rounded-lg"
             />
@@ -153,10 +154,12 @@ export default function EditProject() {
 
           {/* FULL DESC */}
           <div>
-            <label className="text-sm font-medium">Full Description</label>
+            <label className="text-sm font-medium">
+              Full Description
+            </label>
             <textarea
               name="fullDesc"
-              value={form.fullDesc}
+              placeholder="Enter full description"
               onChange={handleChange}
               className="w-full mt-1 p-2 border rounded-lg h-24"
             />
@@ -164,12 +167,10 @@ export default function EditProject() {
 
           {/* ROW 2 */}
           <div className="grid grid-cols-2 gap-4">
-            {/* STATUS */}
             <div>
               <label className="text-sm font-medium">Status</label>
               <select
                 name="status"
-                value={form.status}
                 onChange={handleChange}
                 className="w-full mt-1 p-2 border rounded-lg"
               >
@@ -182,9 +183,12 @@ export default function EditProject() {
 
             {/* THUMBNAIL */}
             <div>
-              <label className="text-sm font-medium">Thumbnail Image</label>
+              <label className="text-sm font-medium">
+                Thumbnail Image
+              </label>
 
               <div className="mt-2 flex items-center gap-4">
+                
                 {/* Upload Box */}
                 <label className="w-32 h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:border-indigo-500 transition">
                   <span className="text-xs text-gray-500 text-center">
@@ -201,13 +205,7 @@ export default function EditProject() {
                 {/* Preview */}
                 {preview && (
                   <img
-                    src={
-                      preview instanceof File
-                        ? URL.createObjectURL(preview)
-                        : typeof preview === "string"
-                          ? preview
-                          : ""
-                    }
+                    src={preview}
                     alt="preview"
                     className="w-32 h-24 object-cover rounded-lg border"
                   />
@@ -221,7 +219,6 @@ export default function EditProject() {
             <input
               type="checkbox"
               name="featured"
-              checked={form.featured}
               onChange={handleChange}
             />
             <label>Featured Project</label>
@@ -233,7 +230,7 @@ export default function EditProject() {
               type="submit"
               className="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700"
             >
-              Update Project
+              Save Project
             </button>
           </div>
         </form>

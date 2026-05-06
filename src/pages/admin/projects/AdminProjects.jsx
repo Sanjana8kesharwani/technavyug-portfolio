@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useProjects } from "../../provider/useProjects";
+import { useProjects } from "../../../provider/useProjects";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAchievements } from "../../context/useAchievements";
+import { useAchievements } from "../../../context/useAchievements";
 import { toast } from "react-hot-toast";
 
 export default function AddAchievement() {

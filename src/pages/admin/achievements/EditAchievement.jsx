@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useAchievements } from "../../context/useAchievements";
+import { useAchievements } from "../../../context/useAchievements";
 import { useState, useMemo } from "react";
 import { toast } from "react-hot-toast";
 

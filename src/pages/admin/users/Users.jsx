@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useUsers } from "../../context/useUsers";
+import { useUsers } from "../../../context/useUsers";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 

@@ -1,34 +1,25 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useUsers } from "../../context/useUsers";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { useUsers } from "../../../context/useUsers";
 
-export default function EditUser() {
-  const { id } = useParams();
+export default function AddUser() {
   const navigate = useNavigate();
-  const { users, updateUser } = useUsers();
+  const { addUser } = useUsers();
 
- const user = users.find((u) => u.id === Number(id));
-
-  
   const [form, setForm] = useState({
-    name: user?.name || "",
-    designation: user?.designation || "",
-    email: user?.email || "",
-    phone: user?.phone || "",
-    linkedin: user?.linkedin || "",
-    photo: user?.photo || null,
+    name: "",
+    designation: "",
+    email: "",
+    phone: "",
+    linkedin: "",
+    photo: null,
   });
 
-  const [preview, setPreview] = useState(user?.photo || null);
   const [errors, setErrors] = useState({});
+  const [preview, setPreview] = useState(null);
 
-   console.log("URL id:", id);
-console.log("Users:", users);
-
-
-if (!user) return null;
-
+  
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
@@ -36,10 +27,28 @@ if (!user) return null;
       const file = files[0];
 
       if (file) {
-        setPreview(URL.createObjectURL(file));
-      }
+       
+        if (!["image/jpeg", "image/png"].includes(file.type)) {
+          setErrors((prev) => ({
+            ...prev,
+            photo: "Only JPG or PNG allowed",
+          }));
+          return;
+        }
 
-      setForm({ ...form, photo: file });
+        
+        if (file.size > 2 * 1024 * 1024) {
+          setErrors((prev) => ({
+            ...prev,
+            photo: "Max size 2MB",
+          }));
+          return;
+        }
+
+        setPreview(URL.createObjectURL(file));
+        setForm({ ...form, photo: file });
+        setErrors((prev) => ({ ...prev, photo: "" }));
+      }
     } else {
       setForm({ ...form, [name]: value });
     }
@@ -48,6 +57,7 @@ if (!user) return null;
   const validate = () => {
     let newErrors = {};
 
+    if (!form.name.trim()) newErrors.name = "Name is required";
     if (!form.designation.trim())
       newErrors.designation = "Designation required";
 
@@ -61,21 +71,37 @@ if (!user) return null;
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleUpdate = () => {
+  const handleAddUser = () => {
     if (!validate()) return;
 
-      updateUser(user.id, form); 
-    toast.success("User updated successfully 🎉");
+    const success = addUser({
+      ...form,
+      id: Date.now(),
+    });
 
-     navigate("/admin/users");
+    if (!success) return;
 
-   
+    toast.success("User added successfully 🎉");
+
+    setForm({
+      name: "",
+      designation: "",
+      email: "",
+      phone: "",
+      linkedin: "",
+      photo: null,
+    });
+
+    setPreview(null);
+    setErrors({});
+
+    setTimeout(() => {
+      navigate("/admin/users");
+    }, 1500);
   };
 
   return (
     <div style={{ minHeight: "100vh", background: "#fff", padding: "20px" }}>
-      
-     
       <div
         style={{
           background: "#c8d8e8",
@@ -84,31 +110,34 @@ if (!user) return null;
           padding: "20px",
         }}
       >
-     
         <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ margin: 0 }}>Edit User</h3>
+          <h3 style={{ margin: 0 }}>Add User</h3>
           <p style={{ margin: 0, color: "#555", fontSize: "14px" }}>
-            Update user information
+            Manage users and their information
           </p>
         </div>
 
-       
         <div
           style={{
             background: "#fff",
             borderRadius: "20px",
-            padding: "30px",
+            padding: "40px 50px",
+            width: "100%",
+            minHeight: "70vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
             boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
+            marginTop: "40px",
           }}
         >
-          <div style={{ display: "flex", gap: "30px" }}>
-            
+          <div style={{ display: "flex", gap: "25px" }}>
             {/* IMAGE */}
             <div style={{ textAlign: "center" }}>
               <div
                 style={{
-                  width: "140px",
-                  height: "140px",
+                  width: "150px",
+                  height: "150px",
                   borderRadius: "50%",
                   background: "#f1f5f9",
                   display: "flex",
@@ -139,6 +168,13 @@ if (!user) return null;
                 onChange={handleChange}
                 style={{ marginTop: "10px" }}
               />
+
+              {/* photo error */}
+              {errors.photo && (
+                <span style={{ color: "red", fontSize: "12px" }}>
+                  {errors.photo}
+                </span>
+              )}
             </div>
 
             {/* FORM */}
@@ -150,49 +186,16 @@ if (!user) return null;
                   gap: "15px",
                 }}
               >
-                {/* NAME */}
-                <Input
-                  name="name"
-                  value={form.name}
-                  placeholder="Full Name"
-                  disabled
-                />
-
-                <Input
-                  name="designation"
-                  value={form.designation}
-                  onChange={handleChange}
-                  placeholder="Designation"
-                  error={errors.designation}
-                />
-
-                <Input
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="Email"
-                  error={errors.email}
-                />
-
-                <Input
-                  name="phone"
-                  value={form.phone}
-                  onChange={handleChange}
-                  placeholder="Phone"
-                  error={errors.phone}
-                />
-
-                <Input
-                  name="linkedin"
-                  value={form.linkedin}
-                  onChange={handleChange}
-                  placeholder="LinkedIn URL"
-                />
+                <Input name="name" value={form.name} onChange={handleChange} placeholder="Full Name" error={errors.name} />
+                <Input name="designation" value={form.designation} onChange={handleChange} placeholder="Designation" error={errors.designation} />
+                <Input name="email" value={form.email} onChange={handleChange} placeholder="Email" error={errors.email} />
+                <Input name="phone" value={form.phone} onChange={handleChange} placeholder="Phone" error={errors.phone} />
+                <Input name="linkedin" value={form.linkedin} onChange={handleChange} placeholder="LinkedIn URL" />
               </div>
 
-              <div style={{ textAlign: "right" }}>
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
                 <button
-                  onClick={handleUpdate}
+                  onClick={handleAddUser}
                   style={{
                     marginTop: "20px",
                     padding: "10px 18px",
@@ -203,11 +206,10 @@ if (!user) return null;
                     cursor: "pointer",
                   }}
                 >
-                  Update User
+                  Save User
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -215,8 +217,7 @@ if (!user) return null;
   );
 }
 
-/* Input component */
-const Input = ({ name, value, onChange, placeholder, error, disabled }) => (
+const Input = ({ name, value, onChange, placeholder, error }) => (
   <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
     <label style={{ fontSize: "13px", fontWeight: "600" }}>
       {placeholder}
@@ -226,13 +227,11 @@ const Input = ({ name, value, onChange, placeholder, error, disabled }) => (
       name={name}
       value={value}
       onChange={onChange}
-      disabled={disabled}
       placeholder={`Enter ${placeholder}`}
       style={{
         padding: "12px",
         borderRadius: "10px",
         border: error ? "1px solid red" : "1px solid #ddd",
-        background: disabled ? "#f1f5f9" : "#fff",
       }}
     />
 
