@@ -20,7 +20,7 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import Dashboard from "./pages/admin/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AddUser from "./pages/admin/users/AddUser";
-import GenerateCertificate from "./pages/admin/GenerateCertificate";
+import GenerateCertificate from "./pages/admin/certificates/GenerateCertificate";
 import Achievements from "./pages/admin/achievements/Achievements";
 import Users from "./pages/admin/users/Users";
 import UsersProvider from "./provider/UsersProvider";
@@ -33,6 +33,10 @@ import ProjectsProvider from "./provider/ProjectsProvider";
 import AdminProjects from "./pages/admin/projects/AdminProjects";
 import AddProject from "./pages/admin/projects/AddProject";
 import EditProject from "./pages/admin/projects/EditProject";
+
+import Certificates from "./pages/admin/certificates/certificates";
+import AddCertificate from "./pages/admin/certificates/AddCertificate";
+import EditCertificate from "./pages/admin/certificates/EditCertificates";
 
 import CursorGlow from "./components/CursorGlow";
 import { Toaster } from "react-hot-toast";
@@ -80,9 +84,7 @@ function App() {
               <Route path="/admin/login" element={<AdminLogin />} />
 
               {/* 🔐 Admin Protected Routes */}
-              <Route
-                path="/admin"
-                element={
+              <Route path="/admin" element={
                   <ProtectedRoute>
                     <AdminLayout />
                   </ProtectedRoute>
@@ -96,15 +98,16 @@ function App() {
 
                 <Route path="achievements" element={<Achievements />} />
                 <Route path="add-achievement" element={<AddAchievement />} />
-                <Route
-                  path="edit-achievement/:id"
-                  element={<EditAchievement />}
-                />
+                <Route path="edit-achievement/:id" element={<EditAchievement />} />
 
                 <Route path="projects" element={<AdminProjects />} />
                 <Route path="add-project" element={<AddProject />} />
                 <Route path="edit-project/:id" element={<EditProject />} />
 
+
+                <Route path="certificates" element={<Certificates />} />
+                 <Route path="add-certificate" element={<AddCertificate />} /> 
+                <Route path="edit-certificate/:id" element={<EditCertificate />} />
                 <Route path="generate" element={<GenerateCertificate />} />
               </Route>
             </Routes>
