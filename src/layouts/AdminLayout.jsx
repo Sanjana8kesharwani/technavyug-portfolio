@@ -17,7 +17,7 @@ const sidebarItems = [
   {
     icon: <FileText size={18} />,
     label: "Certificates",
-    path: "/admin/generate",
+    path: "/admin/certificates",
   },
 ];
 
@@ -47,10 +47,13 @@ export default function AdminLayout() {
     path.includes("/admin/edit-project")
   ) {
     activeNav = "Projects";
-  } else if (path.includes("/admin/generate")) {
-    activeNav = "Certificates";
-  }
-
+  } else if (
+  path.includes("/admin/certificates") ||
+  path.includes("/admin/add-certificate") ||
+  path.includes("/admin/edit-certificate")
+) {
+  activeNav = "Certificates";
+}
   return (
     <div style={{ display: "flex" }}>
       {/* ── SIDEBAR ── */}
