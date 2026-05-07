@@ -67,6 +67,8 @@ export default function AdminLayout() {
     path.includes("/admin/edit-certificate")
   ) {
     activeNav = "Certificates";
+  } else if (path.includes("/admin/profile")) {
+    activeNav = "Admin";
   }
 
   return (
@@ -138,8 +140,11 @@ export default function AdminLayout() {
             gap: "10px",
             padding: "12px 14px",
             borderRadius: "14px",
-            background: "#f3f4f6",
             cursor: "pointer",
+            background:
+              activeNav === "Admin"
+                ? "linear-gradient(135deg, #0f766e, #14b8a6)"
+                : "#f3f4f6",
           }}
         >
           <div
@@ -165,7 +170,10 @@ export default function AdminLayout() {
                 margin: 0,
                 fontWeight: "600",
                 fontSize: "14px",
-                color: "#0f172a",
+                color:
+                  activeNav === "Admin"
+                    ? "#fff"
+                    : "#0f172a",
               }}
             >
               Admin
@@ -175,7 +183,10 @@ export default function AdminLayout() {
               style={{
                 margin: 0,
                 fontSize: "12px",
-                color: "#64748b",
+                color:
+                  activeNav === "Admin"
+                    ? "rgba(255,255,255,0.8)"
+                    : "#64748b",
               }}
             >
               Super Admin
