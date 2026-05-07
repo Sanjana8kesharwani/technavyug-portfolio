@@ -101,26 +101,26 @@ export default function EditProject() {
       <div className="bg-[#c8d8e8] rounded-2xl p-6 min-h-[calc(100vh-40px)]">
         {/* HEADER */}
         <div style={{ marginBottom: "24px" }}>
-        <h1
-          style={{
-            fontSize: "30px",
-            fontWeight: "700",
-            color: "#1e293b",
-            marginBottom: "6px",
-          }}
-        >
-          Edit Project
-        </h1>
+          <h1
+            style={{
+              fontSize: "30px",
+              fontWeight: "700",
+              color: "#1e293b",
+              marginBottom: "6px",
+            }}
+          >
+            Edit Project
+          </h1>
 
-        <p
-          style={{
-            color: "#64748b",
-            fontSize: "16px",
-          }}
-        >
-          Update project details
-        </p>
-      </div>
+          <p
+            style={{
+              color: "#64748b",
+              fontSize: "16px",
+            }}
+          >
+            Update project details
+          </p>
+        </div>
 
         {/* FORM */}
         <form
@@ -248,7 +248,14 @@ export default function EditProject() {
           <div className="flex justify-end">
             <button
               type="submit"
-              className="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700"
+              className="text-white font-semibold"
+              style={{
+                background: "#4f46e5",
+                padding: "12px 18px",
+                borderRadius: "12px",
+                border: "none",
+                cursor: "pointer",
+              }}
             >
               Update Project
             </button>

@@ -263,10 +263,9 @@ export default function AdminProjects() {
         <div
           style={{
             background: "#fff",
-            borderRadius: "22px",
-            padding: "14px",
-            overflowX: "auto",
-            position: "relative",
+            borderRadius: "20px",
+            padding: "20px",
+            boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
           }}
         >
           {filteredProjects.length ===

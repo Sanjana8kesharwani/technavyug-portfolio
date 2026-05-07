@@ -94,7 +94,6 @@ export default function AddProject() {
   return (
     <div className="min-h-screen bg-white p-5">
       <div className="bg-[#c8d8e8] rounded-2xl p-6 min-h-[calc(100vh-40px)]">
-        
         {/* HEADER */}
         <div style={{ marginBottom: "25px" }}>
           <h1
@@ -126,9 +125,7 @@ export default function AddProject() {
           {/* ROW 1 */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-sm font-medium">
-                Project Title
-              </label>
+              <label className="text-sm font-medium">Project Title</label>
               <input
                 name="title"
                 placeholder="Enter title"
@@ -138,9 +135,7 @@ export default function AddProject() {
             </div>
 
             <div>
-              <label className="text-sm font-medium">
-                Category
-              </label>
+              <label className="text-sm font-medium">Category</label>
               <select
                 name="category"
                 onChange={handleChange}
@@ -156,9 +151,7 @@ export default function AddProject() {
 
           {/* SHORT DESC */}
           <div>
-            <label className="text-sm font-medium">
-              Short Description
-            </label>
+            <label className="text-sm font-medium">Short Description</label>
             <textarea
               name="shortDesc"
               placeholder="Max 200 characters"
@@ -169,9 +162,7 @@ export default function AddProject() {
 
           {/* FULL DESC */}
           <div>
-            <label className="text-sm font-medium">
-              Full Description
-            </label>
+            <label className="text-sm font-medium">Full Description</label>
             <textarea
               name="fullDesc"
               placeholder="Enter full description"
@@ -198,12 +189,9 @@ export default function AddProject() {
 
             {/* THUMBNAIL */}
             <div>
-              <label className="text-sm font-medium">
-                Thumbnail Image
-              </label>
+              <label className="text-sm font-medium">Thumbnail Image</label>
 
               <div className="mt-2 flex items-center gap-4">
-                
                 {/* Upload Box */}
                 <label className="w-32 h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:border-indigo-500 transition">
                   <span className="text-xs text-gray-500 text-center">
@@ -231,11 +219,7 @@ export default function AddProject() {
 
           {/* FEATURED */}
           <div className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              name="featured"
-              onChange={handleChange}
-            />
+            <input type="checkbox" name="featured" onChange={handleChange} />
             <label>Featured Project</label>
           </div>
 
@@ -243,7 +227,14 @@ export default function AddProject() {
           <div className="flex justify-end">
             <button
               type="submit"
-              className="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700"
+              className="text-white font-semibold"
+              style={{
+                background: "#4f46e5",
+                padding: "12px 18px",
+                borderRadius: "12px",
+                border: "none",
+                cursor: "pointer",
+              }}
             >
               Save Project
             </button>
