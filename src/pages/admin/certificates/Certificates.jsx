@@ -244,7 +244,7 @@ const Certificates = () => {
             background: "#fff",
             borderRadius: "22px",
             padding: "14px",
-            overflowX: "auto",
+            overflowX: "visible",
             position: "relative",
           }}
         >
