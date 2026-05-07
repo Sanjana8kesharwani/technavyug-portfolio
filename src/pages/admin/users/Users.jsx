@@ -23,7 +23,7 @@ export default function Users() {
       <div
         style={{
           background: "#c8d8e8",
-          borderRadius: "18px",
+          borderRadius: "28px",
           minHeight: "calc(100vh - 40px)",
           padding: "20px",
         }}
@@ -33,12 +33,28 @@ export default function Users() {
             marginBottom: "25px",
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center",
+            alignItems: "flex-start",
           }}
         >
           <div>
-            <h3 style={{ margin: 0 }}>Users</h3>
-            <p style={{ margin: 0, color: "#555", fontSize: "14px" }}>
+            <h1
+              style={{
+                fontSize: "30px",
+                fontWeight: "700",
+                color: "#1e293b",
+                marginBottom: "6px",
+              }}
+            >
+              Users
+            </h1>
+
+            <p
+              style={{
+                color: "#64748b",
+                fontSize: "16px",
+                margin: 0,
+              }}
+            >
               Manage all users
             </p>
           </div>

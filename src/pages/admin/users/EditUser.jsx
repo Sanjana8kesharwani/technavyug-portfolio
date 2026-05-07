@@ -8,7 +8,9 @@ export default function EditUser() {
   const navigate = useNavigate();
   const { users, updateUser } = useUsers();
 
- const user = users.find((u) => u.id === Number(id));
+ const user = users.find(
+  (u) => String(u.id) === String(id)
+);
 
   
   const [form, setForm] = useState({
@@ -27,7 +29,18 @@ export default function EditUser() {
 console.log("Users:", users);
 
 
-if (!user) return null;
+if (!user) {
+  return (
+    <div
+      style={{
+        padding: "40px",
+        fontSize: "20px",
+      }}
+    >
+      Loading user...
+    </div>
+  );
+}
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -77,30 +90,47 @@ if (!user) return null;
       
      
       <div
-        style={{
-          background: "#c8d8e8",
-          borderRadius: "18px",
-          minHeight: "calc(100vh - 40px)",
-          padding: "20px",
-        }}
-      >
-     
-        <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ margin: 0 }}>Edit User</h3>
-          <p style={{ margin: 0, color: "#555", fontSize: "14px" }}>
-            Update user information
-          </p>
-        </div>
+  style={{
+    background: "#c8d8e8",
+    borderRadius: "28px",
+    minHeight: "calc(100vh - 40px)",
+    padding: "20px",
+  }}
+>
+  {/* HEADER */}
+  <div style={{ marginBottom: "25px" }}>
+    <h1
+      style={{
+        fontSize: "30px",
+        fontWeight: "700",
+        color: "#1e293b",
+        marginBottom: "6px",
+      }}
+    >
+      Edit User
+    </h1>
 
-       
-        <div
-          style={{
-            background: "#fff",
-            borderRadius: "20px",
-            padding: "30px",
-            boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
-          }}
-        >
+    <p
+      style={{
+        color: "#64748b",
+        fontSize: "16px",
+        margin: 0,
+      }}
+    >
+      Update user information
+    </p>
+  </div>
+
+  {/* WHITE CARD */}
+  <div
+    style={{
+      background: "#fff",
+      borderRadius: "20px",
+      padding: "30px",
+      boxShadow:
+        "0 10px 40px rgba(0,0,0,0.08)",
+    }}
+  >
           <div style={{ display: "flex", gap: "30px" }}>
             
             {/* IMAGE */}

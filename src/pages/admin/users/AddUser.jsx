@@ -100,121 +100,209 @@ export default function AddUser() {
     }, 1500);
   };
 
-  return (
-    <div style={{ minHeight: "100vh", background: "#fff", padding: "20px" }}>
-      <div
-        style={{
-          background: "#c8d8e8",
-          borderRadius: "18px",
-          minHeight: "calc(100vh - 40px)",
-          padding: "20px",
-        }}
-      >
-        <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ margin: 0 }}>Add User</h3>
-          <p style={{ margin: 0, color: "#555", fontSize: "14px" }}>
-            Manage users and their information
-          </p>
-        </div>
-
-        <div
+ return (
+  <div
+    style={{
+      minHeight: "100vh",
+      background: "#fff",
+      padding: "20px",
+    }}
+  >
+    {/* BLUE CONTAINER */}
+    <div
+      style={{
+        background: "#c8d8e8",
+        borderRadius: "28px",
+        minHeight: "calc(100vh - 40px)",
+        padding: "20px",
+      }}
+    >
+      {/* HEADER */}
+      <div style={{ marginBottom: "25px" }}>
+        <h1
           style={{
-            background: "#fff",
-            borderRadius: "20px",
-            padding: "40px 50px",
-            width: "100%",
-            minHeight: "70vh",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
-            marginTop: "40px",
+            fontSize: "30px",
+            fontWeight: "700",
+            color: "#1e293b",
+            marginBottom: "6px",
           }}
         >
-          <div style={{ display: "flex", gap: "25px" }}>
-            {/* IMAGE */}
-            <div style={{ textAlign: "center" }}>
-              <div
-                style={{
-                  width: "150px",
-                  height: "150px",
-                  borderRadius: "50%",
-                  background: "#f1f5f9",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  overflow: "hidden",
-                  border: "2px dashed #ccc",
-                }}
-              >
-                {preview ? (
-                  <img
-                    src={preview}
-                    alt=""
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                ) : (
-                  "Upload"
-                )}
-              </div>
+          Add Users
+        </h1>
 
-              <input
-                type="file"
-                name="photo"
-                onChange={handleChange}
-                style={{ marginTop: "10px" }}
-              />
+        <p
+          style={{
+            color: "#64748b",
+            fontSize: "16px",
+          }}
+        >
+          Manage users and their information
+        </p>
+      </div>
 
-              {/* photo error */}
-              {errors.photo && (
-                <span style={{ color: "red", fontSize: "12px" }}>
-                  {errors.photo}
-                </span>
+      {/* WHITE CARD */}
+      <div
+        style={{
+          background: "#fff",
+          borderRadius: "20px",
+          padding: "40px 50px",
+          width: "100%",
+          minHeight: "70vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          boxShadow:
+            "0 10px 40px rgba(0,0,0,0.08)",
+          marginTop: "40px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            gap: "25px",
+          }}
+        >
+          {/* IMAGE */}
+          <div
+            style={{
+              textAlign: "center",
+            }}
+          >
+            <div
+              style={{
+                width: "150px",
+                height: "150px",
+                borderRadius: "50%",
+                background: "#f1f5f9",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
+                border:
+                  "2px dashed #ccc",
+              }}
+            >
+              {preview ? (
+                <img
+                  src={preview}
+                  alt=""
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+              ) : (
+                "Upload"
               )}
             </div>
 
-            {/* FORM */}
-            <div style={{ flex: 1 }}>
-              <div
+            <input
+              type="file"
+              name="photo"
+              onChange={handleChange}
+              style={{
+                marginTop: "10px",
+              }}
+            />
+
+            {/* PHOTO ERROR */}
+            {errors.photo && (
+              <span
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "15px",
+                  color: "red",
+                  fontSize: "12px",
                 }}
               >
-                <Input name="name" value={form.name} onChange={handleChange} placeholder="Full Name" error={errors.name} />
-                <Input name="designation" value={form.designation} onChange={handleChange} placeholder="Designation" error={errors.designation} />
-                <Input name="email" value={form.email} onChange={handleChange} placeholder="Email" error={errors.email} />
-                <Input name="phone" value={form.phone} onChange={handleChange} placeholder="Phone" error={errors.phone} />
-                <Input name="linkedin" value={form.linkedin} onChange={handleChange} placeholder="LinkedIn URL" />
-              </div>
+                {errors.photo}
+              </span>
+            )}
+          </div>
 
-              <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <button
-                  onClick={handleAddUser}
-                  style={{
-                    marginTop: "20px",
-                    padding: "10px 18px",
-                    background: "#4f46e5",
-                    color: "#fff",
-                    border: "none",
-                    borderRadius: "10px",
-                    cursor: "pointer",
-                  }}
-                >
-                  Save User
-                </button>
-              </div>
+          {/* FORM */}
+          <div style={{ flex: 1 }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns:
+                  "1fr 1fr",
+                gap: "15px",
+              }}
+            >
+              <Input
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Full Name"
+                error={errors.name}
+              />
+
+              <Input
+                name="designation"
+                value={form.designation}
+                onChange={handleChange}
+                placeholder="Designation"
+                error={
+                  errors.designation
+                }
+              />
+
+              <Input
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="Email"
+                error={errors.email}
+              />
+
+              <Input
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                placeholder="Phone"
+                error={errors.phone}
+              />
+
+              <Input
+                name="linkedin"
+                value={form.linkedin}
+                onChange={handleChange}
+                placeholder="LinkedIn URL"
+              />
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent:
+                  "flex-end",
+              }}
+            >
+              <button
+                onClick={
+                  handleAddUser
+                }
+                style={{
+                  marginTop: "20px",
+                  padding:
+                    "10px 18px",
+                  background:
+                    "#4f46e5",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                }}
+              >
+                Save User
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }
 
 const Input = ({ name, value, onChange, placeholder, error }) => (
