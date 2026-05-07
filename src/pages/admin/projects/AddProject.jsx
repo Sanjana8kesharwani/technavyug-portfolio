@@ -96,9 +96,24 @@ export default function AddProject() {
       <div className="bg-[#c8d8e8] rounded-2xl p-6 min-h-[calc(100vh-40px)]">
         
         {/* HEADER */}
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold">Add Project</h2>
-          <p className="text-sm text-gray-600">
+        <div style={{ marginBottom: "25px" }}>
+          <h1
+            style={{
+              fontSize: "30px",
+              fontWeight: "700",
+              color: "#1e293b",
+              marginBottom: "6px",
+            }}
+          >
+            Add Project
+          </h1>
+
+          <p
+            style={{
+              color: "#64748b",
+              fontSize: "16px",
+            }}
+          >
             Manage projects and details
           </p>
         </div>

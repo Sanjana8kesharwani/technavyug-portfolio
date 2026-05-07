@@ -26,10 +26,7 @@ export default function AdminProjects() {
   // OUTSIDE CLICK CLOSE
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target)
-      ) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
         setOpenMenu(null);
       }
     };
@@ -37,10 +34,7 @@ export default function AdminProjects() {
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener(
-        "mousedown",
-        handleClickOutside
-      );
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -56,15 +50,14 @@ export default function AdminProjects() {
   const filteredProjects = projects.filter((p) => {
     const statusMatch = !statusFilter || p.status === statusFilter;
 
-    const categoryMatch =
-      !categoryFilter || p.category === categoryFilter;
+    const categoryMatch = !categoryFilter || p.category === categoryFilter;
 
     const featuredMatch =
       featuredFilter === ""
         ? true
         : featuredFilter === "featured"
-        ? p.featured
-        : !p.featured;
+          ? p.featured
+          : !p.featured;
 
     return statusMatch && categoryMatch && featuredMatch;
   });
@@ -81,20 +74,34 @@ export default function AdminProjects() {
         }}
       >
         {/* HEADER */}
+
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
-            marginBottom: "20px",
+            alignItems: "flex-start",
+            marginBottom: "22px",
           }}
         >
           <div>
-            <h2 style={{ fontSize: "18px", fontWeight: "600" }}>
+            <h1
+              style={{
+                fontSize: "30px",
+                fontWeight: "700",
+                color: "#1e293b",
+                marginBottom: "6px",
+              }}
+            >
               Projects
-            </h2>
+            </h1>
 
-            <p style={{ fontSize: "13px", color: "#555" }}>
-              Manage all projects
+            <p
+              style={{
+                color: "#64748b",
+                fontSize: "16px",
+              }}
+            >
+              Manage projects and details
             </p>
           </div>
 
@@ -198,27 +205,19 @@ export default function AdminProjects() {
                   <th style={thStyle}>Category</th>
                   <th style={thStyle}>Status</th>
 
-                  <th style={{ ...thStyle, textAlign: "center" }}>
-                    Featured
-                  </th>
+                  <th style={{ ...thStyle, textAlign: "center" }}>Featured</th>
 
-                  <th style={{ ...thStyle, textAlign: "center" }}>
-                    Actions
-                  </th>
+                  <th style={{ ...thStyle, textAlign: "center" }}>Actions</th>
                 </tr>
               </thead>
 
               {/* BODY */}
               <tbody>
                 {filteredProjects.map((p, index) => {
-                  const isLastRows =
-                    index >= filteredProjects.length - 3;
+                  const isLastRows = index >= filteredProjects.length - 3;
 
                   return (
-                    <tr
-                      key={p.id}
-                      style={{ borderBottom: "1px solid #eee" }}
-                    >
+                    <tr key={p.id} style={{ borderBottom: "1px solid #eee" }}>
                       <td style={tdStyle}>{p.title}</td>
 
                       <td style={tdStyle}>{p.category}</td>
@@ -286,9 +285,7 @@ export default function AdminProjects() {
                           {/* 3 DOT */}
                           <button
                             onClick={() =>
-                              setOpenMenu(
-                                openMenu === p.id ? null : p.id
-                              )
+                              setOpenMenu(openMenu === p.id ? null : p.id)
                             }
                             style={{
                               border: "none",
@@ -311,28 +308,21 @@ export default function AdminProjects() {
                                 background: "#fff",
                                 border: "1px solid #e5e7eb",
                                 borderRadius: "10px",
-                                boxShadow:
-                                  "0 10px 25px rgba(0,0,0,0.08)",
+                                boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
                                 zIndex: 9999,
                                 width: "160px",
                                 overflow: "hidden",
 
-                                top: isLastRows
-                                  ? "auto"
-                                  : "38px",
+                                top: isLastRows ? "auto" : "38px",
 
-                                bottom: isLastRows
-                                  ? "38px"
-                                  : "auto",
+                                bottom: isLastRows ? "38px" : "auto",
                               }}
                             >
                               {/* COPY */}
                               <div
                                 onClick={() => {
                                   duplicateProject(p.id);
-                                  toast.success(
-                                    "Project duplicated"
-                                  );
+                                  toast.success("Project duplicated");
                                   setOpenMenu(null);
                                 }}
                                 style={menuItemStyle}
@@ -348,9 +338,7 @@ export default function AdminProjects() {
                                 }}
                                 style={menuItemStyle}
                               >
-                                {p.published
-                                  ? "Unpublish"
-                                  : "Publish"}
+                                {p.published ? "Unpublish" : "Publish"}
                               </div>
 
                               {/* FEATURE */}

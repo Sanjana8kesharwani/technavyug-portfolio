@@ -100,10 +100,27 @@ export default function EditProject() {
     <div className="min-h-screen bg-white p-5">
       <div className="bg-[#c8d8e8] rounded-2xl p-6 min-h-[calc(100vh-40px)]">
         {/* HEADER */}
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold">Edit Project</h2>
-          <p className="text-sm text-gray-600">Update project details</p>
-        </div>
+        <div style={{ marginBottom: "24px" }}>
+        <h1
+          style={{
+            fontSize: "30px",
+            fontWeight: "700",
+            color: "#1e293b",
+            marginBottom: "6px",
+          }}
+        >
+          Edit Project
+        </h1>
+
+        <p
+          style={{
+            color: "#64748b",
+            fontSize: "16px",
+          }}
+        >
+          Update project details
+        </p>
+      </div>
 
         {/* FORM */}
         <form
