@@ -37,6 +37,7 @@ import EditProject from "./pages/admin/projects/EditProject";
 import Certificates from "./pages/admin/certificates/certificates";
 import AddCertificate from "./pages/admin/certificates/AddCertificate";
 import EditCertificate from "./pages/admin/certificates/EditCertificates";
+import CertificatesProvider from "./provider/CertificatesProvider";
 
 import CursorGlow from "./components/CursorGlow";
 import { Toaster } from "react-hot-toast";
@@ -45,6 +46,7 @@ function App() {
   return (
     <BrowserRouter>
       <UsersProvider>
+        <CertificatesProvider>
         <AchievementsProvider>
           <ProjectsProvider>
             {" "}
@@ -113,6 +115,7 @@ function App() {
             </Routes>
           </ProjectsProvider>
         </AchievementsProvider>
+        </CertificatesProvider>
       </UsersProvider>
     </BrowserRouter>
   );

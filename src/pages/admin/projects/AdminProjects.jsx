@@ -653,10 +653,8 @@ const filterStyle = {
 };
 
 const thStyle = {
+  padding: "12px",
   textAlign: "left",
-  padding: "16px",
-  fontSize: "15px",
-  color: "#1e293b",
 };
 
 const tdStyle = {

@@ -1,130 +1,177 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { Eye, Trash2, Download, Copy } from "lucide-react";
+import {
+  Eye,
+  Trash2,
+  Download,
+  Copy,
+} from "lucide-react";
 
-const certificatesData = [
-  {
-    id: 1,
-    title: "AWS Cloud Practitioner",
-    category: "Cloud",
-    organization: "Amazon",
-    issueDate: "12 May 2026",
-    verified: true,
-    verificationUrl: "https://verify.aws.com/certificate",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
-  },
-
-  {
-    id: 2,
-    title: "Google UX Design",
-    category: "Design",
-    organization: "Google",
-    issueDate: "18 June 2026",
-    verified: true,
-    verificationUrl: "https://google.com/verify",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
-  },
-
-  {
-    id: 3,
-    title: "Cyber Security Analyst",
-    category: "Cybersecurity",
-    organization: "IBM",
-    issueDate: "22 July 2026",
-    verified: false,
-    verificationUrl: "https://ibm.com/certificate",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
-  },
-];
+import useCertificates from "../../../context/useCertificates";
 
 const Certificates = () => {
-  const [openMenuId, setOpenMenuId] = useState(null);
+  const {
+    certificates,
+    deleteCertificate,
+  } = useCertificates();
 
-  const [statusFilter, setStatusFilter] = useState("");
+  const [openMenuId, setOpenMenuId] =
+    useState(null);
 
-  const [categoryFilter, setCategoryFilter] = useState("");
+  const [statusFilter, setStatusFilter] =
+    useState("");
 
-  const [organizationFilter, setOrganizationFilter] = useState("");
+  const [
+    categoryFilter,
+    setCategoryFilter,
+  ] = useState("");
+
+  const [
+    organizationFilter,
+    setOrganizationFilter,
+  ] = useState("");
 
   useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (!e.target.closest(".action-menu")) {
+    const handleOutsideClick = (
+      e
+    ) => {
+      if (
+        !e.target.closest(
+          ".action-menu"
+        )
+      ) {
         setOpenMenuId(null);
       }
     };
 
-    document.addEventListener("click", handleOutsideClick);
+    document.addEventListener(
+      "click",
+      handleOutsideClick
+    );
 
     return () => {
-      document.removeEventListener("click", handleOutsideClick);
+      document.removeEventListener(
+        "click",
+        handleOutsideClick
+      );
     };
   }, []);
 
-  const handleDelete = (title) => {
-    const confirmDelete = window.confirm(`Delete "${title}" certificate?`);
+  const handleDelete = (
+    id,
+    title
+  ) => {
+    const confirmDelete =
+      window.confirm(
+        `Delete "${title}" certificate?`
+      );
 
     if (confirmDelete) {
-      toast.success("Certificate deleted successfully");
+      deleteCertificate(id);
+
+      toast.success(
+        "Certificate deleted successfully"
+      );
     }
   };
 
-  const handleCopyUrl = async (url) => {
+  const handleCopyUrl = async (
+    url
+  ) => {
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(
+        url
+      );
 
-      toast.success("Verification URL copied");
+      toast.success(
+        "Verification URL copied"
+      );
     } catch {
-      toast.error("Failed to copy URL");
+      toast.error(
+        "Failed to copy URL"
+      );
     }
   };
 
-  const handleDownload = async (file) => {
+  const handleDownload = async (
+    file
+  ) => {
     try {
-      const response = await fetch(file);
+      const response =
+        await fetch(file);
 
-      const blob = await response.blob();
+      const blob =
+        await response.blob();
 
-      const url = window.URL.createObjectURL(blob);
+      const url =
+        window.URL.createObjectURL(
+          blob
+        );
 
-      const link = document.createElement("a");
+      const link =
+        document.createElement("a");
 
       link.href = url;
 
-      link.download = "certificate.jpg";
+      link.download =
+        "certificate.jpg";
 
-      document.body.appendChild(link);
+      document.body.appendChild(
+        link
+      );
 
       link.click();
 
-      document.body.removeChild(link);
+      document.body.removeChild(
+        link
+      );
 
-      window.URL.revokeObjectURL(url);
+      window.URL.revokeObjectURL(
+        url
+      );
 
-      toast.success("Download started");
+      toast.success(
+        "Download started"
+      );
     } catch {
-      toast.error("Download failed");
+      toast.error(
+        "Download failed"
+      );
     }
   };
 
-  const filteredCertificates = certificatesData.filter((certificate) => {
-    const matchStatus =
-      statusFilter === ""
-        ? true
-        : statusFilter === "Verified"
-          ? certificate.verified
-          : !certificate.verified;
+  const filteredCertificates =
+    certificates.filter(
+      (certificate) => {
+        const matchStatus =
+          statusFilter === ""
+            ? true
+            : statusFilter ===
+              "Verified"
+            ? certificate.verified
+            : !certificate.verified;
 
-    const matchCategory =
-      categoryFilter === "" ? true : certificate.category === categoryFilter;
+        const matchCategory =
+          categoryFilter === ""
+            ? true
+            : certificate.category ===
+              categoryFilter;
 
-    const matchOrganization =
-      organizationFilter === ""
-        ? true
-        : certificate.organization === organizationFilter;
+        const matchOrganization =
+          organizationFilter ===
+          ""
+            ? true
+            : certificate.organization ===
+              organizationFilter;
 
-    return matchStatus && matchCategory && matchOrganization;
-  });
+        return (
+          matchStatus &&
+          matchCategory &&
+          matchOrganization
+        );
+      }
+    );
 
   return (
     <div
@@ -139,7 +186,8 @@ const Certificates = () => {
         style={{
           background: "#c8d8e8",
           borderRadius: "28px",
-          minHeight: "calc(100vh - 28px)",
+          minHeight:
+            "calc(100vh - 28px)",
           padding: "20px",
         }}
       >
@@ -147,8 +195,10 @@ const Certificates = () => {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
+            justifyContent:
+              "space-between",
+            alignItems:
+              "flex-start",
             marginBottom: "22px",
           }}
         >
@@ -179,7 +229,8 @@ const Certificates = () => {
             style={{
               background: "#4f46e5",
               color: "#fff",
-              textDecoration: "none",
+              textDecoration:
+                "none",
               padding: "12px 18px",
               borderRadius: "12px",
               fontWeight: "600",
@@ -199,42 +250,78 @@ const Certificates = () => {
         >
           <select
             value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
+            onChange={(e) =>
+              setStatusFilter(
+                e.target.value
+              )
+            }
             style={filterStyle}
           >
-            <option value="">All Status</option>
+            <option value="">
+              All Status
+            </option>
 
-            <option value="Verified">Verified</option>
+            <option value="Verified">
+              Verified
+            </option>
 
-            <option value="Invalid">Invalid</option>
+            <option value="Invalid">
+              Invalid
+            </option>
           </select>
 
           <select
             value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value)}
+            onChange={(e) =>
+              setCategoryFilter(
+                e.target.value
+              )
+            }
             style={filterStyle}
           >
-            <option value="">All Categories</option>
+            <option value="">
+              All Categories
+            </option>
 
-            <option value="Cloud">Cloud</option>
+            <option value="Cloud">
+              Cloud
+            </option>
 
-            <option value="Design">Design</option>
+            <option value="Design">
+              Design
+            </option>
 
-            <option value="Cybersecurity">Cybersecurity</option>
+            <option value="Cybersecurity">
+              Cybersecurity
+            </option>
           </select>
 
           <select
-            value={organizationFilter}
-            onChange={(e) => setOrganizationFilter(e.target.value)}
+            value={
+              organizationFilter
+            }
+            onChange={(e) =>
+              setOrganizationFilter(
+                e.target.value
+              )
+            }
             style={filterStyle}
           >
-            <option value="">All Organizations</option>
+            <option value="">
+              All Organizations
+            </option>
 
-            <option value="Amazon">Amazon</option>
+            <option value="Amazon">
+              Amazon
+            </option>
 
-            <option value="Google">Google</option>
+            <option value="Google">
+              Google
+            </option>
 
-            <option value="IBM">IBM</option>
+            <option value="IBM">
+              IBM
+            </option>
           </select>
         </div>
 
@@ -251,177 +338,283 @@ const Certificates = () => {
           <table
             style={{
               width: "100%",
-              borderCollapse: "collapse",
+              borderCollapse:
+                "collapse",
             }}
           >
             <thead>
               <tr
                 style={{
-                  background: "#e2e8f0",
+                  background:
+                    "#e2e8f0",
                 }}
               >
-                <th style={thStyle}>Title</th>
+                <th style={thStyle}>
+                  Title
+                </th>
 
-                <th style={thStyle}>Category</th>
+                <th style={thStyle}>
+                  Category
+                </th>
 
-                <th style={thStyle}>Organization</th>
+                <th style={thStyle}>
+                  Organization
+                </th>
 
-                <th style={thStyle}>Issue Date</th>
+                <th style={thStyle}>
+                  Issue Date
+                </th>
 
-                <th style={thStyle}>Status</th>
+                <th style={thStyle}>
+                  Status
+                </th>
 
-                <th style={thStyle}>Actions</th>
+                <th style={thStyle}>
+                  Actions
+                </th>
               </tr>
             </thead>
 
             <tbody>
-              {filteredCertificates.map((certificate) => (
-                <tr
-                  key={certificate.id}
-                  style={{
-                    borderBottom: "1px solid #e2e8f0",
-                  }}
-                >
-                  <td style={tdStyle}>{certificate.title}</td>
+              {filteredCertificates.map(
+                (certificate) => (
+                  <tr
+                    key={certificate.id}
+                    style={{
+                      borderBottom:
+                        "1px solid #e2e8f0",
+                    }}
+                  >
+                    <td style={tdStyle}>
+                      {
+                        certificate.title
+                      }
+                    </td>
 
-                  <td style={tdStyle}>{certificate.category}</td>
+                    <td style={tdStyle}>
+                      {
+                        certificate.category
+                      }
+                    </td>
 
-                  <td style={tdStyle}>{certificate.organization}</td>
+                    <td style={tdStyle}>
+                      {
+                        certificate.organization
+                      }
+                    </td>
 
-                  <td style={tdStyle}>{certificate.issueDate}</td>
+                    <td style={tdStyle}>
+                      {
+                        certificate.issueDate
+                      }
+                    </td>
 
-                  <td style={tdStyle}>
-                    {certificate.verified ? (
-                      <span
-                        style={{
-                          background: "#dcfce7",
-                          color: "#15803d",
-                          padding: "6px 14px",
-                          borderRadius: "999px",
-                          fontSize: "14px",
-                          fontWeight: "600",
-                        }}
-                      >
-                        Verified
-                      </span>
-                    ) : (
-                      <span
-                        style={{
-                          background: "#fee2e2",
-                          color: "#dc2626",
-                          padding: "6px 14px",
-                          borderRadius: "999px",
-                          fontSize: "14px",
-                          fontWeight: "600",
-                        }}
-                      >
-                        Invalid
-                      </span>
-                    )}
-                  </td>
-
-                  <td style={tdStyle}>
-                    <div
-                      className="action-menu"
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "14px",
-                        position: "relative",
-                      }}
-                    >
-                      <Link
-                        to={`/admin/edit-certificate/${certificate.id}`}
-                        style={{
-                          background: "#4f46e5",
-                          color: "#fff",
-                          textDecoration: "none",
-                          padding: "10px 16px",
-                          borderRadius: "10px",
-                          fontSize: "14px",
-                          fontWeight: "600",
-                        }}
-                      >
-                        Edit
-                      </Link>
-
-                      <button
-                        onClick={() =>
-                          setOpenMenuId(
-                            openMenuId === certificate.id
-                              ? null
-                              : certificate.id,
-                          )
-                        }
-                        style={{
-                          border: "none",
-                          background: "transparent",
-                          cursor: "pointer",
-                          fontSize: "22px",
-                          fontWeight: "700",
-                        }}
-                      >
-                        ⋮
-                      </button>
-
-                      {openMenuId === certificate.id && (
-                        <div
+                    <td style={tdStyle}>
+                      {certificate.verified ? (
+                        <span
                           style={{
-                            position: "absolute",
-                            top: "48px",
-                            right: "0",
-                            background: "#fff",
-                            borderRadius: "14px",
-                            boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
-                            width: "220px",
-                            zIndex: 50,
-                            overflow: "hidden",
+                            background:
+                              "#dcfce7",
+                            color:
+                              "#15803d",
+                            padding:
+                              "6px 14px",
+                            borderRadius:
+                              "999px",
+                            fontSize:
+                              "14px",
+                            fontWeight:
+                              "600",
                           }}
                         >
-                          <button
-                            onClick={() =>
-                              window.open(certificate.image, "_blank")
-                            }
-                            style={menuButtonStyle}
-                          >
-                            <Eye size={17} />
-                            View Certificate
-                          </button>
+                          Verified
+                        </span>
+                      ) : (
+                        <span
+                          style={{
+                            background:
+                              "#fee2e2",
+                            color:
+                              "#dc2626",
+                            padding:
+                              "6px 14px",
+                            borderRadius:
+                              "999px",
+                            fontSize:
+                              "14px",
+                            fontWeight:
+                              "600",
+                          }}
+                        >
+                          Invalid
+                        </span>
+                      )}
+                    </td>
 
-                          <button
-                            onClick={() => handleDownload(certificate.image)}
-                            style={menuButtonStyle}
-                          >
-                            <Download size={17} />
-                            Download
-                          </button>
+                    <td style={tdStyle}>
+                      <div
+                        className="action-menu"
+                        style={{
+                          display:
+                            "flex",
+                          alignItems:
+                            "center",
+                          gap: "14px",
+                          position:
+                            "relative",
+                        }}
+                      >
+                        <Link
+                          to={`/admin/edit-certificate/${certificate.id}`}
+                          style={{
+                            background:
+                              "#4f46e5",
+                            color:
+                              "#fff",
+                            textDecoration:
+                              "none",
+                            padding:
+                              "10px 16px",
+                            borderRadius:
+                              "10px",
+                            fontSize:
+                              "14px",
+                            fontWeight:
+                              "600",
+                          }}
+                        >
+                          Edit
+                        </Link>
 
-                          <button
-                            onClick={() =>
-                              handleCopyUrl(certificate.verificationUrl)
-                            }
-                            style={menuButtonStyle}
-                          >
-                            <Copy size={17} />
-                            Copy URL
-                          </button>
+                        <button
+                          onClick={() =>
+                            setOpenMenuId(
+                              openMenuId ===
+                                certificate.id
+                                ? null
+                                : certificate.id
+                            )
+                          }
+                          style={{
+                            border:
+                              "none",
+                            background:
+                              "transparent",
+                            cursor:
+                              "pointer",
+                            fontSize:
+                              "22px",
+                            fontWeight:
+                              "700",
+                          }}
+                        >
+                          ⋮
+                        </button>
 
-                          <button
-                            onClick={() => handleDelete(certificate.title)}
+                        {openMenuId ===
+                          certificate.id && (
+                          <div
                             style={{
-                              ...menuButtonStyle,
-                              color: "#dc2626",
+                              position:
+                                "absolute",
+                              top: "48px",
+                              right: "0",
+                              background:
+                                "#fff",
+                              borderRadius:
+                                "14px",
+                              boxShadow:
+                                "0 10px 30px rgba(0,0,0,0.12)",
+                              width:
+                                "220px",
+                              zIndex: 50,
+                              overflow:
+                                "hidden",
                             }}
                           >
-                            <Trash2 size={17} />
-                            Delete
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              ))}
+                            <button
+                              onClick={() =>
+                                window.open(
+                                  certificate.image,
+                                  "_blank"
+                                )
+                              }
+                              style={
+                                menuButtonStyle
+                              }
+                            >
+                              <Eye
+                                size={
+                                  17
+                                }
+                              />
+                              View
+                              Certificate
+                            </button>
+
+                            <button
+                              onClick={() =>
+                                handleDownload(
+                                  certificate.image
+                                )
+                              }
+                              style={
+                                menuButtonStyle
+                              }
+                            >
+                              <Download
+                                size={
+                                  17
+                                }
+                              />
+                              Download
+                            </button>
+
+                            <button
+                              onClick={() =>
+                                handleCopyUrl(
+                                  certificate.verificationUrl
+                                )
+                              }
+                              style={
+                                menuButtonStyle
+                              }
+                            >
+                              <Copy
+                                size={
+                                  17
+                                }
+                              />
+                              Copy URL
+                            </button>
+
+                            <button
+                              onClick={() =>
+                                handleDelete(
+                                  certificate.id,
+                                  certificate.title
+                                )
+                              }
+                              style={{
+                                ...menuButtonStyle,
+                                color:
+                                  "#dc2626",
+                              }}
+                            >
+                              <Trash2
+                                size={
+                                  17
+                                }
+                              />
+                              Delete
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                )
+              )}
             </tbody>
           </table>
         </div>
@@ -433,17 +626,16 @@ const Certificates = () => {
 const filterStyle = {
   padding: "12px 18px",
   borderRadius: "12px",
-  border: "1px solid #dbe2ea",
+  border:
+    "1px solid #dbe2ea",
   outline: "none",
   fontSize: "14px",
   background: "#fff",
 };
 
 const thStyle = {
+  padding: "12px",
   textAlign: "left",
-  padding: "16px",
-  fontSize: "15px",
-  color: "#1e293b",
 };
 
 const tdStyle = {
