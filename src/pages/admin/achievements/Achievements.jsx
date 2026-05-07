@@ -10,7 +10,7 @@ export default function Achievements() {
   const [search, setSearch] = useState("");
 
   const filtered = achievements.filter((a) =>
-    a.title.toLowerCase().includes(search.toLowerCase())
+    a.title.toLowerCase().includes(search.toLowerCase()),
   );
 
   return (
@@ -29,12 +29,28 @@ export default function Achievements() {
             marginBottom: "25px",
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center",
+            alignItems: "flex-start",
           }}
         >
           <div>
-            <h3 style={{ margin: 0 }}>Achievements</h3>
-            <p style={{ margin: 0, color: "#555", fontSize: "14px" }}>
+            <h1
+              style={{
+                fontSize: "30px",
+                fontWeight: "700",
+                color: "#1e293b",
+                marginBottom: "6px",
+              }}
+            >
+              Achievements
+            </h1>
+
+            <p
+              style={{
+                color: "#64748b",
+                fontSize: "16px",
+                margin: 0,
+              }}
+            >
               Manage all achievements
             </p>
           </div>
@@ -95,10 +111,7 @@ export default function Achievements() {
 
               <tbody>
                 {filtered.map((a) => (
-                  <tr
-                    key={a.id}
-                    style={{ borderBottom: "1px solid #ddd" }}
-                  >
+                  <tr key={a.id} style={{ borderBottom: "1px solid #ddd" }}>
                     <td style={{ padding: "12px" }}>{a.title}</td>
                     <td style={{ padding: "12px" }}>{a.type}</td>
                     <td style={{ padding: "12px" }}>{a.organization}</td>
@@ -114,7 +127,6 @@ export default function Achievements() {
                     {/* ACTIONS */}
                     <td style={{ padding: "12px" }}>
                       <div className="action-box">
-
                         {/* EDIT */}
                         <button
                           onClick={() =>
@@ -137,20 +149,15 @@ export default function Achievements() {
                           className="delete-btn"
                           onClick={() => {
                             if (
-                              window.confirm(
-                                "Are you sure you want to delete?"
-                              )
+                              window.confirm("Are you sure you want to delete?")
                             ) {
                               deleteAchievement(a.id);
-                              toast.success(
-                                "Achievement deleted successfully"
-                              );
+                              toast.success("Achievement deleted successfully");
                             }
                           }}
                         >
                           🗑
                         </button>
-
                       </div>
                     </td>
                   </tr>

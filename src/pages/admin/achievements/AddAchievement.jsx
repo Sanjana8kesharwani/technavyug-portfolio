@@ -51,49 +51,63 @@ export default function AddAchievement() {
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!form.title.trim()) {
-    toast.error("Title is required");
-    return;
-  }
+    if (!form.title.trim()) {
+      toast.error("Title is required");
+      return;
+    }
 
-  if (!form.type) {
-    toast.error("Please select achievement type");
-    return;
-  }
+    if (!form.type) {
+      toast.error("Please select achievement type");
+      return;
+    }
 
-  if (!form.organization.trim()) {
-    toast.error("Organization is required");
-    return;
-  }
+    if (!form.organization.trim()) {
+      toast.error("Organization is required");
+      return;
+    }
 
-  if (form.description.trim().length < 10) {
-    toast.error("Description must be at least 10 characters");
-    return;
-  }
+    if (form.description.trim().length < 10) {
+      toast.error("Description must be at least 10 characters");
+      return;
+    }
 
-  addAchievement(form);
-  toast.success("Achievement added successfully");
+    addAchievement(form);
+    toast.success("Achievement added successfully");
 
-  navigate("/admin/achievements");
-};
+    navigate("/admin/achievements");
+  };
 
   return (
     <div className="min-h-screen bg-white p-5">
       <div className="bg-[#c8d8e8] rounded-2xl p-6 min-h-[calc(100vh-40px)]">
-
         {/* HEADER */}
         <div className="mb-6">
-          <h3 className="text-lg font-semibold">Add Achievement</h3>
-          <p className="text-sm text-gray-600">
+          <h1
+            style={{
+              fontSize: "30px",
+              fontWeight: "700",
+              color: "#1e293b",
+              marginBottom: "6px",
+            }}
+          >
+            Add Achievement
+          </h1>
+
+          <p
+            style={{
+              color: "#64748b",
+              fontSize: "16px",
+              margin: 0,
+            }}
+          >
             Manage achievements and details
           </p>
         </div>
 
         {/* FORM CARD */}
         <div className="bg-white rounded-2xl p-8 shadow-md">
-
           {/* ROW 1 */}
           <div className="flex gap-5 mb-4">
             <div className="flex-1">
@@ -177,11 +191,7 @@ export default function AddAchievement() {
 
           {/* FEATURED */}
           <div className="mb-6 flex items-center gap-2">
-            <input
-              type="checkbox"
-              name="featured"
-              onChange={handleChange}
-            />
+            <input type="checkbox" name="featured" onChange={handleChange} />
             <span className="text-sm">Featured Achievement</span>
           </div>
 
@@ -194,7 +204,6 @@ export default function AddAchievement() {
               Save Achievement
             </button>
           </div>
-
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ export default function EditAchievement() {
 
   const existing = useMemo(
     () => achievements.find((a) => a.id?.toString() === id),
-    [achievements, id]
+    [achievements, id],
   );
 
   const [form, setForm] = useState({
@@ -30,39 +30,38 @@ export default function EditAchievement() {
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!form.title.trim()) {
-    toast.error("Title is required");
-    return;
-  }
+    if (!form.title.trim()) {
+      toast.error("Title is required");
+      return;
+    }
 
-  if (!form.type) {
-    toast.error("Please select achievement type");
-    return;
-  }
+    if (!form.type) {
+      toast.error("Please select achievement type");
+      return;
+    }
 
-  if (!form.organization.trim()) {
-    toast.error("Organization is required");
-    return;
-  }
+    if (!form.organization.trim()) {
+      toast.error("Organization is required");
+      return;
+    }
 
-  if (form.description.trim().length < 10) {
-    toast.error("Description must be at least 10 characters");
-    return;
-  }
+    if (form.description.trim().length < 10) {
+      toast.error("Description must be at least 10 characters");
+      return;
+    }
 
-  updateAchievement(id.toString(), form);
-  toast.success("Achievement updated successfully");
+    updateAchievement(id.toString(), form);
+    toast.success("Achievement updated successfully");
 
-  navigate("/admin/achievements");
-};
+    navigate("/admin/achievements");
+  };
 
   if (!existing) return <div style={{ padding: "20px" }}>Loading...</div>;
 
   return (
     <div style={{ minHeight: "100vh", background: "#fff", padding: "24px" }}>
-      
       {/* MAIN WRAPPER */}
       <div
         style={{
@@ -73,8 +72,24 @@ export default function EditAchievement() {
       >
         {/* HEADER */}
         <div style={{ marginBottom: "24px" }}>
-          <h2 style={{ marginBottom: "4px" }}>Edit Achievement</h2>
-          <p style={{ color: "#555", fontSize: "14px" }}>
+          <h1
+            style={{
+              fontSize: "30px",
+              fontWeight: "700",
+              color: "#1e293b",
+              marginBottom: "6px",
+            }}
+          >
+            Edit Achievement
+          </h1>
+
+          <p
+            style={{
+              color: "#64748b",
+              fontSize: "16px",
+              margin: 0,
+            }}
+          >
             Update achievement details
           </p>
         </div>
@@ -150,7 +165,9 @@ export default function EditAchievement() {
 
           {/* FEATURED */}
           <div style={{ marginBottom: "24px" }}>
-            <label style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <label
+              style={{ display: "flex", alignItems: "center", gap: "8px" }}
+            >
               <input
                 type="checkbox"
                 name="featured"
