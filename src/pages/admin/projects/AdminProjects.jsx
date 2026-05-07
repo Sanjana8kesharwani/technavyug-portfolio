@@ -1,7 +1,14 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useProjects } from "../../../provider/useProjects";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+
+import {
+  Copy,
+  Trash2,
+  Star,
+  Upload,
+} from "lucide-react";
 
 export default function AdminProjects() {
   const {
@@ -14,63 +21,107 @@ export default function AdminProjects() {
 
   const navigate = useNavigate();
 
-  const [openMenu, setOpenMenu] = useState(null);
-
-  const menuRef = useRef(null);
+  const [openMenuId, setOpenMenuId] =
+    useState(null);
 
   // FILTER STATES
-  const [statusFilter, setStatusFilter] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("");
-  const [featuredFilter, setFeaturedFilter] = useState("");
+  const [statusFilter, setStatusFilter] =
+    useState("");
 
-  // OUTSIDE CLICK CLOSE
+  const [
+    categoryFilter,
+    setCategoryFilter,
+  ] = useState("");
+
+  const [
+    featuredFilter,
+    setFeaturedFilter,
+  ] = useState("");
+
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setOpenMenu(null);
+    const handleOutsideClick = (
+      e
+    ) => {
+      if (
+        !e.target.closest(
+          ".action-menu"
+        )
+      ) {
+        setOpenMenuId(null);
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener(
+      "click",
+      handleOutsideClick
+    );
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener(
+        "click",
+        handleOutsideClick
+      );
     };
   }, []);
 
   // DELETE
   const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete?")) {
+    if (
+      window.confirm(
+        "Are you sure you want to delete?"
+      )
+    ) {
       deleteProject(id);
-      toast.success("Project deleted");
+
+      toast.success(
+        "Project deleted"
+      );
     }
   };
 
   // FILTER LOGIC
-  const filteredProjects = projects.filter((p) => {
-    const statusMatch = !statusFilter || p.status === statusFilter;
+  const filteredProjects =
+    projects.filter((p) => {
+      const statusMatch =
+        !statusFilter ||
+        p.status === statusFilter;
 
-    const categoryMatch = !categoryFilter || p.category === categoryFilter;
+      const categoryMatch =
+        !categoryFilter ||
+        p.category ===
+          categoryFilter;
 
-    const featuredMatch =
-      featuredFilter === ""
-        ? true
-        : featuredFilter === "featured"
+      const featuredMatch =
+        featuredFilter === ""
+          ? true
+          : featuredFilter ===
+            "featured"
           ? p.featured
           : !p.featured;
 
-    return statusMatch && categoryMatch && featuredMatch;
-  });
+      return (
+        statusMatch &&
+        categoryMatch &&
+        featuredMatch
+      );
+    });
 
   return (
-    <div style={{ minHeight: "100vh", background: "#fff", padding: "20px" }}>
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "#fff",
+        padding: "14px",
+      }}
+    >
       {/* MAIN WRAPPER */}
       <div
         style={{
           background: "#c8d8e8",
-          borderRadius: "20px",
-          padding: "24px",
-          minHeight: "calc(100vh - 40px)",
+          borderRadius: "28px",
+          minHeight:
+            "calc(100vh - 28px)",
+          padding: "20px",
         }}
       >
         {/* HEADER */}
@@ -78,18 +129,20 @@ export default function AdminProjects() {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
+            justifyContent:
+              "space-between",
+            alignItems:
+              "flex-start",
             marginBottom: "22px",
           }}
         >
           <div>
             <h1
               style={{
-                fontSize: "30px",
+                fontSize: "28px",
                 fontWeight: "700",
                 color: "#1e293b",
-                marginBottom: "6px",
+                marginBottom: "4px",
               }}
             >
               Projects
@@ -98,7 +151,7 @@ export default function AdminProjects() {
             <p
               style={{
                 color: "#64748b",
-                fontSize: "16px",
+                fontSize: "15px",
               }}
             >
               Manage projects and details
@@ -106,12 +159,18 @@ export default function AdminProjects() {
           </div>
 
           <button
-            onClick={() => navigate("/admin/add-project")}
+            onClick={() =>
+              navigate(
+                "/admin/add-project"
+              )
+            }
             style={{
               background: "#4f46e5",
               color: "#fff",
-              padding: "10px 16px",
-              borderRadius: "8px",
+              textDecoration: "none",
+              padding: "12px 18px",
+              borderRadius: "12px",
+              fontWeight: "600",
               border: "none",
               cursor: "pointer",
             }}
@@ -124,41 +183,79 @@ export default function AdminProjects() {
         <div
           style={{
             display: "flex",
-            gap: "10px",
-            marginBottom: "20px",
+            gap: "12px",
+            marginBottom: "18px",
             flexWrap: "wrap",
           }}
         >
           <select
             value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
+            onChange={(e) =>
+              setStatusFilter(
+                e.target.value
+              )
+            }
             style={filterStyle}
           >
-            <option value="">All Status</option>
-            <option>Ongoing</option>
-            <option>Completed</option>
-            <option>On Hold</option>
+            <option value="">
+              All Status
+            </option>
+
+            <option>
+              Ongoing
+            </option>
+
+            <option>
+              Completed
+            </option>
+
+            <option>
+              On Hold
+            </option>
           </select>
 
           <select
             value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value)}
+            onChange={(e) =>
+              setCategoryFilter(
+                e.target.value
+              )
+            }
             style={filterStyle}
           >
-            <option value="">All Categories</option>
+            <option value="">
+              All Categories
+            </option>
+
             <option>AI</option>
+
             <option>IoT</option>
-            <option>Research</option>
+
+            <option>
+              Research
+            </option>
           </select>
 
           <select
             value={featuredFilter}
-            onChange={(e) => setFeaturedFilter(e.target.value)}
+            onChange={(e) =>
+              setFeaturedFilter(
+                e.target.value
+              )
+            }
             style={filterStyle}
           >
-            <option value="">All Projects</option>
-            <option value="featured">Featured</option>
-            <option value="normal">Normal</option>
+            <option value="">
+              All Projects
+            </option>
+
+            <option value="featured">
+              Featured
+            </option>
+
+            <option value="normal">
+              Normal
+            </option>
           </select>
         </div>
 
@@ -166,215 +263,378 @@ export default function AdminProjects() {
         <div
           style={{
             background: "#fff",
-            borderRadius: "16px",
-            padding: "16px",
-            overflow: "visible",
+            borderRadius: "22px",
+            padding: "14px",
+            overflowX: "auto",
             position: "relative",
           }}
         >
-          {filteredProjects.length === 0 ? (
-            <p style={{ textAlign: "center", color: "#777" }}>
+          {filteredProjects.length ===
+          0 ? (
+            <p
+              style={{
+                textAlign: "center",
+                color: "#777",
+              }}
+            >
               No projects found
             </p>
           ) : (
             <table
               style={{
                 width: "100%",
-                borderCollapse: "collapse",
-                tableLayout: "fixed",
+                borderCollapse:
+                  "collapse",
               }}
             >
-              {/* FIXED COLUMN WIDTHS */}
-              <colgroup>
-                <col style={{ width: "20%" }} />
-                <col style={{ width: "16%" }} />
-                <col style={{ width: "16%" }} />
-                <col style={{ width: "12%" }} />
-                <col style={{ width: "36%" }} />
-              </colgroup>
+              <thead>
+                <tr
+                  style={{
+                    background:
+                      "#e2e8f0",
+                  }}
+                >
+                  <th style={thStyle}>
+                    Title
+                  </th>
 
-              {/* HEADER */}
-              <thead
-                style={{
-                  background: "#e2e8f0",
-                  textAlign: "left",
-                }}
-              >
-                <tr>
-                  <th style={thStyle}>Title</th>
-                  <th style={thStyle}>Category</th>
-                  <th style={thStyle}>Status</th>
+                  <th style={thStyle}>
+                    Category
+                  </th>
 
-                  <th style={{ ...thStyle, textAlign: "center" }}>Featured</th>
+                  <th style={thStyle}>
+                    Status
+                  </th>
 
-                  <th style={{ ...thStyle, textAlign: "center" }}>Actions</th>
+                  <th style={thStyle}>
+                    Featured
+                  </th>
+
+                  <th style={thStyle}>
+                    Actions
+                  </th>
                 </tr>
               </thead>
 
-              {/* BODY */}
               <tbody>
-                {filteredProjects.map((p, index) => {
-                  const isLastRows = index >= filteredProjects.length - 3;
+                {filteredProjects.map(
+                  (p) => (
+                    <tr
+                      key={p.id}
+                      style={{
+                        borderBottom:
+                          "1px solid #e2e8f0",
+                      }}
+                    >
+                      <td style={tdStyle}>
+                        {p.title}
+                      </td>
 
-                  return (
-                    <tr key={p.id} style={{ borderBottom: "1px solid #eee" }}>
-                      <td style={tdStyle}>{p.title}</td>
+                      <td style={tdStyle}>
+                        {p.category}
+                      </td>
 
-                      <td style={tdStyle}>{p.category}</td>
-
-                      <td style={tdStyle}>{p.status}</td>
+                      {/* STATUS */}
+                      <td style={tdStyle}>
+                        {p.status ===
+                        "Completed" ? (
+                          <span
+                            style={{
+                              background:
+                                "#dcfce7",
+                              color:
+                                "#15803d",
+                              padding:
+                                "6px 14px",
+                              borderRadius:
+                                "999px",
+                              fontSize:
+                                "14px",
+                              fontWeight:
+                                "600",
+                            }}
+                          >
+                            Completed
+                          </span>
+                        ) : p.status ===
+                          "Ongoing" ? (
+                          <span
+                            style={{
+                              background:
+                                "#dbeafe",
+                              color:
+                                "#2563eb",
+                              padding:
+                                "6px 14px",
+                              borderRadius:
+                                "999px",
+                              fontSize:
+                                "14px",
+                              fontWeight:
+                                "600",
+                            }}
+                          >
+                            Ongoing
+                          </span>
+                        ) : (
+                          <span
+                            style={{
+                              background:
+                                "#fee2e2",
+                              color:
+                                "#dc2626",
+                              padding:
+                                "6px 14px",
+                              borderRadius:
+                                "999px",
+                              fontSize:
+                                "14px",
+                              fontWeight:
+                                "600",
+                            }}
+                          >
+                            On Hold
+                          </span>
+                        )}
+                      </td>
 
                       {/* FEATURED */}
-                      <td
-                        style={{
-                          ...tdStyle,
-                          textAlign: "center",
-                        }}
-                      >
-                        <button
-                          onClick={() => toggleFeatured(p.id)}
-                          style={{
-                            border: "none",
-                            background: "transparent",
-                            cursor: "pointer",
-                            fontSize: "18px",
-                          }}
-                        >
-                          {p.featured ? "⭐" : "☆"}
-                        </button>
+                      <td style={tdStyle}>
+                        {p.featured ? (
+                          <span
+                            style={{
+                              background:
+                                "#dcfce7",
+                              color:
+                                "#15803d",
+                              padding:
+                                "6px 14px",
+                              borderRadius:
+                                "999px",
+                              fontSize:
+                                "14px",
+                              fontWeight:
+                                "600",
+                            }}
+                          >
+                            Featured
+                          </span>
+                        ) : (
+                          <span
+                            style={{
+                              background:
+                                "#fee2e2",
+                              color:
+                                "#dc2626",
+                              padding:
+                                "6px 14px",
+                              borderRadius:
+                                "999px",
+                              fontSize:
+                                "14px",
+                              fontWeight:
+                                "600",
+                            }}
+                          >
+                            Normal
+                          </span>
+                        )}
                       </td>
 
                       {/* ACTIONS */}
-                      <td
-                        style={{
-                          ...tdStyle,
-                          textAlign: "center",
-                          overflow: "visible",
-                          position: "relative",
-                        }}
-                      >
+                      <td style={tdStyle}>
                         <div
-                          ref={menuRef}
+                          className="action-menu"
                           style={{
-                            display: "flex",
-                            gap: "10px",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            position: "relative",
+                            display:
+                              "flex",
+                            alignItems:
+                              "center",
+                            gap: "14px",
+                            position:
+                              "relative",
                           }}
                         >
-                          {/* EDIT */}
                           <button
                             onClick={() =>
-                              navigate(`/admin/edit-project/${p.id}`)
+                              navigate(
+                                `/admin/edit-project/${p.id}`
+                              )
                             }
                             style={{
-                              background: "#4f46e5",
-                              color: "#fff",
-                              padding: "6px 12px",
-                              borderRadius: "6px",
-                              border: "none",
-                              cursor: "pointer",
-                              fontSize: "13px",
-                              height: "32px",
+                              background:
+                                "#4f46e5",
+                              color:
+                                "#fff",
+                              border:
+                                "none",
+                              textDecoration:
+                                "none",
+                              padding:
+                                "10px 16px",
+                              borderRadius:
+                                "10px",
+                              fontSize:
+                                "14px",
+                              fontWeight:
+                                "600",
+                              cursor:
+                                "pointer",
                             }}
                           >
                             Edit
                           </button>
 
-                          {/* 3 DOT */}
                           <button
                             onClick={() =>
-                              setOpenMenu(openMenu === p.id ? null : p.id)
+                              setOpenMenuId(
+                                openMenuId ===
+                                  p.id
+                                  ? null
+                                  : p.id
+                              )
                             }
                             style={{
-                              border: "none",
-                              background: "transparent",
-                              fontSize: "20px",
-                              cursor: "pointer",
-                              lineHeight: "20px",
-                              fontWeight: "bold",
+                              border:
+                                "none",
+                              background:
+                                "transparent",
+                              cursor:
+                                "pointer",
+                              fontSize:
+                                "22px",
+                              fontWeight:
+                                "700",
                             }}
                           >
                             ⋮
                           </button>
 
-                          {/* DROPDOWN */}
-                          {openMenu === p.id && (
+                          {openMenuId ===
+                            p.id && (
                             <div
                               style={{
-                                position: "absolute",
+                                position:
+                                  "absolute",
+                                top: "48px",
                                 right: "0",
-                                background: "#fff",
-                                border: "1px solid #e5e7eb",
-                                borderRadius: "10px",
-                                boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
-                                zIndex: 9999,
-                                width: "160px",
-                                overflow: "hidden",
-
-                                top: isLastRows ? "auto" : "38px",
-
-                                bottom: isLastRows ? "38px" : "auto",
+                                background:
+                                  "#fff",
+                                borderRadius:
+                                  "14px",
+                                boxShadow:
+                                  "0 10px 30px rgba(0,0,0,0.12)",
+                                width:
+                                  "220px",
+                                zIndex: 50,
+                                overflow:
+                                  "hidden",
                               }}
                             >
-                              {/* COPY */}
-                              <div
+                              <button
                                 onClick={() => {
-                                  duplicateProject(p.id);
-                                  toast.success("Project duplicated");
-                                  setOpenMenu(null);
+                                  duplicateProject(
+                                    p.id
+                                  );
+
+                                  toast.success(
+                                    "Project duplicated"
+                                  );
+
+                                  setOpenMenuId(
+                                    null
+                                  );
                                 }}
-                                style={menuItemStyle}
+                                style={
+                                  menuButtonStyle
+                                }
                               >
+                                <Copy
+                                  size={
+                                    17
+                                  }
+                                />
                                 Copy Project
-                              </div>
+                              </button>
 
-                              {/* PUBLISH */}
-                              <div
+                              <button
                                 onClick={() => {
-                                  togglePublish(p.id);
-                                  setOpenMenu(null);
-                                }}
-                                style={menuItemStyle}
-                              >
-                                {p.published ? "Unpublish" : "Publish"}
-                              </div>
+                                  togglePublish(
+                                    p.id
+                                  );
 
-                              {/* FEATURE */}
-                              <div
-                                onClick={() => {
-                                  toggleFeatured(p.id);
-                                  setOpenMenu(null);
+                                  setOpenMenuId(
+                                    null
+                                  );
                                 }}
-                                style={menuItemStyle}
+                                style={
+                                  menuButtonStyle
+                                }
                               >
+                                <Upload
+                                  size={
+                                    17
+                                  }
+                                />
+                                {p.published
+                                  ? "Unpublish"
+                                  : "Publish"}
+                              </button>
+
+                              <button
+                                onClick={() => {
+                                  toggleFeatured(
+                                    p.id
+                                  );
+
+                                  setOpenMenuId(
+                                    null
+                                  );
+                                }}
+                                style={
+                                  menuButtonStyle
+                                }
+                              >
+                                <Star
+                                  size={
+                                    17
+                                  }
+                                />
                                 {p.featured
                                   ? "Remove Featured"
                                   : "Mark Featured"}
-                              </div>
+                              </button>
 
-                              {/* DELETE */}
-                              <div
+                              <button
                                 onClick={() => {
-                                  handleDelete(p.id);
-                                  setOpenMenu(null);
+                                  handleDelete(
+                                    p.id
+                                  );
+
+                                  setOpenMenuId(
+                                    null
+                                  );
                                 }}
                                 style={{
-                                  ...menuItemStyle,
-                                  color: "#dc2626",
-                                  borderBottom: "none",
+                                  ...menuButtonStyle,
+                                  color:
+                                    "#dc2626",
                                 }}
                               >
+                                <Trash2
+                                  size={
+                                    17
+                                  }
+                                />
                                 Delete
-                              </div>
+                              </button>
                             </div>
                           )}
                         </div>
                       </td>
                     </tr>
-                  );
-                })}
+                  )
+                )}
               </tbody>
             </table>
           )}
@@ -384,33 +644,36 @@ export default function AdminProjects() {
   );
 }
 
-const thStyle = {
-  padding: "12px",
-  textAlign: "left",
+const filterStyle = {
+  padding: "12px 18px",
+  borderRadius: "12px",
+  border: "1px solid #dbe2ea",
+  outline: "none",
   fontSize: "14px",
-  color: "#333",
-  whiteSpace: "nowrap",
+  background: "#fff",
+};
+
+const thStyle = {
+  textAlign: "left",
+  padding: "16px",
+  fontSize: "15px",
+  color: "#1e293b",
 };
 
 const tdStyle = {
-  padding: "12px",
-  fontSize: "14px",
-  whiteSpace: "nowrap",
-  overflow: "hidden",
-  textOverflow: "ellipsis",
+  padding: "18px 16px",
+  fontSize: "15px",
+  color: "#0f172a",
 };
 
-const filterStyle = {
-  padding: "8px 12px",
-  borderRadius: "8px",
-  border: "1px solid #ccc",
-  fontSize: "14px",
-};
-
-const menuItemStyle = {
-  padding: "10px 14px",
+const menuButtonStyle = {
+  width: "100%",
+  border: "none",
+  background: "#fff",
+  padding: "13px 16px",
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
   cursor: "pointer",
   fontSize: "14px",
-  borderBottom: "1px solid #eee",
-  background: "#fff",
 };
