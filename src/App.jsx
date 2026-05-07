@@ -15,8 +15,10 @@ import EventsMedia from "./pages/EventsMedia";
 import BlogDetails from "./components/BlogDetails";
 import AdminLayout from "./layouts/AdminLayout";
 
+
 // Admin imports
 import AdminLogin from "./pages/admin/AdminLogin";
+import AdminProfile from "./pages/admin/AdminProfile";
 import Dashboard from "./pages/admin/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AddUser from "./pages/admin/users/AddUser";
@@ -93,6 +95,7 @@ function App() {
                 }
               >
                 <Route path="dashboard" element={<Dashboard />} />
+                <Route path="profile" element={<AdminProfile />} />
 
                 <Route path="users" element={<Users />} />
                 <Route path="add-user" element={<AddUser />} />

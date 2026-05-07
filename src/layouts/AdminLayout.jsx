@@ -1,5 +1,11 @@
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
-import { LayoutDashboard, Users, Trophy, Rocket, FileText } from "lucide-react";
+import {
+  LayoutDashboard,
+  Users,
+  Trophy,
+  Rocket,
+  FileText,
+} from "lucide-react";
 
 const sidebarItems = [
   {
@@ -7,13 +13,21 @@ const sidebarItems = [
     label: "Dashboard",
     path: "/admin/dashboard",
   },
-  { icon: <Users size={18} />, label: "Users", path: "/admin/users" },
+  {
+    icon: <Users size={18} />,
+    label: "Users",
+    path: "/admin/users",
+  },
   {
     icon: <Trophy size={18} />,
     label: "Achievements",
     path: "/admin/achievements",
   },
-  { icon: <Rocket size={18} />, label: "Projects", path: "/admin/projects" },
+  {
+    icon: <Rocket size={18} />,
+    label: "Projects",
+    path: "/admin/projects",
+  },
   {
     icon: <FileText size={18} />,
     label: "Certificates",
@@ -48,12 +62,13 @@ export default function AdminLayout() {
   ) {
     activeNav = "Projects";
   } else if (
-  path.includes("/admin/certificates") ||
-  path.includes("/admin/add-certificate") ||
-  path.includes("/admin/edit-certificate")
-) {
-  activeNav = "Certificates";
-}
+    path.includes("/admin/certificates") ||
+    path.includes("/admin/add-certificate") ||
+    path.includes("/admin/edit-certificate")
+  ) {
+    activeNav = "Certificates";
+  }
+
   return (
     <div style={{ display: "flex" }}>
       {/* ── SIDEBAR ── */}
@@ -75,7 +90,11 @@ export default function AdminLayout() {
       >
         {/* Logo */}
         <div
-          style={{ fontWeight: "900", fontSize: "22px", marginBottom: "36px" }}
+          style={{
+            fontWeight: "900",
+            fontSize: "22px",
+            marginBottom: "36px",
+          }}
         >
           <span style={{ color: "#0f172a" }}>Tech</span>
           <span style={{ color: "#06b6d4" }}>navyug</span>
@@ -112,6 +131,7 @@ export default function AdminLayout() {
 
         {/* Admin */}
         <div
+          onClick={() => navigate("/admin/profile")}
           style={{
             display: "flex",
             alignItems: "center",
@@ -119,6 +139,7 @@ export default function AdminLayout() {
             padding: "12px 14px",
             borderRadius: "14px",
             background: "#f3f4f6",
+            cursor: "pointer",
           }}
         >
           <div
@@ -137,7 +158,29 @@ export default function AdminLayout() {
           >
             AD
           </div>
-          <span style={{ fontWeight: "600", fontSize: "14px" }}>Admin</span>
+
+          <div>
+            <p
+              style={{
+                margin: 0,
+                fontWeight: "600",
+                fontSize: "14px",
+                color: "#0f172a",
+              }}
+            >
+              Admin
+            </p>
+
+            <p
+              style={{
+                margin: 0,
+                fontSize: "12px",
+                color: "#64748b",
+              }}
+            >
+              Super Admin
+            </p>
+          </div>
         </div>
       </div>
 
