@@ -185,11 +185,12 @@ export default function EditAchievement() {
               style={{
                 background: "#4f46e5",
                 color: "#fff",
-                padding: "10px 20px",
-                borderRadius: "10px",
+                padding: "12px 18px",
+                borderRadius: "12px",
                 border: "none",
                 cursor: "pointer",
-                fontWeight: "500",
+                fontWeight: "600",
+                fontSize: "14px",
               }}
             >
               Update Achievement

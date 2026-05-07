@@ -58,12 +58,15 @@ export default function Achievements() {
           <button
             onClick={() => navigate("/admin/add-achievement")}
             style={{
-              padding: "10px 16px",
               background: "#4f46e5",
               color: "#fff",
+              textDecoration: "none",
+              padding: "12px 18px",
+              borderRadius: "12px",
+              fontWeight: "600",
               border: "none",
-              borderRadius: "10px",
               cursor: "pointer",
+              fontSize: "14px",
             }}
           >
             + Add Achievement
@@ -133,12 +136,14 @@ export default function Achievements() {
                             navigate(`/admin/edit-achievement/${a.id}`)
                           }
                           style={{
-                            background: "#3b82f6",
+                            background: "#4f46e5",
                             color: "#fff",
                             border: "none",
-                            padding: "6px 14px",
-                            borderRadius: "8px",
+                            padding: "10px 16px",
+                            borderRadius: "10px",
                             cursor: "pointer",
+                            fontSize: "14px",
+                            fontWeight: "600",
                           }}
                         >
                           Edit
