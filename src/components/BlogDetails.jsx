@@ -1,5 +1,6 @@
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { blogsData } from "../data/blogData";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 
 export default function BlogDetails() {
   const { id } = useParams();
@@ -27,6 +28,7 @@ export default function BlogDetails() {
   }
 
   return (
+    <>
     <div className="max-w-5xl mx-auto py-10 px-4">
 
       {/* Back */}
@@ -60,5 +62,8 @@ export default function BlogDetails() {
         <p className="text-gray-500">Blog Author</p>
       </div>
     </div>
+    <ScrollToTopButton />
+    </>
+    
   );
 }

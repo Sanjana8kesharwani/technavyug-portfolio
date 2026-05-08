@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { LuArrowUp } from "react-icons/lu";
 
 export default function ScrollToTopButton() {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
-      setShow(window.scrollY > 300); // 300px ke baad show hoga
+      setShow(window.scrollY > 100);
     };
 
     window.addEventListener("scroll", handleScroll);

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
 import { CheckCircle, XCircle, ScanLine } from "lucide-react";
+import ScrollToTopButton from "../ScrollToTopButton";
 
 const VerifySection = () => {
   const [certificateId, setCertificateId] = useState("");
@@ -59,7 +60,8 @@ const VerifySection = () => {
   }, [mode]);
 
   return (
-    <section className="py-28 px-6 bg-gradient-to-b from-white to-gray-100">
+    <>
+   <section className="py-28 px-6 bg-gradient-to-b from-white to-gray-100 min-h-screen">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
 
         {/* LEFT */}
@@ -171,6 +173,8 @@ const VerifySection = () => {
         </div>
       </div>
     </section>
+    <ScrollToTopButton />
+    </>
   );
 };
 
