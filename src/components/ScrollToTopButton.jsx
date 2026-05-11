@@ -9,8 +9,16 @@ export default function ScrollToTopButton() {
       setShow(window.scrollY > 100);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener(
+      "scroll",
+      handleScroll
+    );
+
+    return () =>
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
   }, []);
 
   const scrollToTop = () => {
@@ -25,9 +33,12 @@ export default function ScrollToTopButton() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-6 right-6 z-50 bg-cyan-500 hover:bg-cyan-600 text-white p-3 rounded-full shadow-lg transition"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 bg-cyan-500 hover:bg-cyan-600 text-white p-2.5 sm:p-3 rounded-full shadow-lg transition flex items-center justify-center"
     >
-      <LuArrowUp size={20} />
+      <LuArrowUp
+        size={18}
+        className="sm:w-5 sm:h-5"
+      />
     </button>
   );
 }
