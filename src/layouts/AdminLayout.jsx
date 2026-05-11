@@ -5,6 +5,7 @@ import {
   Trophy,
   Rocket,
   FileText,
+   Settings,
 } from "lucide-react";
 
 const sidebarItems = [
@@ -33,6 +34,11 @@ const sidebarItems = [
     label: "Certificates",
     path: "/admin/certificates",
   },
+  {
+  icon: <Settings size={18} />,
+  label: "Settings",
+  path: "/admin/settings",
+},
 ];
 
 export default function AdminLayout() {
@@ -70,6 +76,9 @@ export default function AdminLayout() {
   } else if (path.includes("/admin/profile")) {
     activeNav = "Admin";
   }
+   else if (path.includes("/admin/settings")) {
+  activeNav = "Settings";
+   }
 
   return (
     <div style={{ display: "flex" }}>
