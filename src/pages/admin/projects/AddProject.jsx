@@ -12,6 +12,7 @@ export default function AddProject() {
   const [form, setForm] = useState({
     title: "",
     category: "",
+    customCategory: "",
     shortDesc: "",
     fullDesc: "",
     status: "",
@@ -60,6 +61,14 @@ export default function AddProject() {
       return;
     }
 
+    if (
+      form.category === "Custom" &&
+      !form.customCategory.trim()
+    ) {
+      toast.error("Enter custom category");
+      return;
+    }
+
     if (!form.shortDesc.trim()) {
       toast.error("Short description is required");
       return;
@@ -85,7 +94,14 @@ export default function AddProject() {
       return;
     }
 
-    addProject(form);
+    addProject({
+      ...form,
+      category:
+        form.category === "Custom"
+          ? form.customCategory
+          : form.category,
+    });
+
     toast.success("Project added successfully");
 
     navigate("/admin/projects");
@@ -125,7 +141,10 @@ export default function AddProject() {
           {/* ROW 1 */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-sm font-medium">Project Title</label>
+              <label className="text-sm font-medium">
+                Project Title
+              </label>
+
               <input
                 name="title"
                 placeholder="Enter title"
@@ -135,23 +154,60 @@ export default function AddProject() {
             </div>
 
             <div>
-              <label className="text-sm font-medium">Category</label>
+              <label className="text-sm font-medium">
+                Category
+              </label>
+
               <select
                 name="category"
+                value={form.category}
                 onChange={handleChange}
                 className="w-full mt-1 p-2 border rounded-lg"
               >
-                <option value="">Select Category</option>
-                <option>AI</option>
-                <option>IoT</option>
-                <option>Research</option>
+                <option value="">
+                  Select Category
+                </option>
+
+                <option value="AI">AI</option>
+
+                <option value="IoT">IoT</option>
+
+                <option value="Research">
+                  Research
+                </option>
+
+                <option value="Embedded System">
+                  Embedded System
+                </option>
+
+                <option value="Web Development">
+                  Web Development
+                </option>
+
+                <option value="Custom">
+                  Custom
+                </option>
               </select>
+
+              {form.category === "Custom" && (
+                <input
+                  type="text"
+                  name="customCategory"
+                  placeholder="Enter custom category"
+                  value={form.customCategory}
+                  onChange={handleChange}
+                  className="w-full mt-3 p-2 border rounded-lg"
+                />
+              )}
             </div>
           </div>
 
           {/* SHORT DESC */}
           <div>
-            <label className="text-sm font-medium">Short Description</label>
+            <label className="text-sm font-medium">
+              Short Description
+            </label>
+
             <textarea
               name="shortDesc"
               placeholder="Max 200 characters"
@@ -162,7 +218,10 @@ export default function AddProject() {
 
           {/* FULL DESC */}
           <div>
-            <label className="text-sm font-medium">Full Description</label>
+            <label className="text-sm font-medium">
+              Full Description
+            </label>
+
             <textarea
               name="fullDesc"
               placeholder="Enter full description"
@@ -174,22 +233,32 @@ export default function AddProject() {
           {/* ROW 2 */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-sm font-medium">Status</label>
+              <label className="text-sm font-medium">
+                Status
+              </label>
+
               <select
                 name="status"
                 onChange={handleChange}
                 className="w-full mt-1 p-2 border rounded-lg"
               >
-                <option value="">Select Status</option>
+                <option value="">
+                  Select Status
+                </option>
+
                 <option>Ongoing</option>
+
                 <option>Completed</option>
+
                 <option>On Hold</option>
               </select>
             </div>
 
             {/* THUMBNAIL */}
             <div>
-              <label className="text-sm font-medium">Thumbnail Image</label>
+              <label className="text-sm font-medium">
+                Thumbnail Image
+              </label>
 
               <div className="mt-2 flex items-center gap-4">
                 {/* Upload Box */}
@@ -197,6 +266,7 @@ export default function AddProject() {
                   <span className="text-xs text-gray-500 text-center">
                     Upload Image
                   </span>
+
                   <input
                     type="file"
                     name="thumbnail"
@@ -219,7 +289,12 @@ export default function AddProject() {
 
           {/* FEATURED */}
           <div className="flex items-center gap-2">
-            <input type="checkbox" name="featured" onChange={handleChange} />
+            <input
+              type="checkbox"
+              name="featured"
+              onChange={handleChange}
+            />
+
             <label>Featured Project</label>
           </div>
 
