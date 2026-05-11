@@ -6,7 +6,8 @@ import { toast } from "react-hot-toast";
 export default function EditAchievement() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { achievements, updateAchievement } = useAchievements();
+  const { achievements, updateAchievement } =
+    useAchievements();
 
   const existing = useMemo(
     () => achievements.find((a) => a.id?.toString() === id),
@@ -23,6 +24,7 @@ export default function EditAchievement() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
     setForm({
       ...form,
       [name]: type === "checkbox" ? checked : value,
@@ -48,33 +50,47 @@ export default function EditAchievement() {
     }
 
     if (form.description.trim().length < 10) {
-      toast.error("Description must be at least 10 characters");
+      toast.error(
+        "Description must be at least 10 characters",
+      );
       return;
     }
 
     updateAchievement(id.toString(), form);
+
     toast.success("Achievement updated successfully");
 
     navigate("/admin/achievements");
   };
 
-  if (!existing) return <div style={{ padding: "20px" }}>Loading...</div>;
+  if (!existing)
+    return <div style={{ padding: "20px" }}>Loading...</div>;
 
   return (
-    <div style={{ minHeight: "100vh", background: "#fff", padding: "24px" }}>
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "#fff",
+        padding: "clamp(10px, 2vw, 24px)",
+        boxSizing: "border-box",
+        overflowX: "hidden",
+      }}
+    >
       {/* MAIN WRAPPER */}
       <div
         style={{
           background: "#c8d8e8",
-          borderRadius: "20px",
-          padding: "28px",
+          borderRadius: "clamp(14px, 2vw, 20px)",
+          padding: "clamp(16px, 3vw, 28px)",
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
         {/* HEADER */}
         <div style={{ marginBottom: "24px" }}>
           <h1
             style={{
-              fontSize: "30px",
+              fontSize: "clamp(24px, 4vw, 30px)",
               fontWeight: "700",
               color: "#1e293b",
               marginBottom: "6px",
@@ -86,7 +102,7 @@ export default function EditAchievement() {
           <p
             style={{
               color: "#64748b",
-              fontSize: "16px",
+              fontSize: "clamp(14px, 2vw, 16px)",
               margin: 0,
             }}
           >
@@ -100,21 +116,27 @@ export default function EditAchievement() {
           style={{
             background: "#fff",
             borderRadius: "16px",
-            padding: "24px",
+            padding: "clamp(16px, 3vw, 24px)",
             boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           {/* ROW 1 */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(260px, 1fr))",
               gap: "20px",
               marginBottom: "20px",
             }}
           >
             <div>
-              <label style={labelStyle}>Achievement Title</label>
+              <label style={labelStyle}>
+                Achievement Title
+              </label>
+
               <input
                 name="title"
                 value={form.title}
@@ -125,17 +147,25 @@ export default function EditAchievement() {
 
             <div>
               <label style={labelStyle}>Type</label>
+
               <select
                 name="type"
                 value={form.type}
                 onChange={handleChange}
                 style={inputStyle}
               >
-                <option value="">Select Type</option>
+                <option value="">
+                  Select Type
+                </option>
+
                 <option>Award</option>
+
                 <option>Recognition</option>
+
                 <option>Milestone</option>
+
                 <option>Honor</option>
+
                 <option>Research</option>
               </select>
             </div>
@@ -143,18 +173,28 @@ export default function EditAchievement() {
 
           {/* DESCRIPTION */}
           <div style={{ marginBottom: "20px" }}>
-            <label style={labelStyle}>Description</label>
+            <label style={labelStyle}>
+              Description
+            </label>
+
             <textarea
               name="description"
               value={form.description}
               onChange={handleChange}
-              style={{ ...inputStyle, height: "100px" }}
+              style={{
+                ...inputStyle,
+                height: "100px",
+                resize: "vertical",
+              }}
             />
           </div>
 
           {/* ORGANIZATION */}
           <div style={{ marginBottom: "20px" }}>
-            <label style={labelStyle}>Organization</label>
+            <label style={labelStyle}>
+              Organization
+            </label>
+
             <input
               name="organization"
               value={form.organization}
@@ -164,9 +204,19 @@ export default function EditAchievement() {
           </div>
 
           {/* FEATURED */}
-          <div style={{ marginBottom: "24px" }}>
+          <div
+            style={{
+              marginBottom: "24px",
+              width: "100%",
+            }}
+          >
             <label
-              style={{ display: "flex", alignItems: "center", gap: "8px" }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                flexWrap: "wrap",
+              }}
             >
               <input
                 type="checkbox"
@@ -174,12 +224,19 @@ export default function EditAchievement() {
                 checked={form.featured}
                 onChange={handleChange}
               />
+
               Featured Achievement
             </label>
           </div>
 
           {/* BUTTON RIGHT */}
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              width: "100%",
+            }}
+          >
             <button
               type="submit"
               style={{
@@ -191,6 +248,8 @@ export default function EditAchievement() {
                 cursor: "pointer",
                 fontWeight: "600",
                 fontSize: "14px",
+                maxWidth: "100%",
+                whiteSpace: "nowrap",
               }}
             >
               Update Achievement
@@ -215,4 +274,5 @@ const inputStyle = {
   borderRadius: "8px",
   border: "1px solid #d1d5db",
   outline: "none",
+  boxSizing: "border-box",
 };

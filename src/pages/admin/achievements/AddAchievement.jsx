@@ -69,7 +69,9 @@ export default function AddAchievement() {
     }
 
     if (form.description.trim().length < 10) {
-      toast.error("Description must be at least 10 characters");
+      toast.error(
+        "Description must be at least 10 characters",
+      );
       return;
     }
 
@@ -80,13 +82,29 @@ export default function AddAchievement() {
   };
 
   return (
-    <div className="min-h-screen bg-white p-5">
-      <div className="bg-[#c8d8e8] rounded-2xl p-6 min-h-[calc(100vh-40px)]">
+    <div
+      className="min-h-screen bg-white"
+      style={{
+        padding: "clamp(10px, 2vw, 20px)",
+        boxSizing: "border-box",
+        overflowX: "hidden",
+      }}
+    >
+      <div
+        className="bg-[#c8d8e8]"
+        style={{
+          borderRadius: "clamp(14px, 2vw, 18px)",
+          padding: "clamp(16px, 3vw, 24px)",
+          minHeight: "calc(100vh - 40px)",
+          width: "100%",
+          boxSizing: "border-box",
+        }}
+      >
         {/* HEADER */}
         <div className="mb-6">
           <h1
             style={{
-              fontSize: "30px",
+              fontSize: "clamp(24px, 4vw, 30px)",
               fontWeight: "700",
               color: "#1e293b",
               marginBottom: "6px",
@@ -98,7 +116,7 @@ export default function AddAchievement() {
           <p
             style={{
               color: "#64748b",
-              fontSize: "16px",
+              fontSize: "clamp(14px, 2vw, 16px)",
               margin: 0,
             }}
           >
@@ -107,29 +125,53 @@ export default function AddAchievement() {
         </div>
 
         {/* FORM CARD */}
-        <div className="bg-white rounded-2xl p-8 shadow-md">
+        <div
+          className="bg-white shadow-md"
+          style={{
+            borderRadius: "clamp(16px, 2vw, 24px)",
+            padding: "clamp(18px, 3vw, 32px)",
+            width: "100%",
+            boxSizing: "border-box",
+          }}
+        >
           {/* ROW 1 */}
-          <div className="flex gap-5 mb-4">
-            <div className="flex-1">
+          <div
+            className="mb-4"
+            style={{
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: "20px",
+            }}
+          >
+            <div>
               <label className="text-sm font-medium text-gray-700 mb-1 block">
                 Achievement Title
               </label>
+
               <input
                 name="title"
                 placeholder="Enter title"
                 onChange={handleChange}
                 className="w-full p-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                style={{
+                  boxSizing: "border-box",
+                }}
               />
             </div>
 
-            <div className="flex-1">
+            <div>
               <label className="text-sm font-medium text-gray-700 mb-1 block">
                 Type
               </label>
+
               <select
                 name="type"
                 onChange={handleChange}
                 className="w-full p-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                style={{
+                  boxSizing: "border-box",
+                }}
               >
                 <option>Select Type</option>
                 <option>Award</option>
@@ -147,11 +189,16 @@ export default function AddAchievement() {
             <label className="text-sm font-medium text-gray-700 mb-1 block">
               Description
             </label>
+
             <textarea
               name="description"
               placeholder="Enter description"
               onChange={handleChange}
               className="w-full p-2.5 border rounded-lg h-24 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              style={{
+                boxSizing: "border-box",
+                resize: "vertical",
+              }}
             />
           </div>
 
@@ -160,11 +207,15 @@ export default function AddAchievement() {
             <label className="text-sm font-medium text-gray-700 mb-1 block">
               Organization
             </label>
+
             <input
               name="organization"
               placeholder="Enter organization"
               onChange={handleChange}
               className="w-full p-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              style={{
+                boxSizing: "border-box",
+              }}
             />
           </div>
 
@@ -173,33 +224,64 @@ export default function AddAchievement() {
             <label className="text-sm font-medium text-gray-700 mb-1 block">
               Badge / Trophy Image (optional)
             </label>
+
             <input
               type="file"
               name="image"
               onChange={handleChange}
               className="text-sm"
+              style={{
+                maxWidth: "100%",
+              }}
             />
 
             {preview && (
               <img
                 src={preview}
                 alt="preview"
-                className="mt-3 w-28 h-28 object-cover rounded-lg border"
+                className="mt-3 object-cover border"
+                style={{
+                  width: "112px",
+                  height: "112px",
+                  borderRadius: "12px",
+                  maxWidth: "100%",
+                }}
               />
             )}
           </div>
 
           {/* FEATURED */}
-          <div className="mb-6 flex items-center gap-2">
-            <input type="checkbox" name="featured" onChange={handleChange} />
-            <span className="text-sm">Featured Achievement</span>
+          <div className="mb-6 flex items-center gap-2 flex-wrap">
+            <input
+              type="checkbox"
+              name="featured"
+              onChange={handleChange}
+            />
+
+            <span className="text-sm">
+              Featured Achievement
+            </span>
           </div>
 
           {/* BUTTON */}
-          <div className="flex justify-end">
+          <div
+            className="flex justify-end"
+            style={{
+              width: "100%",
+            }}
+          >
             <button
               onClick={handleSubmit}
-              className="px-5 py-2 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-lg font-medium hover:opacity-90"
+              className="bg-gradient-to-r from-indigo-600 to-indigo-500 text-white font-medium hover:opacity-90"
+              style={{
+                padding: "10px 20px",
+                borderRadius: "10px",
+                border: "none",
+                cursor: "pointer",
+                width: "fit-content",
+                maxWidth: "100%",
+                whiteSpace: "nowrap",
+              }}
             >
               Save Achievement
             </button>

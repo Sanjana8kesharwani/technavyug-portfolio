@@ -5,7 +5,8 @@ import { toast } from "react-hot-toast";
 
 export default function Achievements() {
   const navigate = useNavigate();
-  const { achievements, deleteAchievement, toggleFeatured } = useAchievements();
+  const { achievements, deleteAchievement, toggleFeatured } =
+    useAchievements();
 
   const [search, setSearch] = useState("");
 
@@ -14,13 +15,23 @@ export default function Achievements() {
   );
 
   return (
-    <div style={{ minHeight: "100vh", background: "#fff", padding: "20px" }}>
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "#fff",
+        padding: "clamp(10px, 2vw, 20px)",
+        boxSizing: "border-box",
+        overflowX: "hidden",
+      }}
+    >
       <div
         style={{
           background: "#c8d8e8",
-          borderRadius: "18px",
+          borderRadius: "clamp(14px, 2vw, 18px)",
           minHeight: "calc(100vh - 40px)",
-          padding: "20px",
+          padding: "clamp(14px, 2vw, 20px)",
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
         {/* HEADER */}
@@ -30,12 +41,14 @@ export default function Achievements() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "flex-start",
+            gap: "16px",
+            flexWrap: "wrap",
           }}
         >
           <div>
             <h1
               style={{
-                fontSize: "30px",
+                fontSize: "clamp(24px, 4vw, 30px)",
                 fontWeight: "700",
                 color: "#1e293b",
                 marginBottom: "6px",
@@ -47,7 +60,7 @@ export default function Achievements() {
             <p
               style={{
                 color: "#64748b",
-                fontSize: "16px",
+                fontSize: "clamp(14px, 2vw, 16px)",
                 margin: 0,
               }}
             >
@@ -67,6 +80,8 @@ export default function Achievements() {
               border: "none",
               cursor: "pointer",
               fontSize: "14px",
+              width: "fit-content",
+              whiteSpace: "nowrap",
             }}
           >
             + Add Achievement
@@ -81,9 +96,11 @@ export default function Achievements() {
           style={{
             marginBottom: "15px",
             padding: "10px",
-            width: "250px",
+            width: "100%",
+            maxWidth: "250px",
             borderRadius: "8px",
             border: "1px solid #ccc",
+            boxSizing: "border-box",
           }}
         />
 
@@ -92,32 +109,93 @@ export default function Achievements() {
           style={{
             background: "#fff",
             borderRadius: "20px",
-            padding: "20px",
+            padding: "clamp(14px, 2vw, 20px)",
             boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
+            overflowX: "auto",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           {filtered.length === 0 ? (
-            <div style={{ textAlign: "center", color: "#777" }}>
+            <div
+              style={{
+                textAlign: "center",
+                color: "#777",
+              }}
+            >
               No achievements found
             </div>
           ) : (
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+            <table
+              style={{
+                width: "100%",
+                minWidth: "700px",
+                borderCollapse: "collapse",
+              }}
+            >
               <thead>
-                <tr style={{ background: "#e2e8f0", textAlign: "left" }}>
-                  <th style={{ padding: "12px" }}>Title</th>
-                  <th style={{ padding: "12px" }}>Type</th>
-                  <th style={{ padding: "12px" }}>Organization</th>
-                  <th style={{ padding: "12px" }}>Featured</th>
-                  <th style={{ padding: "12px" }}>Actions</th>
+                <tr
+                  style={{
+                    background: "#e2e8f0",
+                    textAlign: "left",
+                  }}
+                >
+                  <th style={{ padding: "12px" }}>
+                    Title
+                  </th>
+
+                  <th style={{ padding: "12px" }}>
+                    Type
+                  </th>
+
+                  <th style={{ padding: "12px" }}>
+                    Organization
+                  </th>
+
+                  <th style={{ padding: "12px" }}>
+                    Featured
+                  </th>
+
+                  <th style={{ padding: "12px" }}>
+                    Actions
+                  </th>
                 </tr>
               </thead>
 
               <tbody>
                 {filtered.map((a) => (
-                  <tr key={a.id} style={{ borderBottom: "1px solid #ddd" }}>
-                    <td style={{ padding: "12px" }}>{a.title}</td>
-                    <td style={{ padding: "12px" }}>{a.type}</td>
-                    <td style={{ padding: "12px" }}>{a.organization}</td>
+                  <tr
+                    key={a.id}
+                    style={{
+                      borderBottom: "1px solid #ddd",
+                    }}
+                  >
+                    <td
+                      style={{
+                        padding: "12px",
+                        wordBreak: "break-word",
+                      }}
+                    >
+                      {a.title}
+                    </td>
+
+                    <td
+                      style={{
+                        padding: "12px",
+                        wordBreak: "break-word",
+                      }}
+                    >
+                      {a.type}
+                    </td>
+
+                    <td
+                      style={{
+                        padding: "12px",
+                        wordBreak: "break-word",
+                      }}
+                    >
+                      {a.organization}
+                    </td>
 
                     <td style={{ padding: "12px" }}>
                       <input
@@ -133,7 +211,9 @@ export default function Achievements() {
                         {/* EDIT */}
                         <button
                           onClick={() =>
-                            navigate(`/admin/edit-achievement/${a.id}`)
+                            navigate(
+                              `/admin/edit-achievement/${a.id}`,
+                            )
                           }
                           style={{
                             background: "#4f46e5",
@@ -144,20 +224,26 @@ export default function Achievements() {
                             cursor: "pointer",
                             fontSize: "14px",
                             fontWeight: "600",
+                            whiteSpace: "nowrap",
                           }}
                         >
                           Edit
                         </button>
 
-                        {/* DELETE (hover show) */}
+                        {/* DELETE */}
                         <button
                           className="delete-btn"
                           onClick={() => {
                             if (
-                              window.confirm("Are you sure you want to delete?")
+                              window.confirm(
+                                "Are you sure you want to delete?",
+                              )
                             ) {
                               deleteAchievement(a.id);
-                              toast.success("Achievement deleted successfully");
+
+                              toast.success(
+                                "Achievement deleted successfully",
+                              );
                             }
                           }}
                         >
@@ -178,7 +264,9 @@ export default function Achievements() {
         {`
         .action-box {
           display: flex;
+          align-items: center;
           gap: 14px;
+          flex-wrap: wrap;
         }
 
         .delete-btn {
@@ -187,10 +275,17 @@ export default function Achievements() {
           background: transparent;
           cursor: pointer;
           font-size: 16px;
+          transition: 0.2s;
         }
 
         .action-box:hover .delete-btn {
           opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+          .delete-btn {
+            opacity: 1;
+          }
         }
       `}
       </style>

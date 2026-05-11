@@ -65,7 +65,6 @@ const EditCertificate = () => {
         e.target.value,
     });
 
-    // Remove Error While Typing
     setErrors({
       ...errors,
       [e.target.name]: "",
@@ -85,7 +84,6 @@ const EditCertificate = () => {
       "application/pdf",
     ];
 
-    // File Type Validation
     if (
       !allowedTypes.includes(
         file.type
@@ -104,7 +102,6 @@ const EditCertificate = () => {
       return;
     }
 
-    // File Size Validation
     if (
       file.size >
       10 * 1024 * 1024
@@ -233,9 +230,15 @@ const EditCertificate = () => {
     <div
       style={{
         background: "#c8d8e8",
-        borderRadius: "28px",
-        padding: "20px",
-        margin: "14px",
+        borderRadius:
+          "clamp(18px, 3vw, 28px)",
+        padding:
+          "clamp(14px, 3vw, 20px)",
+        margin:
+          "clamp(10px, 2vw, 14px)",
+        minHeight: "100vh",
+        boxSizing: "border-box",
+        overflowX: "hidden",
       }}
     >
       {/* Header */}
@@ -246,7 +249,8 @@ const EditCertificate = () => {
       >
         <h1
           style={{
-            fontSize: "30px",
+            fontSize:
+              "clamp(24px, 4vw, 30px)",
             fontWeight: "700",
             color: "#1e293b",
             marginBottom: "6px",
@@ -258,7 +262,8 @@ const EditCertificate = () => {
         <p
           style={{
             color: "#64748b",
-            fontSize: "16px",
+            fontSize:
+              "clamp(14px, 2vw, 16px)",
           }}
         >
           Update certificate
@@ -270,10 +275,15 @@ const EditCertificate = () => {
       <div
         style={{
           background: "#fff",
-          borderRadius: "24px",
-          padding: "30px",
+          borderRadius:
+            "clamp(18px, 3vw, 24px)",
+          padding:
+            "clamp(18px, 4vw, 30px)",
           boxShadow:
             "0 10px 40px rgba(0,0,0,0.06)",
+          width: "100%",
+          boxSizing:
+            "border-box",
         }}
       >
         <form
@@ -286,7 +296,7 @@ const EditCertificate = () => {
             style={{
               display: "grid",
               gridTemplateColumns:
-                "1fr 1fr",
+                "repeat(auto-fit, minmax(260px, 1fr))",
               gap: "20px",
               marginBottom:
                 "24px",
@@ -354,12 +364,15 @@ const EditCertificate = () => {
                 <option>
                   Cloud
                 </option>
+
                 <option>
                   Cybersecurity
                 </option>
+
                 <option>
                   Design
                 </option>
+
                 <option>
                   Development
                 </option>
@@ -427,7 +440,7 @@ const EditCertificate = () => {
             style={{
               display: "grid",
               gridTemplateColumns:
-                "1fr 1fr",
+                "repeat(auto-fit, minmax(260px, 1fr))",
               gap: "20px",
               marginBottom:
                 "24px",
@@ -572,9 +585,13 @@ const EditCertificate = () => {
                   "2px dashed #cbd5e1",
                 borderRadius:
                   "16px",
-                padding: "24px",
+                padding:
+                  "clamp(16px, 3vw, 24px)",
                 background:
                   "#f8fafc",
+                width: "100%",
+                boxSizing:
+                  "border-box",
               }}
             >
               <input
@@ -583,6 +600,10 @@ const EditCertificate = () => {
                 onChange={
                   handleImage
                 }
+                style={{
+                  maxWidth:
+                    "100%",
+                }}
               />
 
               <p
@@ -593,6 +614,8 @@ const EditCertificate = () => {
                     "#64748b",
                   fontSize:
                     "14px",
+                  wordBreak:
+                    "break-word",
                 }}
               >
                 Allowed formats:
@@ -607,6 +630,8 @@ const EditCertificate = () => {
                     "13px",
                   marginTop:
                     "4px",
+                  wordBreak:
+                    "break-word",
                 }}
               >
                 Maximum upload
@@ -635,10 +660,12 @@ const EditCertificate = () => {
                   src={preview}
                   alt="preview"
                   style={{
-                    width:
+                    width: "100%",
+                    maxWidth:
                       "240px",
-                    height:
-                      "160px",
+                    height: "auto",
+                    aspectRatio:
+                      "3 / 2",
                     objectFit:
                       "cover",
                     marginTop:
@@ -661,6 +688,7 @@ const EditCertificate = () => {
               gap: "10px",
               marginBottom:
                 "35px",
+              flexWrap: "wrap",
             }}
           >
             <input
@@ -694,6 +722,7 @@ const EditCertificate = () => {
               display: "flex",
               justifyContent:
                 "flex-end",
+              width: "100%",
             }}
           >
             <button
@@ -713,6 +742,10 @@ const EditCertificate = () => {
                   "600",
                 fontSize:
                   "15px",
+                maxWidth:
+                  "100%",
+                whiteSpace:
+                  "nowrap",
               }}
             >
               Update
@@ -741,6 +774,7 @@ const inputStyle = {
   outline: "none",
   fontSize: "15px",
   background: "#fff",
+  boxSizing: "border-box",
 };
 
 const errorStyle = {

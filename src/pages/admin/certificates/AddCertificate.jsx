@@ -33,7 +33,6 @@ const AddCertificate = () => {
         e.target.value,
     });
 
-    // Remove error while typing
     setErrors({
       ...errors,
       [e.target.name]: "",
@@ -53,7 +52,6 @@ const AddCertificate = () => {
       "application/pdf",
     ];
 
-    // File Type Validation
     if (
       !allowedTypes.includes(
         file.type
@@ -72,7 +70,6 @@ const AddCertificate = () => {
       return;
     }
 
-    // File Size Validation
     if (
       file.size >
       10 * 1024 * 1024
@@ -204,17 +201,23 @@ const AddCertificate = () => {
       style={{
         minHeight: "100vh",
         background: "#fff",
-        padding: "20px",
+        padding: "clamp(10px, 2vw, 20px)",
+        boxSizing: "border-box",
+        overflowX: "hidden",
       }}
     >
       {/* Blue Main Container */}
       <div
         style={{
           background: "#c8d8e8",
-          borderRadius: "28px",
+          borderRadius:
+            "clamp(18px, 3vw, 28px)",
           minHeight:
             "calc(100vh - 40px)",
-          padding: "20px",
+          padding:
+            "clamp(14px, 3vw, 20px)",
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
         {/* Header */}
@@ -225,7 +228,8 @@ const AddCertificate = () => {
         >
           <h1
             style={{
-              fontSize: "30px",
+              fontSize:
+                "clamp(24px, 4vw, 30px)",
               fontWeight: "700",
               color: "#1e293b",
               marginBottom: "6px",
@@ -237,7 +241,8 @@ const AddCertificate = () => {
           <p
             style={{
               color: "#64748b",
-              fontSize: "16px",
+              fontSize:
+                "clamp(14px, 2vw, 16px)",
             }}
           >
             Manage certificates and
@@ -249,10 +254,14 @@ const AddCertificate = () => {
         <div
           style={{
             background: "#fff",
-            borderRadius: "24px",
-            padding: "30px",
+            borderRadius:
+              "clamp(18px, 3vw, 24px)",
+            padding:
+              "clamp(18px, 4vw, 30px)",
             boxShadow:
               "0 10px 40px rgba(0,0,0,0.08)",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <form
@@ -265,7 +274,7 @@ const AddCertificate = () => {
               style={{
                 display: "grid",
                 gridTemplateColumns:
-                  "1fr 1fr",
+                  "repeat(auto-fit, minmax(260px, 1fr))",
                 gap: "20px",
                 marginBottom:
                   "24px",
@@ -344,15 +353,19 @@ const AddCertificate = () => {
                   <option>
                     Select Category
                   </option>
+
                   <option>
                     Cloud
                   </option>
+
                   <option>
                     Cybersecurity
                   </option>
+
                   <option>
                     Design
                   </option>
+
                   <option>
                     Development
                   </option>
@@ -426,7 +439,7 @@ const AddCertificate = () => {
               style={{
                 display: "grid",
                 gridTemplateColumns:
-                  "1fr 1fr",
+                  "repeat(auto-fit, minmax(260px, 1fr))",
                 gap: "20px",
                 marginBottom:
                   "24px",
@@ -592,9 +605,13 @@ const AddCertificate = () => {
                     "2px dashed #cbd5e1",
                   borderRadius:
                     "16px",
-                  padding: "25px",
+                  padding:
+                    "clamp(16px, 3vw, 25px)",
                   background:
                     "#f8fafc",
+                  width: "100%",
+                  boxSizing:
+                    "border-box",
                 }}
               >
                 <input
@@ -603,6 +620,10 @@ const AddCertificate = () => {
                   onChange={
                     handleImage
                   }
+                  style={{
+                    maxWidth:
+                      "100%",
+                  }}
                 />
 
                 <p
@@ -613,6 +634,8 @@ const AddCertificate = () => {
                       "#64748b",
                     fontSize:
                       "14px",
+                    wordBreak:
+                      "break-word",
                   }}
                 >
                   Upload JPG, PNG or
@@ -627,6 +650,8 @@ const AddCertificate = () => {
                       "#64748b",
                     fontSize:
                       "13px",
+                    wordBreak:
+                      "break-word",
                   }}
                 >
                   Maximum upload
@@ -651,9 +676,12 @@ const AddCertificate = () => {
                   src={preview}
                   alt="preview"
                   style={{
-                    width: "240px",
-                    height:
-                      "160px",
+                    width: "100%",
+                    maxWidth:
+                      "240px",
+                    height: "auto",
+                    aspectRatio:
+                      "3 / 2",
                     objectFit:
                       "cover",
                     marginTop:
@@ -676,6 +704,8 @@ const AddCertificate = () => {
                 gap: "10px",
                 marginBottom:
                   "35px",
+                flexWrap:
+                  "wrap",
               }}
             >
               <input
@@ -709,6 +739,7 @@ const AddCertificate = () => {
                 display: "flex",
                 justifyContent:
                   "flex-end",
+                width: "100%",
               }}
             >
               <button
@@ -728,6 +759,10 @@ const AddCertificate = () => {
                     "600",
                   fontSize:
                     "15px",
+                  maxWidth:
+                    "100%",
+                  whiteSpace:
+                    "nowrap",
                 }}
               >
                 Save Certificate
@@ -749,6 +784,7 @@ const inputStyle = {
   outline: "none",
   fontSize: "15px",
   background: "#fff",
+  boxSizing: "border-box",
 };
 
 const errorStyle = {

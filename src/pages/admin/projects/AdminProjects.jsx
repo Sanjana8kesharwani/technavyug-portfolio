@@ -111,17 +111,24 @@ export default function AdminProjects() {
       style={{
         minHeight: "100vh",
         background: "#fff",
-        padding: "14px",
+        padding:
+          "clamp(10px, 2vw, 14px)",
+        boxSizing: "border-box",
+        overflowX: "hidden",
       }}
     >
       {/* MAIN WRAPPER */}
       <div
         style={{
           background: "#c8d8e8",
-          borderRadius: "28px",
+          borderRadius:
+            "clamp(18px, 3vw, 28px)",
           minHeight:
             "calc(100vh - 28px)",
-          padding: "20px",
+          padding:
+            "clamp(14px, 3vw, 20px)",
+          boxSizing:
+            "border-box",
         }}
       >
         {/* HEADER */}
@@ -134,12 +141,15 @@ export default function AdminProjects() {
             alignItems:
               "flex-start",
             marginBottom: "22px",
+            gap: "14px",
+            flexWrap: "wrap",
           }}
         >
           <div>
             <h1
               style={{
-                fontSize: "28px",
+                fontSize:
+                  "clamp(24px, 4vw, 28px)",
                 fontWeight: "700",
                 color: "#1e293b",
                 marginBottom: "4px",
@@ -151,7 +161,8 @@ export default function AdminProjects() {
             <p
               style={{
                 color: "#64748b",
-                fontSize: "15px",
+                fontSize:
+                  "clamp(14px, 2vw, 15px)",
               }}
             >
               Manage projects and details
@@ -167,12 +178,16 @@ export default function AdminProjects() {
             style={{
               background: "#4f46e5",
               color: "#fff",
-              textDecoration: "none",
+              textDecoration:
+                "none",
               padding: "12px 18px",
               borderRadius: "12px",
               fontWeight: "600",
               border: "none",
               cursor: "pointer",
+              whiteSpace:
+                "nowrap",
+              width: "fit-content",
             }}
           >
             + Add Project
@@ -185,7 +200,8 @@ export default function AdminProjects() {
             display: "flex",
             gap: "12px",
             marginBottom: "18px",
-            flexWrap: "wrap",
+            overflowX: "auto",
+            paddingBottom: "4px",
           }}
         >
           <select
@@ -264,8 +280,14 @@ export default function AdminProjects() {
           style={{
             background: "#fff",
             borderRadius: "20px",
-            padding: "20px",
-            boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
+            padding:
+              "clamp(10px, 2vw, 20px)",
+            boxShadow:
+              "0 10px 40px rgba(0,0,0,0.08)",
+            overflowX: "auto",
+            width: "100%",
+            boxSizing:
+              "border-box",
           }}
         >
           {filteredProjects.length ===
@@ -284,6 +306,7 @@ export default function AdminProjects() {
                 width: "100%",
                 borderCollapse:
                   "collapse",
+                minWidth: "900px",
               }}
             >
               <thead>
@@ -351,6 +374,8 @@ export default function AdminProjects() {
                                 "14px",
                               fontWeight:
                                 "600",
+                              whiteSpace:
+                                "nowrap",
                             }}
                           >
                             Completed
@@ -371,6 +396,8 @@ export default function AdminProjects() {
                                 "14px",
                               fontWeight:
                                 "600",
+                              whiteSpace:
+                                "nowrap",
                             }}
                           >
                             Ongoing
@@ -390,6 +417,8 @@ export default function AdminProjects() {
                                 "14px",
                               fontWeight:
                                 "600",
+                              whiteSpace:
+                                "nowrap",
                             }}
                           >
                             On Hold
@@ -414,6 +443,8 @@ export default function AdminProjects() {
                                 "14px",
                               fontWeight:
                                 "600",
+                              whiteSpace:
+                                "nowrap",
                             }}
                           >
                             Featured
@@ -433,6 +464,8 @@ export default function AdminProjects() {
                                 "14px",
                               fontWeight:
                                 "600",
+                              whiteSpace:
+                                "nowrap",
                             }}
                           >
                             Normal
@@ -452,6 +485,8 @@ export default function AdminProjects() {
                             gap: "14px",
                             position:
                               "relative",
+                            flexWrap:
+                              "wrap",
                           }}
                         >
                           <button
@@ -479,6 +514,8 @@ export default function AdminProjects() {
                                 "600",
                               cursor:
                                 "pointer",
+                              whiteSpace:
+                                "nowrap",
                             }}
                           >
                             Edit
@@ -645,22 +682,28 @@ export default function AdminProjects() {
 
 const filterStyle = {
   padding: "12px 18px",
+  border:
+    "1px solid #dbe2ea",
   borderRadius: "12px",
-  border: "1px solid #dbe2ea",
   outline: "none",
   fontSize: "14px",
   background: "#fff",
+  minWidth: "170px",
+  flexShrink: 0,
+  boxSizing: "border-box",
 };
 
 const thStyle = {
   padding: "12px",
   textAlign: "left",
+  whiteSpace: "nowrap",
 };
 
 const tdStyle = {
   padding: "18px 16px",
   fontSize: "15px",
   color: "#0f172a",
+  wordBreak: "break-word",
 };
 
 const menuButtonStyle = {

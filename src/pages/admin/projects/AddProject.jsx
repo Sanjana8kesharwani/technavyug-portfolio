@@ -108,13 +108,13 @@ export default function AddProject() {
   };
 
   return (
-    <div className="min-h-screen bg-white p-5">
-      <div className="bg-[#c8d8e8] rounded-2xl p-6 min-h-[calc(100vh-40px)]">
+    <div className="min-h-screen bg-white p-3 sm:p-5 overflow-x-hidden">
+      <div className="bg-[#c8d8e8] rounded-2xl p-4 sm:p-6 min-h-[calc(100vh-40px)]">
         {/* HEADER */}
         <div style={{ marginBottom: "25px" }}>
           <h1
             style={{
-              fontSize: "30px",
+              fontSize: "clamp(24px,4vw,30px)",
               fontWeight: "700",
               color: "#1e293b",
               marginBottom: "6px",
@@ -126,7 +126,7 @@ export default function AddProject() {
           <p
             style={{
               color: "#64748b",
-              fontSize: "16px",
+              fontSize: "clamp(14px,2vw,16px)",
             }}
           >
             Manage projects and details
@@ -136,10 +136,10 @@ export default function AddProject() {
         {/* FORM */}
         <form
           onSubmit={handleSubmit}
-          className="bg-white p-6 rounded-2xl shadow-md space-y-5"
+          className="bg-white p-4 sm:p-6 rounded-2xl shadow-md space-y-5"
         >
           {/* ROW 1 */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="text-sm font-medium">
                 Project Title
@@ -231,7 +231,7 @@ export default function AddProject() {
           </div>
 
           {/* ROW 2 */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="text-sm font-medium">
                 Status
@@ -260,7 +260,7 @@ export default function AddProject() {
                 Thumbnail Image
               </label>
 
-              <div className="mt-2 flex items-center gap-4">
+              <div className="mt-2 flex flex-wrap items-center gap-4">
                 {/* Upload Box */}
                 <label className="w-32 h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:border-indigo-500 transition">
                   <span className="text-xs text-gray-500 text-center">
@@ -280,7 +280,7 @@ export default function AddProject() {
                   <img
                     src={preview}
                     alt="preview"
-                    className="w-32 h-24 object-cover rounded-lg border"
+                    className="w-32 max-w-full h-24 object-cover rounded-lg border"
                   />
                 )}
               </div>
@@ -288,7 +288,7 @@ export default function AddProject() {
           </div>
 
           {/* FEATURED */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <input
               type="checkbox"
               name="featured"
@@ -299,7 +299,7 @@ export default function AddProject() {
           </div>
 
           {/* BUTTON */}
-          <div className="flex justify-end">
+          <div className="flex justify-end w-full">
             <button
               type="submit"
               className="text-white font-semibold"
@@ -309,6 +309,8 @@ export default function AddProject() {
                 borderRadius: "12px",
                 border: "none",
                 cursor: "pointer",
+                whiteSpace: "nowrap",
+                maxWidth: "100%",
               }}
             >
               Save Project
