@@ -1,16 +1,103 @@
-# React + Vite
+# TechNavyug Portfolio Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and scalable portfolio management platform built to showcase company projects, research work, technical case studies, and innovations in a professional and organized way.
 
-Currently, two official plugins are available:
+The platform provides a complete admin dashboard for managing projects along with a responsive frontend interface for public project showcasing.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 📁 Project Management
+- Create, edit, and delete projects
+- Duplicate existing projects
+- Publish / Unpublish projects
+- Mark projects as Featured
 
-## Expanding the ESLint configuration
+### 🏷️ Category Management
+- Dynamic project categories
+- Filter projects by domain
+- Support for custom categories
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🖼️ Media Support
+- Thumbnail image upload
+- Multiple gallery image uploads
+- YouTube demo video integration
+- Live project/demo links
+
+### 👥 Team Collaboration
+- Assign multiple team members to projects
+- Showcase contributor details
+
+### ✍️ Rich Content Editor
+- Detailed project descriptions
+- Headings, bullet points, links, and formatting support
+
+### 🔍 Smart Filtering
+- Filter by:
+  - Status
+  - Category
+  - Featured projects
+
+---
+
+## 🌐 Frontend Highlights
+
+- Responsive modern UI
+- Featured projects section
+- Project detail pages
+- Image gallery/slideshow
+- Embedded demo videos
+- Clean card-based layout
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React.js
+- Vite
+- Tailwind CSS
+- React Router DOM
+- Axios
+- React Quill
+
+---
+
+## 📌 Project Status Support
+
+Projects can be managed under:
+- Ongoing
+- Completed
+- On Hold
+
+---
+
+## 🎯 Purpose
+
+This system is designed to help organizations:
+- Showcase technical expertise
+- Present company achievements
+- Maintain a structured project repository
+- Improve branding and visibility
+- Manage projects efficiently through a centralized dashboard
+
+---
+
+## 📈 Future Enhancements
+
+- Backend Integration
+- Authentication & Role Management
+- Search & Pagination
+- Analytics Dashboard
+- SEO Optimization
+- Drag & Drop Uploads
+- Project Feedback System
+
+---
+
+## ⚡ Getting Started
+
+```bash
+npm install
+npm run dev
