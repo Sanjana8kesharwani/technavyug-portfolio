@@ -39,6 +39,7 @@ export default function AdminLogin() {
         overflow: "hidden",
         position: "relative",
         fontFamily: "sans-serif",
+        boxSizing: "border-box",
       }}
     >
       {/* BACKGROUND SHAPES */}
@@ -73,11 +74,12 @@ export default function AdminLogin() {
         style={{
           width: "100%",
           maxWidth: "1100px",
-          minHeight: "650px",
+          minHeight: "auto",
           background: "#fff",
           borderRadius: "28px",
           overflow: "hidden",
           display: "flex",
+          flexWrap: "wrap",
           boxShadow: "0 25px 60px rgba(0,0,0,0.18)",
           zIndex: 2,
         }}
@@ -87,15 +89,15 @@ export default function AdminLogin() {
         <div
           style={{
             flex: 1,
+            minWidth: "320px",
             background: "#fff",
-            padding: "70px 60px",
+            padding: "clamp(30px, 5vw, 70px)",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             position: "relative",
             zIndex: 2,
-            clipPath:
-              "polygon(0 0, 100% 0, 82% 50%, 100% 100%, 0 100%, 0 50%)",
+            boxSizing: "border-box",
           }}
         >
           <div style={{ marginBottom: "35px" }}>
@@ -106,6 +108,7 @@ export default function AdminLogin() {
                 width: "90px",
                 marginBottom: "20px",
                 filter: "brightness(0)",
+                maxWidth: "100%",
               }}
             />
 
@@ -121,10 +124,12 @@ export default function AdminLogin() {
 
             <h1
               style={{
-                fontSize: "56px",
+                fontSize: "clamp(34px, 7vw, 56px)",
                 margin: 0,
                 color: "#2d3748",
                 fontWeight: "800",
+                lineHeight: "1.1",
+                wordBreak: "break-word",
               }}
             >
               Technavyug
@@ -184,6 +189,8 @@ export default function AdminLogin() {
                 justifyContent: "space-between",
                 alignItems: "center",
                 marginBottom: "25px",
+                gap: "12px",
+                flexWrap: "wrap",
               }}
             >
               <label
@@ -265,15 +272,17 @@ export default function AdminLogin() {
         <div
           style={{
             flex: 1,
+            minWidth: "320px",
             background:
               "linear-gradient(135deg, #06B6D4 0%, #0891B2 45%, #0E7490 100%)",
             color: "#fff",
             position: "relative",
-            padding: "70px 60px",
+            padding: "clamp(30px, 5vw, 70px)",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             overflow: "hidden",
+            boxSizing: "border-box",
           }}
         >
           {/* CIRCLES */}
@@ -304,9 +313,10 @@ export default function AdminLogin() {
 
           <h2
             style={{
-              fontSize: "42px",
+              fontSize: "clamp(28px, 6vw, 42px)",
               marginBottom: "20px",
               zIndex: 2,
+              lineHeight: "1.2",
             }}
           >
             About Technavyug
@@ -356,6 +366,7 @@ export default function AdminLogin() {
                   style={{
                     width: "10px",
                     height: "10px",
+                    minWidth: "10px",
                     borderRadius: "50%",
                     background: "#fff",
                   }}
