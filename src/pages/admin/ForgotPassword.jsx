@@ -1,18 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  ArrowLeft,
-  Mail,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowLeft, Mail, ShieldCheck } from "lucide-react";
+
+const LOGIN_URL = import.meta.env.VITE_LOGIN_URL;
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] =
-    useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,13 +19,10 @@ export default function ForgotPassword() {
       return;
     }
 
-    const emailRegex =
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(email)) {
-      setError(
-        "Enter a valid email address"
-      );
+      setError("Enter a valid email address");
       return;
     }
 
@@ -55,16 +49,13 @@ export default function ForgotPassword() {
           background: "#fff",
           borderRadius: "30px",
           padding: "40px",
-          boxShadow:
-            "0 20px 50px rgba(0,0,0,0.18)",
+          boxShadow: "0 20px 50px rgba(0,0,0,0.18)",
           boxSizing: "border-box",
         }}
       >
         {/* Back */}
         <button
-          onClick={() =>
-            navigate("/admin/reset-password")
-          }
+          onClick={() => navigate(`${LOGIN_URL}`)}
           style={{
             display: "flex",
             alignItems: "center",
@@ -88,18 +79,14 @@ export default function ForgotPassword() {
             width: "75px",
             height: "75px",
             borderRadius: "20px",
-            background:
-              "linear-gradient(135deg, #06b6d4, #2563eb)",
+            background: "linear-gradient(135deg, #06b6d4, #2563eb)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             marginBottom: "24px",
           }}
         >
-          <ShieldCheck
-            size={38}
-            color="#fff"
-          />
+          <ShieldCheck size={38} color="#fff" />
         </div>
 
         {/* Heading */}
@@ -122,9 +109,8 @@ export default function ForgotPassword() {
             marginBottom: "32px",
           }}
         >
-          Enter your registered email
-          address and we’ll send you a
-          password reset link.
+          Enter your registered email address and we’ll send you a password
+          reset link.
         </p>
 
         {!success ? (
@@ -150,34 +136,25 @@ export default function ForgotPassword() {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  border:
-                    "1px solid #dbe2ea",
+                  border: "1px solid #dbe2ea",
                   borderRadius: "14px",
                   padding: "0 14px",
                 }}
               >
-                <Mail
-                  size={20}
-                  color="#64748b"
-                />
+                <Mail size={20} color="#64748b" />
 
                 <input
                   type="email"
                   placeholder="admin@gmail.com"
                   value={email}
-                  onChange={(e) =>
-                    setEmail(
-                      e.target.value
-                    )
-                  }
+                  onChange={(e) => setEmail(e.target.value)}
                   style={{
                     width: "100%",
                     padding: "16px",
                     border: "none",
                     outline: "none",
                     fontSize: "15px",
-                    background:
-                      "transparent",
+                    background: "transparent",
                   }}
                 />
               </div>
@@ -200,8 +177,7 @@ export default function ForgotPassword() {
               type="submit"
               style={{
                 width: "100%",
-                background:
-                  "linear-gradient(135deg, #06b6d4, #2563eb)",
+                background: "linear-gradient(135deg, #06b6d4, #2563eb)",
                 color: "#fff",
                 border: "none",
                 padding: "16px",
@@ -219,8 +195,7 @@ export default function ForgotPassword() {
           <div
             style={{
               background: "#f0fdf4",
-              border:
-                "1px solid #bbf7d0",
+              border: "1px solid #bbf7d0",
               borderRadius: "18px",
               padding: "24px",
             }}
@@ -242,9 +217,7 @@ export default function ForgotPassword() {
                 margin: 0,
               }}
             >
-              A password reset link has
-              been sent to your email
-              address.
+              A password reset link has been sent to your email address.
             </p>
           </div>
         )}

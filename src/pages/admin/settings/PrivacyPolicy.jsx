@@ -101,10 +101,9 @@ const PrivacyPolicy = () => {
                 lineHeight: "30px",
               }}
             >
-              At <strong>Technavyug</strong>, we value your
-              privacy. This policy explains how we collect, use,
-              and protect your information when you use our
-              platform.
+              At <strong>Technavyug</strong>, we value your privacy. This policy
+              explains how we collect, use, and protect your information when
+              you use our platform.
             </p>
           </div>
 
@@ -190,9 +189,8 @@ const PrivacyPolicy = () => {
                 lineHeight: "30px",
               }}
             >
-              We do not sell your personal data. Information may
-              only be shared with trusted partners or when
-              required by law.
+              We do not sell your personal data. Information may only be shared
+              with trusted partners or when required by law.
             </p>
           </div>
 
@@ -218,8 +216,8 @@ const PrivacyPolicy = () => {
                 lineHeight: "30px",
               }}
             >
-              We use secure technologies and best practices to
-              protect your data from unauthorized access or misuse.
+              We use secure technologies and best practices to protect your data
+              from unauthorized access or misuse.
             </p>
           </div>
 
@@ -245,8 +243,8 @@ const PrivacyPolicy = () => {
                 lineHeight: "30px",
               }}
             >
-              You can request to access, update, or delete your
-              personal data at any time.
+              You can request to access, update, or delete your personal data at
+              any time.
             </p>
           </div>
 
@@ -272,8 +270,7 @@ const PrivacyPolicy = () => {
                 lineHeight: "30px",
               }}
             >
-              We use cookies to improve performance and analyze
-              user behavior.
+              We use cookies to improve performance and analyze user behavior.
             </p>
           </div>
 
@@ -299,8 +296,8 @@ const PrivacyPolicy = () => {
                 lineHeight: "30px",
               }}
             >
-              This policy may be updated periodically. Please
-              check this page regularly for changes.
+              This policy may be updated periodically. Please check this page
+              regularly for changes.
             </p>
           </div>
         </div>

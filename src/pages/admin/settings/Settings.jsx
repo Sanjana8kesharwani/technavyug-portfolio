@@ -1,15 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import {
-  ShieldCheck,
-  FileText,
-  ClipboardList,
-} from "lucide-react";
+import { ShieldCheck, FileText, ClipboardList } from "lucide-react";
 
 const settingsCards = [
   {
     title: "Terms & Conditions",
-    description:
-      "Manage platform rules, terms and conditions for all users.",
+    description: "Manage platform rules, terms and conditions for all users.",
     icon: <FileText size={24} />,
     path: "/admin/settings/terms",
   },
@@ -22,8 +17,7 @@ const settingsCards = [
   },
   {
     title: "Audit Logs",
-    description:
-      "Track all admin activities, updates and system changes.",
+    description: "Track all admin activities, updates and system changes.",
     icon: <ClipboardList size={24} />,
     path: "/admin/settings/audit-logs",
   },
@@ -107,14 +101,12 @@ export default function Settings() {
                 boxSizing: "border-box",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform =
-                  "translateY(-2px)";
+                e.currentTarget.style.transform = "translateY(-2px)";
                 e.currentTarget.style.boxShadow =
                   "0 10px 25px rgba(0,0,0,0.06)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform =
-                  "translateY(0px)";
+                e.currentTarget.style.transform = "translateY(0px)";
                 e.currentTarget.style.boxShadow = "none";
               }}
             >

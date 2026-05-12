@@ -27,15 +27,17 @@ export default function GalleryVideos() {
 
   return (
     <div className="max-w-7xl mx-auto py-10 px-4">
-
       {/* Heading */}
       <div className="text-center mb-10">
-        <h2 className="text-4xl font-bold text-gray-900">
-          Gallery Videos
-        </h2>
+        <h2 className="text-4xl font-bold text-gray-900">Gallery Videos</h2>
 
         <svg className="mx-auto mt-2" width="140" height="20">
-          <path d="M10 8 Q70 0 130 8" stroke="#06b6d4" strokeWidth="3" fill="none"/>
+          <path
+            d="M10 8 Q70 0 130 8"
+            stroke="#06b6d4"
+            strokeWidth="3"
+            fill="none"
+          />
         </svg>
       </div>
 

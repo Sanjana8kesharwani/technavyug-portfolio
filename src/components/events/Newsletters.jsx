@@ -23,12 +23,9 @@ export default function Newsletters() {
 
   return (
     <div className="max-w-7xl mx-auto py-10 px-4">
-
       {/* Heading */}
       <div className="text-center mb-10">
-        <h2 className="text-4xl font-bold text-gray-900">
-          Newsletters
-        </h2>
+        <h2 className="text-4xl font-bold text-gray-900">Newsletters</h2>
 
         <svg className="mx-auto mt-2" width="140" height="20">
           <path
@@ -43,20 +40,20 @@ export default function Newsletters() {
       {/* CONTENT */}
       {loading ? (
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {Array(4).fill("").map((_, i) => (
-            <ShimmerCard key={i} />
-          ))}
+          {Array(4)
+            .fill("")
+            .map((_, i) => (
+              <ShimmerCard key={i} />
+            ))}
         </div>
       ) : (
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-
           {newsletterData.map((item) => (
             <div
               key={item.id}
               className="cursor-pointer group"
               onClick={() => window.open(item.pdf, "_blank")}
             >
-
               <div className="overflow-hidden rounded-lg shadow">
                 <img
                   src={item.image}
@@ -68,10 +65,8 @@ export default function Newsletters() {
               <p className="text-center text-sm mt-2 text-gray-700">
                 {item.title}
               </p>
-
             </div>
           ))}
-
         </div>
       )}
     </div>

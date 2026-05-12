@@ -4,10 +4,8 @@ import MainLayout from "../layouts/MainLayout";
 const TermsConditions = () => {
   return (
     <MainLayout>
-
       <section className="bg-white text-black py-20 px-6">
         <div className="max-w-4xl mx-auto">
-
           {/* TITLE */}
           <h1 className="text-4xl font-bold mb-6 text-center">
             Terms & Conditions
@@ -18,15 +16,14 @@ const TermsConditions = () => {
           </p>
 
           <div className="space-y-8 text-gray-700 leading-relaxed">
-
             {/* INTRO */}
             <div>
               <h2 className="text-xl font-semibold text-cyan-400 mb-2">
                 1. Introduction
               </h2>
               <p>
-                Welcome to <strong>Technavyug</strong>. By using our platform, you
-                agree to comply with these terms and conditions.
+                Welcome to <strong>Technavyug</strong>. By using our platform,
+                you agree to comply with these terms and conditions.
               </p>
             </div>
 
@@ -59,8 +56,8 @@ const TermsConditions = () => {
                 4. Payments & Subscriptions
               </h2>
               <p>
-                Some services may be paid. All payments are non-refundable unless
-                stated otherwise.
+                Some services may be paid. All payments are non-refundable
+                unless stated otherwise.
               </p>
             </div>
 
@@ -70,8 +67,8 @@ const TermsConditions = () => {
                 5. Limitation of Liability
               </h2>
               <p>
-                We are not responsible for any direct or indirect damages arising
-                from the use of our platform.
+                We are not responsible for any direct or indirect damages
+                arising from the use of our platform.
               </p>
             </div>
 
@@ -81,8 +78,8 @@ const TermsConditions = () => {
                 6. Termination
               </h2>
               <p>
-                We reserve the right to suspend or terminate accounts that violate
-                our policies.
+                We reserve the right to suspend or terminate accounts that
+                violate our policies.
               </p>
             </div>
 
@@ -104,11 +101,9 @@ const TermsConditions = () => {
               </h2>
               <p>Email: support@technavyug.com</p>
             </div>
-
           </div>
         </div>
       </section>
-
     </MainLayout>
   );
 };

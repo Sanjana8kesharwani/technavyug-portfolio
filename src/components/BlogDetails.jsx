@@ -10,17 +10,13 @@ export default function BlogDetails() {
   let blog = location.state;
 
   if (!blog) {
-    blog = blogsData.find(
-      (b) => String(b.id) === String(id)
-    );
+    blog = blogsData.find((b) => String(b.id) === String(id));
   }
 
   if (!blog) {
     return (
       <div className="text-center mt-10 px-4">
-        <h2 className="text-xl font-semibold">
-          No Blog Data Found
-        </h2>
+        <h2 className="text-xl font-semibold">No Blog Data Found</h2>
 
         <button
           onClick={() => navigate("/events-media")}
@@ -76,9 +72,7 @@ export default function BlogDetails() {
 
         {/* Author */}
         <div className="mt-10 p-4 sm:p-6 bg-gray-100 rounded-xl shadow">
-          <p className="text-gray-500 text-sm sm:text-base">
-            Blog Author
-          </p>
+          <p className="text-gray-500 text-sm sm:text-base">Blog Author</p>
         </div>
       </div>
 

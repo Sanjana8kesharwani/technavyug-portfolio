@@ -258,10 +258,7 @@ export default function Users() {
                       }}
                     >
                       {user.linkedin ? (
-                        <a
-                          href={user.linkedin}
-                          target="_blank"
-                        >
+                        <a href={user.linkedin} target="_blank">
                           View
                         </a>
                       ) : (

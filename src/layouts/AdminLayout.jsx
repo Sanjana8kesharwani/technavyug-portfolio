@@ -1,8 +1,4 @@
-import {
-  useNavigate,
-  Outlet,
-  useLocation,
-} from "react-router-dom";
+import { useNavigate, Outlet, useLocation } from "react-router-dom";
 
 import {
   LayoutDashboard,
@@ -54,8 +50,7 @@ export default function AdminLayout() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [mobileMenu, setMobileMenu] =
-    useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   const path = location.pathname;
 
@@ -85,13 +80,9 @@ export default function AdminLayout() {
     path.includes("/admin/edit-certificate")
   ) {
     activeNav = "Certificates";
-  } else if (
-    path.includes("/admin/profile")
-  ) {
+  } else if (path.includes("/admin/profile")) {
     activeNav = "Admin";
-  } else if (
-    path.includes("/admin/settings")
-  ) {
+  } else if (path.includes("/admin/settings")) {
     activeNav = "Settings";
   }
 
@@ -113,12 +104,10 @@ export default function AdminLayout() {
           background: "#fff",
           display: "none",
           alignItems: "center",
-          justifyContent:
-            "space-between",
+          justifyContent: "space-between",
           padding: "0 18px",
           zIndex: 1200,
-          borderBottom:
-            "1px solid rgba(0,0,0,0.06)",
+          borderBottom: "1px solid rgba(0,0,0,0.06)",
         }}
       >
         <div
@@ -145,33 +134,20 @@ export default function AdminLayout() {
         </div>
 
         <button
-          onClick={() =>
-            setMobileMenu(
-              !mobileMenu
-            )
-          }
+          onClick={() => setMobileMenu(!mobileMenu)}
           style={{
             border: "none",
-            background:
-              "transparent",
+            background: "transparent",
             cursor: "pointer",
           }}
         >
-          {mobileMenu ? (
-            <X size={26} />
-          ) : (
-            <Menu size={26} />
-          )}
+          {mobileMenu ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
       {/* SIDEBAR */}
       <div
-        className={`sidebar ${
-          mobileMenu
-            ? "sidebar-open"
-            : ""
-        }`}
+        className={`sidebar ${mobileMenu ? "sidebar-open" : ""}`}
         style={{
           width: "220px",
           minWidth: "220px",
@@ -183,12 +159,9 @@ export default function AdminLayout() {
           display: "flex",
           flexDirection: "column",
           padding: "28px 16px",
-          borderRight:
-            "1px solid rgba(0,0,0,0.07)",
-          boxSizing:
-            "border-box",
-          transition:
-            "0.3s ease",
+          borderRight: "1px solid rgba(0,0,0,0.07)",
+          boxSizing: "border-box",
+          transition: "0.3s ease",
           zIndex: 1300,
         }}
       >
@@ -219,79 +192,53 @@ export default function AdminLayout() {
 
         {/* Nav Items */}
         <div style={{ flex: 1 }}>
-          {sidebarItems.map(
-            (item) => (
-              <div
-                key={item.label}
-                onClick={() => {
-                  navigate(
-                    item.path
-                  );
+          {sidebarItems.map((item) => (
+            <div
+              key={item.label}
+              onClick={() => {
+                navigate(item.path);
 
-                  setMobileMenu(
-                    false
-                  );
-                }}
-                style={{
-                  display: "flex",
-                  alignItems:
-                    "center",
-                  gap: "12px",
-                  padding:
-                    "12px 16px",
-                  borderRadius:
-                    "10px",
-                  cursor:
-                    "pointer",
-                  marginBottom:
-                    "6px",
-                  fontSize:
-                    "14px",
-                  fontWeight:
-                    "500",
-                  background:
-                    activeNav ===
-                    item.label
-                      ? "linear-gradient(135deg, #0f766e, #14b8a6)"
-                      : "transparent",
-                  color:
-                    activeNav ===
-                    item.label
-                      ? "#fff"
-                      : "#475569",
-                }}
-              >
-                {item.icon}
-                {item.label}
-              </div>
-            )
-          )}
+                setMobileMenu(false);
+              }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                padding: "12px 16px",
+                borderRadius: "10px",
+                cursor: "pointer",
+                marginBottom: "6px",
+                fontSize: "14px",
+                fontWeight: "500",
+                background:
+                  activeNav === item.label
+                    ? "linear-gradient(135deg, #0f766e, #14b8a6)"
+                    : "transparent",
+                color: activeNav === item.label ? "#fff" : "#475569",
+              }}
+            >
+              {item.icon}
+              {item.label}
+            </div>
+          ))}
         </div>
 
         {/* Admin */}
         <div
           onClick={() => {
-            navigate(
-              "/admin/profile"
-            );
+            navigate("/admin/profile");
 
-            setMobileMenu(
-              false
-            );
+            setMobileMenu(false);
           }}
           style={{
             display: "flex",
-            alignItems:
-              "center",
+            alignItems: "center",
             gap: "10px",
-            padding:
-              "12px 14px",
-            borderRadius:
-              "14px",
+            padding: "12px 14px",
+            borderRadius: "14px",
             cursor: "pointer",
             background:
-              activeNav ===
-              "Admin"
+              activeNav === "Admin"
                 ? "linear-gradient(135deg, #0f766e, #14b8a6)"
                 : "#f3f4f6",
           }}
@@ -300,18 +247,13 @@ export default function AdminLayout() {
             style={{
               width: "36px",
               height: "36px",
-              borderRadius:
-                "50%",
-              background:
-                "linear-gradient(135deg, #667eea, #764ba2)",
+              borderRadius: "50%",
+              background: "linear-gradient(135deg, #667eea, #764ba2)",
               display: "flex",
-              alignItems:
-                "center",
-              justifyContent:
-                "center",
+              alignItems: "center",
+              justifyContent: "center",
               color: "#fff",
-              fontWeight:
-                "700",
+              fontWeight: "700",
               fontSize: "13px",
             }}
           >
@@ -322,15 +264,9 @@ export default function AdminLayout() {
             <p
               style={{
                 margin: 0,
-                fontWeight:
-                  "600",
-                fontSize:
-                  "14px",
-                color:
-                  activeNav ===
-                  "Admin"
-                    ? "#fff"
-                    : "#0f172a",
+                fontWeight: "600",
+                fontSize: "14px",
+                color: activeNav === "Admin" ? "#fff" : "#0f172a",
               }}
             >
               Admin
@@ -339,13 +275,9 @@ export default function AdminLayout() {
             <p
               style={{
                 margin: 0,
-                fontSize:
-                  "12px",
+                fontSize: "12px",
                 color:
-                  activeNav ===
-                  "Admin"
-                    ? "rgba(255,255,255,0.8)"
-                    : "#64748b",
+                  activeNav === "Admin" ? "rgba(255,255,255,0.8)" : "#64748b",
               }}
             >
               Super Admin
@@ -357,16 +289,11 @@ export default function AdminLayout() {
       {/* OVERLAY */}
       {mobileMenu && (
         <div
-          onClick={() =>
-            setMobileMenu(
-              false
-            )
-          }
+          onClick={() => setMobileMenu(false)}
           style={{
             position: "fixed",
             inset: 0,
-            background:
-              "rgba(0,0,0,0.4)",
+            background: "rgba(0,0,0,0.4)",
             zIndex: 1100,
           }}
         />

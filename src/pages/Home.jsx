@@ -8,25 +8,18 @@ import TopAchievers from "../components/home/TopAchieversSection";
 import PartnersSection from "../components/home/PartnersSection";
 import EventsSection from "../components/home/EventsSection";
 
-
-
-
 const Home = () => {
   return (
     <MainLayout>
-
-
       <Hero />
       <StatsSection />
       <VerifySection />
-      <PartnersSection /> 
-      <EventsSection /> 
-       <TopAchievers /> 
+      <PartnersSection />
+      <EventsSection />
+      <TopAchievers />
       <ProjectsSection />
-      
-      <CertificatesSection />
-      
 
+      <CertificatesSection />
     </MainLayout>
   );
 };

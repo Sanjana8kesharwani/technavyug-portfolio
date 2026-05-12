@@ -69,9 +69,7 @@ export default function AddAchievement() {
     }
 
     if (form.description.trim().length < 10) {
-      toast.error(
-        "Description must be at least 10 characters",
-      );
+      toast.error("Description must be at least 10 characters");
       return;
     }
 
@@ -139,8 +137,7 @@ export default function AddAchievement() {
             className="mb-4"
             style={{
               display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit, minmax(260px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
               gap: "20px",
             }}
           >
@@ -252,15 +249,9 @@ export default function AddAchievement() {
 
           {/* FEATURED */}
           <div className="mb-6 flex items-center gap-2 flex-wrap">
-            <input
-              type="checkbox"
-              name="featured"
-              onChange={handleChange}
-            />
+            <input type="checkbox" name="featured" onChange={handleChange} />
 
-            <span className="text-sm">
-              Featured Achievement
-            </span>
+            <span className="text-sm">Featured Achievement</span>
           </div>
 
           {/* BUTTON */}

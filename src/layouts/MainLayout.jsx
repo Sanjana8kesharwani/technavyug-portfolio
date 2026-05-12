@@ -9,21 +9,14 @@ const MainLayout = ({ children }) => {
 
   return (
     <div className="flex flex-col min-h-screen">
-
-     
       <Navbar setOpen={setOpen} />
 
-     
       <Sidebar open={open} setOpen={setOpen} />
 
-  
-      <main className="flex-grow">
-        {children}
-      </main>
+      <main className="flex-grow">{children}</main>
 
-      <ScrollToTopButton />  
+      <ScrollToTopButton />
       <Footer />
-
     </div>
   );
 };

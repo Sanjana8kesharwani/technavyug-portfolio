@@ -10,16 +10,9 @@ const Navbar = ({ setOpen }) => {
       setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener(
-      "scroll",
-      handleScroll
-    );
+    window.addEventListener("scroll", handleScroll);
 
-    return () =>
-      window.removeEventListener(
-        "scroll",
-        handleScroll
-      );
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -34,17 +27,11 @@ const Navbar = ({ setOpen }) => {
       >
         {/* LEFT */}
         <div className="flex items-center gap-3 sm:gap-4 min-w-0">
-          <button
-            onClick={() => setOpen(true)}
-            className="flex-shrink-0"
-          >
+          <button onClick={() => setOpen(true)} className="flex-shrink-0">
             <Menu className="text-gray-800 w-6 h-6" />
           </button>
 
-          <Link
-            to="/"
-            className="flex items-center gap-2 sm:gap-3 min-w-0"
-          >
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 min-w-0">
             <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden border border-gray-200 flex-shrink-0">
               <img
                 src="/Technavyug Logo.jpeg"
@@ -55,9 +42,7 @@ const Navbar = ({ setOpen }) => {
 
             <h1 className="text-sm sm:text-base md:text-xl font-semibold text-black whitespace-nowrap">
               Tech
-              <span className="text-cyan-500">
-                navyug
-              </span>
+              <span className="text-cyan-500">navyug</span>
             </h1>
           </Link>
         </div>

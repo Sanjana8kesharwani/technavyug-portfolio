@@ -19,9 +19,7 @@ const projects = [
 const ProjectsSection = () => {
   return (
     <section className="pt-40 pb-28 px-6 bg-white overflow-hidden">
-
       <div className="max-w-6xl mx-auto">
-
         {/* TITLE */}
         <h2 className="text-4xl font-bold text-center mb-16 text-black-400">
           Featured Projects
@@ -29,15 +27,12 @@ const ProjectsSection = () => {
 
         {/* SCROLL WRAPPER */}
         <div className="relative">
-
           <div className="flex gap-10 w-max animate-scroll">
-
             {[...projects, ...projects].map((project, index) => (
               <div
                 key={index}
                 className="group relative rounded-3xl overflow-hidden min-w-[300px]"
               >
-
                 {/* IMAGE */}
                 <img
                   src={project.img}
@@ -49,29 +44,20 @@ const ProjectsSection = () => {
 
                 {/* CONTENT */}
                 <div className="absolute bottom-0 p-6 text-white">
-
                   <h3 className="text-xl font-semibold mb-1">
                     {project.title}
                   </h3>
 
-                  <p className="text-sm text-gray-300 mb-4">
-                    {project.tech}
-                  </p>
-
+                  <p className="text-sm text-gray-300 mb-4">{project.tech}</p>
                 </div>
 
                 {/* GLOW BORDER */}
                 <div className="absolute inset-0 rounded-3xl border border-white/10 group-hover:border-blue-400 group-hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] transition"></div>
-
               </div>
             ))}
-
           </div>
-
         </div>
-
       </div>
-
     </section>
   );
 };

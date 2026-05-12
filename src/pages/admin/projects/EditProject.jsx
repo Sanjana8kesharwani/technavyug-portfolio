@@ -68,10 +68,7 @@ export default function EditProject() {
       return;
     }
 
-    if (
-      form.category === "Custom" &&
-      !form.customCategory.trim()
-    ) {
+    if (form.category === "Custom" && !form.customCategory.trim()) {
       toast.error("Enter custom category");
       return;
     }
@@ -100,9 +97,7 @@ export default function EditProject() {
       ...existing,
       ...form,
       category:
-        form.category === "Custom"
-          ? form.customCategory
-          : form.category,
+        form.category === "Custom" ? form.customCategory : form.category,
     });
 
     toast.success("Project updated successfully");
@@ -144,9 +139,7 @@ export default function EditProject() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* TITLE */}
             <div>
-              <label className="text-sm font-medium">
-                Project Title
-              </label>
+              <label className="text-sm font-medium">Project Title</label>
 
               <input
                 name="title"
@@ -158,9 +151,7 @@ export default function EditProject() {
 
             {/* CATEGORY */}
             <div>
-              <label className="text-sm font-medium">
-                Category
-              </label>
+              <label className="text-sm font-medium">Category</label>
 
               <select
                 name="category"
@@ -168,29 +159,19 @@ export default function EditProject() {
                 onChange={handleChange}
                 className="w-full mt-1 p-2 border rounded-lg"
               >
-                <option value="">
-                  Select Category
-                </option>
+                <option value="">Select Category</option>
 
                 <option value="AI">AI</option>
 
                 <option value="IoT">IoT</option>
 
-                <option value="Research">
-                  Research
-                </option>
+                <option value="Research">Research</option>
 
-                <option value="Embedded System">
-                  Embedded System
-                </option>
+                <option value="Embedded System">Embedded System</option>
 
-                <option value="Web Development">
-                  Web Development
-                </option>
+                <option value="Web Development">Web Development</option>
 
-                <option value="Custom">
-                  Custom
-                </option>
+                <option value="Custom">Custom</option>
               </select>
 
               {form.category === "Custom" && (
@@ -208,9 +189,7 @@ export default function EditProject() {
 
           {/* SHORT DESC */}
           <div>
-            <label className="text-sm font-medium">
-              Short Description
-            </label>
+            <label className="text-sm font-medium">Short Description</label>
 
             <textarea
               name="shortDesc"
@@ -222,9 +201,7 @@ export default function EditProject() {
 
           {/* FULL DESC */}
           <div>
-            <label className="text-sm font-medium">
-              Full Description
-            </label>
+            <label className="text-sm font-medium">Full Description</label>
 
             <textarea
               name="fullDesc"
@@ -238,9 +215,7 @@ export default function EditProject() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* STATUS */}
             <div>
-              <label className="text-sm font-medium">
-                Status
-              </label>
+              <label className="text-sm font-medium">Status</label>
 
               <select
                 name="status"
@@ -248,9 +223,7 @@ export default function EditProject() {
                 onChange={handleChange}
                 className="w-full mt-1 p-2 border rounded-lg"
               >
-                <option value="">
-                  Select Status
-                </option>
+                <option value="">Select Status</option>
 
                 <option>Ongoing</option>
 
@@ -262,9 +235,7 @@ export default function EditProject() {
 
             {/* THUMBNAIL */}
             <div>
-              <label className="text-sm font-medium">
-                Thumbnail Image
-              </label>
+              <label className="text-sm font-medium">Thumbnail Image</label>
 
               <div className="mt-2 flex flex-wrap items-center gap-4">
                 {/* Upload Box */}

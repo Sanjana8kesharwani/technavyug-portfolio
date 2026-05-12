@@ -63,8 +63,7 @@ export default function EditUser() {
     if (form.email && !/\S+@\S+\.\S+/.test(form.email))
       newErrors.email = "Invalid email";
 
-    if (form.phone && form.phone.length < 10)
-      newErrors.phone = "Invalid phone";
+    if (form.phone && form.phone.length < 10) newErrors.phone = "Invalid phone";
 
     setErrors(newErrors);
 
@@ -187,8 +186,7 @@ export default function EditUser() {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns:
-                    "repeat(auto-fit, minmax(240px, 1fr))",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
                   gap: "15px",
                 }}
               >
@@ -261,14 +259,7 @@ export default function EditUser() {
 }
 
 /* Input component */
-const Input = ({
-  name,
-  value,
-  onChange,
-  placeholder,
-  error,
-  disabled,
-}) => (
+const Input = ({ name, value, onChange, placeholder, error, disabled }) => (
   <div
     style={{
       display: "flex",

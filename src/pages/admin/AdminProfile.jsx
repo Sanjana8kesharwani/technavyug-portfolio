@@ -8,12 +8,14 @@ import {
   BadgeCheck,
 } from "lucide-react";
 
+const LOGIN_URL = import.meta.env.VITE_LOGIN_URL;
+
 export default function AdminProfile() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/admin/login");
+    navigate(LOGIN_URL);
   };
 
   return (
@@ -195,8 +197,7 @@ export default function AdminProfile() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit, minmax(260px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
             gap: "24px",
             marginBottom: "40px",
           }}
@@ -207,8 +208,7 @@ export default function AdminProfile() {
               background: "#ffffff",
               borderRadius: "24px",
               padding: "26px",
-              boxShadow:
-                "0 8px 24px rgba(255, 192, 203, 0.18)",
+              boxShadow: "0 8px 24px rgba(255, 192, 203, 0.18)",
               border: "1px solid #f1f5f9",
               boxSizing: "border-box",
             }}
@@ -268,8 +268,7 @@ export default function AdminProfile() {
               background: "#ffffff",
               borderRadius: "24px",
               padding: "26px",
-              boxShadow:
-                "0 8px 24px rgba(255, 192, 203, 0.18)",
+              boxShadow: "0 8px 24px rgba(255, 192, 203, 0.18)",
               border: "1px solid #f1f5f9",
               boxSizing: "border-box",
             }}
@@ -328,8 +327,7 @@ export default function AdminProfile() {
               background: "#ffffff",
               borderRadius: "24px",
               padding: "26px",
-              boxShadow:
-                "0 8px 24px rgba(255, 192, 203, 0.18)",
+              boxShadow: "0 8px 24px rgba(255, 192, 203, 0.18)",
               border: "1px solid #f1f5f9",
               boxSizing: "border-box",
             }}
@@ -399,8 +397,7 @@ export default function AdminProfile() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit, minmax(280px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
               gap: "24px",
             }}
           >
@@ -410,8 +407,7 @@ export default function AdminProfile() {
                 background: "#ffffff",
                 padding: "28px",
                 borderRadius: "24px",
-                boxShadow:
-                  "0 8px 24px rgba(255, 192, 203, 0.18)",
+                boxShadow: "0 8px 24px rgba(255, 192, 203, 0.18)",
                 border: "1px solid #f1f5f9",
                 boxSizing: "border-box",
               }}
@@ -474,8 +470,7 @@ export default function AdminProfile() {
                 background: "#ffffff",
                 padding: "28px",
                 borderRadius: "24px",
-                boxShadow:
-                  "0 8px 24px rgba(255, 192, 203, 0.18)",
+                boxShadow: "0 8px 24px rgba(255, 192, 203, 0.18)",
                 border: "1px solid #f1f5f9",
                 boxSizing: "border-box",
               }}
@@ -538,8 +533,7 @@ export default function AdminProfile() {
                 background: "#ffffff",
                 padding: "28px",
                 borderRadius: "24px",
-                boxShadow:
-                  "0 8px 24px rgba(255, 192, 203, 0.18)",
+                boxShadow: "0 8px 24px rgba(255, 192, 203, 0.18)",
                 border: "1px solid #f1f5f9",
                 boxSizing: "border-box",
               }}

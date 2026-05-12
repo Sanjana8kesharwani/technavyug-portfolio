@@ -23,7 +23,7 @@ const CertificatesProvider = ({ children }) => {
 
   const deleteCertificate = (id) => {
     setCertificates((prev) =>
-      prev.filter((certificate) => certificate.id !== id)
+      prev.filter((certificate) => certificate.id !== id),
     );
   };
 
@@ -32,8 +32,8 @@ const CertificatesProvider = ({ children }) => {
       prev.map((certificate) =>
         certificate.id === updatedCertificate.id
           ? updatedCertificate
-          : certificate
-      )
+          : certificate,
+      ),
     );
   };
 

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LockKeyhole, ArrowLeft } from "lucide-react";
 
+const LOGIN_URL = import.meta.env.VITE_LOGIN_URL;
+
 export default function ResetPassword() {
   const navigate = useNavigate();
 
@@ -18,7 +20,7 @@ export default function ResetPassword() {
 
     alert("Password reset successful");
 
-    navigate("/admin/login");
+    navigate(LOGIN_URL);
   };
 
   return (
@@ -63,7 +65,11 @@ export default function ResetPassword() {
       >
         {/* Back */}
         <div
-          onClick={() => navigate("/admin/login")}
+          onClick={() =>
+            navigate(
+              "/secure-gateway/admin-vault/verify-auth-9xK7mP2qR8vT5wY3zL4nB6jH8uN0pQ",
+            )
+          }
           style={{
             display: "flex",
             alignItems: "center",
@@ -192,8 +198,7 @@ export default function ResetPassword() {
               padding: "17px",
               borderRadius: "14px",
               border: "none",
-              background:
-                "linear-gradient(135deg, #06b6d4, #2563eb)",
+              background: "linear-gradient(135deg, #06b6d4, #2563eb)",
               color: "#fff",
               fontSize: "18px",
               fontWeight: "700",

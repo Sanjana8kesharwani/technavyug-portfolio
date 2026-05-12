@@ -57,9 +57,7 @@ export default function AchievementDetails() {
   if (!user) {
     return (
       <MainLayout>
-        <div className="text-center mt-20 text-red-500">
-          User not found
-        </div>
+        <div className="text-center mt-20 text-red-500">User not found</div>
       </MainLayout>
     );
   }
@@ -67,11 +65,9 @@ export default function AchievementDetails() {
   return (
     <MainLayout>
       <div className="pt-16">
-
         {/* HERO */}
         <div className="bg-[#1B3765] text-white px-6 py-16">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-center">
-
             <div className="flex-1">
               <span className="inline-block border border-white/50 text-xs px-4 py-1.5 rounded-full mb-4">
                 {user.domain}
@@ -81,9 +77,7 @@ export default function AchievementDetails() {
                 {user.name}
               </h1>
 
-              <p className="text-blue-100 text-sm mb-6 max-w-lg">
-                {user.bio}
-              </p>
+              <p className="text-blue-100 text-sm mb-6 max-w-lg">{user.bio}</p>
 
               {/* SOCIAL BUTTONS */}
               <div className="flex gap-4 flex-wrap">
@@ -120,13 +114,11 @@ export default function AchievementDetails() {
                 alt={user.name}
               />
             </div>
-
           </div>
         </div>
 
         {/* BODY */}
         <div className="max-w-6xl mx-auto px-6 py-10">
-
           {/* OVERVIEW */}
           {user.description && (
             <div className="mb-10">
@@ -153,7 +145,10 @@ export default function AchievementDetails() {
               <h2 className="text-xl font-bold mb-4">Skills</h2>
               <div className="flex flex-wrap gap-3">
                 {user.skills.map((skill, i) => (
-                  <span key={i} className="px-4 py-2 bg-gray-200 rounded-full text-sm">
+                  <span
+                    key={i}
+                    className="px-4 py-2 bg-gray-200 rounded-full text-sm"
+                  >
                     {skill}
                   </span>
                 ))}
@@ -168,7 +163,11 @@ export default function AchievementDetails() {
               <div className="grid md:grid-cols-3 gap-6">
                 {user.projects.map((p, i) => (
                   <div key={i} className="rounded-xl shadow overflow-hidden">
-                    <img src={p.image} className="w-full h-40 object-cover" alt={p.title} />
+                    <img
+                      src={p.image}
+                      className="w-full h-40 object-cover"
+                      alt={p.title}
+                    />
                     <div className="p-4">
                       <h3 className="font-semibold">{p.title}</h3>
                       <p className="text-sm text-gray-600">{p.description}</p>
@@ -186,14 +185,17 @@ export default function AchievementDetails() {
               <div className="grid md:grid-cols-3 gap-6">
                 {user.certificates.map((c, i) => (
                   <div key={i} className="rounded-xl overflow-hidden shadow">
-                    <img src={c.image} className="w-full h-40 object-cover" alt={c.title} />
+                    <img
+                      src={c.image}
+                      className="w-full h-40 object-cover"
+                      alt={c.title}
+                    />
                     <div className="p-3 text-sm">{c.title}</div>
                   </div>
                 ))}
               </div>
             </div>
           )}
-
         </div>
       </div>
     </MainLayout>

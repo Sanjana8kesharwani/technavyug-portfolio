@@ -7,10 +7,7 @@ export default function Blogs() {
   return (
     <div className="space-y-6 sm:space-y-8 overflow-x-hidden">
       {blogsData.map((blog) => (
-        <div
-          key={blog.id}
-          className="w-full break-words"
-        >
+        <div key={blog.id} className="w-full break-words">
           <h3 className="text-lg sm:text-xl font-semibold text-gray-900 leading-snug">
             {blog.title}
           </h3>
