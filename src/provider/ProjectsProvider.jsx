@@ -24,24 +24,20 @@ export default function ProjectsProvider({ children }) {
   const updateProject = (id, updated) => {
     setProjects((prev) =>
       prev.map((p) =>
-        p.id.toString() === id.toString()
-          ? { ...p, ...updated }
-          : p
-      )
+        p.id.toString() === id.toString() ? { ...p, ...updated } : p,
+      ),
     );
   };
 
   const deleteProject = (id) => {
     setProjects((prev) =>
-      prev.filter((p) => p.id.toString() !== id.toString())
+      prev.filter((p) => p.id.toString() !== id.toString()),
     );
   };
 
   // ✅ DUPLICATE
   const duplicateProject = (id) => {
-    const existing = projects.find(
-      (p) => p.id.toString() === id.toString()
-    );
+    const existing = projects.find((p) => p.id.toString() === id.toString());
 
     if (existing) {
       const copy = {
@@ -58,10 +54,8 @@ export default function ProjectsProvider({ children }) {
   const toggleFeatured = (id) => {
     setProjects((prev) =>
       prev.map((p) =>
-        p.id.toString() === id.toString()
-          ? { ...p, featured: !p.featured }
-          : p
-      )
+        p.id.toString() === id.toString() ? { ...p, featured: !p.featured } : p,
+      ),
     );
   };
 
@@ -71,8 +65,8 @@ export default function ProjectsProvider({ children }) {
       prev.map((p) =>
         p.id.toString() === id.toString()
           ? { ...p, published: !p.published }
-          : p
-      )
+          : p,
+      ),
     );
   };
 

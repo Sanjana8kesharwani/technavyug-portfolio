@@ -45,7 +45,7 @@ export default function Verify() {
       const scanner = new Html5QrcodeScanner(
         "qr-reader",
         { fps: 10, qrbox: 250 },
-        false
+        false,
       );
 
       scanner.render(
@@ -56,7 +56,7 @@ export default function Verify() {
           handleVerify(decodedText);
           scanner.clear();
         },
-        () => {}
+        () => {},
       );
 
       return () => scanner.clear().catch(() => {});
@@ -75,7 +75,6 @@ export default function Verify() {
   return (
     <MainLayout>
       <div className="pt-28 px-6 max-w-5xl mx-auto pb-16">
-
         {/* HEADER */}
         <div className="text-center mb-10">
           <h1 className="text-4xl font-bold text-gray-900">
@@ -88,7 +87,6 @@ export default function Verify() {
 
         {/* INPUT */}
         <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm flex flex-col gap-4">
-
           <div className="flex flex-col md:flex-row gap-3">
             <input
               type="text"
@@ -124,7 +122,6 @@ export default function Verify() {
         {/* RESULT */}
         {result && (
           <div className="mt-10">
-
             {/*  INVALID */}
             {!result.valid ? (
               <div className="bg-white border border-red-100 rounded-2xl p-6 text-center shadow-sm">
@@ -137,34 +134,40 @@ export default function Verify() {
               </div>
             ) : (
               <div className="bg-white border border-gray-100 rounded-2xl shadow-md overflow-hidden">
-
                 {/* STATUS */}
                 <div className="bg-green-50 text-green-600 text-center py-3 font-semibold text-sm">
                   ✔ Certificate Verified Successfully
                 </div>
 
                 <div className="p-6 grid md:grid-cols-2 gap-6 items-start">
-
                   {/* LEFT DETAILS */}
                   <div className="space-y-3 text-sm">
                     <div>
                       <p className="text-gray-400">Name</p>
-                      <p className="font-semibold text-gray-900">{result.name}</p>
+                      <p className="font-semibold text-gray-900">
+                        {result.name}
+                      </p>
                     </div>
 
                     <div>
                       <p className="text-gray-400">Course</p>
-                      <p className="font-semibold text-gray-900">{result.course}</p>
+                      <p className="font-semibold text-gray-900">
+                        {result.course}
+                      </p>
                     </div>
 
                     <div>
                       <p className="text-gray-400">Issued By</p>
-                      <p className="font-semibold text-gray-900">{result.issuer}</p>
+                      <p className="font-semibold text-gray-900">
+                        {result.issuer}
+                      </p>
                     </div>
 
                     <div>
                       <p className="text-gray-400">Date</p>
-                      <p className="font-semibold text-gray-900">{result.date}</p>
+                      <p className="font-semibold text-gray-900">
+                        {result.date}
+                      </p>
                     </div>
 
                     {/* DOWNLOAD */}
@@ -193,13 +196,11 @@ export default function Verify() {
                       className="rounded-lg shadow-sm"
                     />
                   </div>
-
                 </div>
               </div>
             )}
           </div>
         )}
-
       </div>
     </MainLayout>
   );

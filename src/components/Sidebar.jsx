@@ -15,11 +15,7 @@ const Sidebar = ({ open, setOpen }) => {
       {/* SIDEBAR */}
       <div
         className={`fixed top-0 left-0 h-full w-[85%] sm:w-72 bg-white z-50 shadow-xl transform transition-transform duration-300 overflow-y-auto
-        ${
-          open
-            ? "translate-x-0"
-            : "-translate-x-full"
-        }`}
+        ${open ? "translate-x-0" : "-translate-x-full"}`}
       >
         {/* HEADER */}
         <div className="flex justify-between items-center p-4 sm:p-5 border-b sticky top-0 bg-white z-10">
@@ -33,16 +29,11 @@ const Sidebar = ({ open, setOpen }) => {
 
             <h1 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 whitespace-nowrap">
               Tech
-              <span className="text-cyan-500">
-                navyug
-              </span>
+              <span className="text-cyan-500">navyug</span>
             </h1>
           </div>
 
-          <button
-            onClick={() => setOpen(false)}
-            className="flex-shrink-0"
-          >
+          <button onClick={() => setOpen(false)} className="flex-shrink-0">
             <X />
           </button>
         </div>

@@ -34,7 +34,6 @@ const achievers = [
 const TopAchieversSection = () => {
   return (
     <div className="mt-24 px-6 py-16 bg-white">
-
       {/* Heading */}
       <div className="text-center mb-14">
         <h2 className="text-4xl font-bold text-black">
@@ -47,34 +46,36 @@ const TopAchieversSection = () => {
 
       {/* Grid */}
       <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-
         {achievers.map((user, index) => (
-          <div key={index} className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300">
-            
+          <div
+            key={index}
+            className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300"
+          >
             {/* Image */}
             <div className="flex justify-center">
-              <img src={user.image} alt={user.name} className="w-24 h-24 rounded-full object-cover border-4 border-gray-100 shadow-md"/>
-          
+              <img
+                src={user.image}
+                alt={user.name}
+                className="w-24 h-24 rounded-full object-cover border-4 border-gray-100 shadow-md"
+              />
             </div>
 
             {/* Name */}
-            <h3 className="mt-4 font-semibold text-lg text-gray-800"> {user.name}  </h3>
-              
+            <h3 className="mt-4 font-semibold text-lg text-gray-800">
+              {" "}
+              {user.name}{" "}
+            </h3>
+
             {/* Role */}
-            <p className="text-gray-500 text-sm mt-1">
-              {user.role}
-            </p>
+            <p className="text-gray-500 text-sm mt-1">{user.role}</p>
 
             {/* Button */}
             <button className="mt-4 text-blue-600 text-sm font-medium hover:underline">
               View Profile →
             </button>
-
           </div>
         ))}
-
       </div>
-
     </div>
   );
 };

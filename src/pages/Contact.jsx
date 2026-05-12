@@ -44,8 +44,7 @@ export default function Contact() {
   ];
 
   return (
-    <MainLayout> 
-
+    <MainLayout>
       {/* HEADER */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50/30 text-center">
         <p className="text-xs font-bold text-cyan-600 uppercase tracking-widest mb-4">
@@ -54,15 +53,12 @@ export default function Contact() {
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
           Contact Us
         </h1>
-        <p className="text-gray-500">
-          Have questions? We are here to help.
-        </p>
+        <p className="text-gray-500">Have questions? We are here to help.</p>
       </section>
 
       {/* CONTACT INFO */}
       <section className="py-12 bg-white">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6">
-
           {contactInfo.map((item, i) => (
             <div
               key={i}
@@ -76,14 +72,12 @@ export default function Contact() {
               <p className="text-sm text-gray-400">{item.desc}</p>
             </div>
           ))}
-
         </div>
       </section>
 
       {/* FORM */}
       <section className="py-12 bg-white">
         <div className="max-w-2xl mx-auto px-6">
-
           <h2 className="text-2xl font-bold text-center mb-2">
             Send Us a Message
           </h2>
@@ -92,10 +86,11 @@ export default function Contact() {
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Full Name
+                </label>
                 <input
                   required
                   placeholder="John Doe"
@@ -105,7 +100,9 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Email
+                </label>
                 <input
                   type="email"
                   required
@@ -118,7 +115,9 @@ export default function Contact() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Subject
+              </label>
               <input
                 required
                 placeholder="How can we help?"
@@ -129,7 +128,9 @@ export default function Contact() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Message
+              </label>
               <textarea
                 required
                 rows={5}
@@ -144,7 +145,6 @@ export default function Contact() {
               <LuSend />
               Send Message
             </button>
-
           </form>
         </div>
       </section>
@@ -163,7 +163,6 @@ export default function Contact() {
           </div>
         </div>
       </section>
-
     </MainLayout>
   );
 }

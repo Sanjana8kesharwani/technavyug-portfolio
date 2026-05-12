@@ -11,33 +11,26 @@ export default function AchievementsProvider({ children }) {
   }, [achievements]);
 
   const addAchievement = (item) => {
-  setAchievements((prev) => [
-    ...prev,
-    { ...item, id: Date.now() }
-  ]);
-};
+    setAchievements((prev) => [...prev, { ...item, id: Date.now() }]);
+  };
 
- const deleteAchievement = (id) => {
-  setAchievements((prev) =>
-    prev.filter((a) => a.id.toString() !== id.toString())
-  );
-};
+  const deleteAchievement = (id) => {
+    setAchievements((prev) =>
+      prev.filter((a) => a.id.toString() !== id.toString()),
+    );
+  };
 
   const updateAchievement = (id, updated) => {
-  setAchievements((prev) =>
-    prev.map((a) =>
-      a.id.toString() === id.toString()
-        ? { ...a, ...updated }
-        : a
-    )
-  );
-};
+    setAchievements((prev) =>
+      prev.map((a) =>
+        a.id.toString() === id.toString() ? { ...a, ...updated } : a,
+      ),
+    );
+  };
 
   const toggleFeatured = (id) => {
     setAchievements((prev) =>
-      prev.map((a) =>
-        a.id === id ? { ...a, featured: !a.featured } : a
-      )
+      prev.map((a) => (a.id === id ? { ...a, featured: !a.featured } : a)),
     );
   };
 

@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  Search,
-  Filter,
-  Activity,
-} from "lucide-react";
+import { Search, Filter, Activity } from "lucide-react";
 
 const auditLogsData = [
   {
@@ -43,10 +39,11 @@ const auditLogsData = [
 const AuditLogs = () => {
   const [search, setSearch] = useState("");
 
-  const filteredLogs = auditLogsData.filter((log) =>
-    log.admin.toLowerCase().includes(search.toLowerCase()) ||
-    log.module.toLowerCase().includes(search.toLowerCase()) ||
-    log.action.toLowerCase().includes(search.toLowerCase())
+  const filteredLogs = auditLogsData.filter(
+    (log) =>
+      log.admin.toLowerCase().includes(search.toLowerCase()) ||
+      log.module.toLowerCase().includes(search.toLowerCase()) ||
+      log.action.toLowerCase().includes(search.toLowerCase()),
   );
 
   return (
@@ -256,14 +253,14 @@ const AuditLogs = () => {
                           log.action === "Added"
                             ? "#dcfce7"
                             : log.action === "Deleted"
-                            ? "#fee2e2"
-                            : "#dbeafe",
+                              ? "#fee2e2"
+                              : "#dbeafe",
                         color:
                           log.action === "Added"
                             ? "#166534"
                             : log.action === "Deleted"
-                            ? "#991b1b"
-                            : "#1d4ed8",
+                              ? "#991b1b"
+                              : "#1d4ed8",
                       }}
                     >
                       {log.action}

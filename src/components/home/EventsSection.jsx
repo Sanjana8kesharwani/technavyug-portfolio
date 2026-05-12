@@ -51,16 +51,13 @@ export default function EventsSection() {
   //  FIX: handle tab change properly
   const handleTabChange = (newTab) => {
     setTab(newTab);
-    setLoading(true); 
+    setLoading(true);
   };
 
   return (
     <section className="py-20 px-6 bg-gray-50">
       <div className="max-w-7xl mx-auto">
-
-        <h2 className="text-3xl font-bold text-center mb-10">
-          Events
-        </h2>
+        <h2 className="text-3xl font-bold text-center mb-10">Events</h2>
 
         {/* TABS */}
         <div className="flex gap-6 mb-8 border-b w-fit text-2xl">
@@ -101,9 +98,7 @@ export default function EventsSection() {
             <p className="text-xl font-semibold text-gray-700">
               No events found
             </p>
-            <p className="text-gray-400 mt-2">
-              Events will be available soon.
-            </p>
+            <p className="text-gray-400 mt-2">Events will be available soon.</p>
           </div>
         ) : (
           <div className="flex gap-6 overflow-x-auto pb-4">
@@ -126,7 +121,6 @@ export default function EventsSection() {
             ))}
           </div>
         )}
-
       </div>
     </section>
   );

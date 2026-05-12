@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
+const FORGOT_PASSWORD_URL = import.meta.env.VITE_FORGOT_PASSWORD_URL;
+
 export default function AdminLogin() {
   const navigate = useNavigate();
 
@@ -207,7 +209,7 @@ export default function AdminLogin() {
               </label>
 
               <span
-                onClick={() => navigate("/admin/forgot-password")}
+                onClick={() => navigate(`${FORGOT_PASSWORD_URL}`)}
                 style={{
                   color: "#0891B2",
                   cursor: "pointer",
@@ -242,8 +244,7 @@ export default function AdminLogin() {
                 padding: "16px",
                 border: "none",
                 borderRadius: "12px",
-                background:
-                  "linear-gradient(135deg, #06B6D4 0%, #0891B2 100%)",
+                background: "linear-gradient(135deg, #06B6D4 0%, #0891B2 100%)",
                 color: "#fff",
                 fontSize: "18px",
                 fontWeight: "700",

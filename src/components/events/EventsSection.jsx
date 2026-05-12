@@ -59,14 +59,14 @@ export default function EventsSection() {
 
   return (
     <div className="flex flex-col lg:flex-row gap-8">
-      
-
       {/* SIDEBAR */}
       <div className="w-full lg:w-72 bg-gray-50 p-4 rounded-xl shadow-sm">
-
         <h3 className="text-sm font-semibold mb-4">Filters</h3>
 
-        <input placeholder="Enter Event" className="w-full px-3 py-2 border rounded mb-3 text-sm"/>
+        <input
+          placeholder="Enter Event"
+          className="w-full px-3 py-2 border rounded mb-3 text-sm"
+        />
 
         <select className="w-full px-3 py-2 border rounded mb-4 text-sm">
           <option>Zone</option>
@@ -80,10 +80,7 @@ export default function EventsSection() {
         </div>
 
         <div className="border p-3 rounded-b text-sm">
-
-          <p className="text-xs text-blue-600 text-right mb-2">
-            Next 7 days
-          </p>
+          <p className="text-xs text-blue-600 text-right mb-2">Next 7 days</p>
 
           <div className="grid grid-cols-7 text-center gap-1 text-xs">
             {[...Array(30)].map((_, i) => (
@@ -106,31 +103,37 @@ export default function EventsSection() {
               Apply
             </button>
           </div>
-
         </div>
       </div>
 
       {/* RIGHT SIDE */}
       <div className="flex-1">
-
         <div className="text-center mb-10">
-  <h2 className="text-4xl font-bold text-gray-900">
-    Events
-  </h2>
+          <h2 className="text-4xl font-bold text-gray-900">Events</h2>
 
-  <svg  className="mx-auto mt-2" width="160" height="20" viewBox="0 0 160 20" fill="none"> 
-    <path d="M10 8 Q80 0 150 8" stroke="#06b6d4" strokeWidth="3" strokeLinecap="round" fill="none"></path>
-  </svg>
-</div>
+          <svg
+            className="mx-auto mt-2"
+            width="160"
+            height="20"
+            viewBox="0 0 160 20"
+            fill="none"
+          >
+            <path
+              d="M10 8 Q80 0 150 8"
+              stroke="#06b6d4"
+              strokeWidth="3"
+              strokeLinecap="round"
+              fill="none"
+            ></path>
+          </svg>
+        </div>
 
         {/*  TABS */}
         <div className="flex justify-center gap-6 mb-6">
           <button
             onClick={() => handleTabChange("upcoming")}
             className={`px-6 py-2 rounded ${
-              tab === "upcoming"
-                ? "bg-blue-700 text-white"
-                : "text-gray-500"
+              tab === "upcoming" ? "bg-blue-700 text-white" : "text-gray-500"
             }`}
           >
             Upcoming
@@ -139,9 +142,7 @@ export default function EventsSection() {
           <button
             onClick={() => handleTabChange("previous")}
             className={`px-6 py-2 rounded ${
-              tab === "previous"
-                ? "bg-blue-700 text-white"
-                : "text-gray-500"
+              tab === "previous" ? "bg-blue-700 text-white" : "text-gray-500"
             }`}
           >
             Previous
@@ -163,10 +164,16 @@ export default function EventsSection() {
         ) : (
           <div className="grid sm:grid-cols-2 gap-6">
             {events[tab].map((event, i) => (
-              <div key={i} className="bg-white rounded-xl shadow-md overflow-hidden">
+              <div
+                key={i}
+                className="bg-white rounded-xl shadow-md overflow-hidden"
+              >
+                <img
+                  src={event.image}
+                  alt="event"
+                  className="h-44 w-full object-cover"
+                />
 
-                <img src={event.image} alt="event"  className="h-44 w-full object-cover"/>
-          
                 <div className="p-4">
                   <h3 className="font-semibold">{event.title}</h3>
 
@@ -174,9 +181,7 @@ export default function EventsSection() {
                     📅 {event.date} • {event.time}
                   </p>
 
-                  <p className="text-sm text-gray-500">
-                    📍 {event.location}
-                  </p>
+                  <p className="text-sm text-gray-500">📍 {event.location}</p>
 
                   <span className="text-blue-600 text-sm mt-2 inline-block">
                     Free
@@ -186,7 +191,6 @@ export default function EventsSection() {
             ))}
           </div>
         )}
-
       </div>
     </div>
   );

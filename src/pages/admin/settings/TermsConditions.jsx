@@ -101,9 +101,8 @@ const TermsConditions = () => {
                 lineHeight: "30px",
               }}
             >
-              Welcome to <strong>Technavyug</strong>. By using our
-              platform, you agree to comply with these terms and
-              conditions.
+              Welcome to <strong>Technavyug</strong>. By using our platform, you
+              agree to comply with these terms and conditions.
             </p>
           </div>
 
@@ -158,9 +157,8 @@ const TermsConditions = () => {
                 lineHeight: "30px",
               }}
             >
-              We provide certificate verification, project
-              showcasing, and related services. We may modify or
-              discontinue services anytime.
+              We provide certificate verification, project showcasing, and
+              related services. We may modify or discontinue services anytime.
             </p>
           </div>
 
@@ -186,8 +184,8 @@ const TermsConditions = () => {
                 lineHeight: "30px",
               }}
             >
-              Some services may be paid. All payments are
-              non-refundable unless stated otherwise.
+              Some services may be paid. All payments are non-refundable unless
+              stated otherwise.
             </p>
           </div>
 
@@ -213,8 +211,8 @@ const TermsConditions = () => {
                 lineHeight: "30px",
               }}
             >
-              We are not responsible for any direct or indirect
-              damages arising from the use of our platform.
+              We are not responsible for any direct or indirect damages arising
+              from the use of our platform.
             </p>
           </div>
 
@@ -240,8 +238,8 @@ const TermsConditions = () => {
                 lineHeight: "30px",
               }}
             >
-              We reserve the right to suspend or terminate accounts
-              that violate our policies.
+              We reserve the right to suspend or terminate accounts that violate
+              our policies.
             </p>
           </div>
 
@@ -267,8 +265,8 @@ const TermsConditions = () => {
                 lineHeight: "30px",
               }}
             >
-              These terms may be updated at any time. Continued use
-              of the platform means you accept the changes.
+              These terms may be updated at any time. Continued use of the
+              platform means you accept the changes.
             </p>
           </div>
         </div>

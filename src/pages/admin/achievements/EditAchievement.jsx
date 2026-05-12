@@ -6,8 +6,7 @@ import { toast } from "react-hot-toast";
 export default function EditAchievement() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { achievements, updateAchievement } =
-    useAchievements();
+  const { achievements, updateAchievement } = useAchievements();
 
   const existing = useMemo(
     () => achievements.find((a) => a.id?.toString() === id),
@@ -50,9 +49,7 @@ export default function EditAchievement() {
     }
 
     if (form.description.trim().length < 10) {
-      toast.error(
-        "Description must be at least 10 characters",
-      );
+      toast.error("Description must be at least 10 characters");
       return;
     }
 
@@ -63,8 +60,7 @@ export default function EditAchievement() {
     navigate("/admin/achievements");
   };
 
-  if (!existing)
-    return <div style={{ padding: "20px" }}>Loading...</div>;
+  if (!existing) return <div style={{ padding: "20px" }}>Loading...</div>;
 
   return (
     <div
@@ -126,16 +122,13 @@ export default function EditAchievement() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit, minmax(260px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
               gap: "20px",
               marginBottom: "20px",
             }}
           >
             <div>
-              <label style={labelStyle}>
-                Achievement Title
-              </label>
+              <label style={labelStyle}>Achievement Title</label>
 
               <input
                 name="title"
@@ -154,9 +147,7 @@ export default function EditAchievement() {
                 onChange={handleChange}
                 style={inputStyle}
               >
-                <option value="">
-                  Select Type
-                </option>
+                <option value="">Select Type</option>
 
                 <option>Award</option>
 
@@ -173,9 +164,7 @@ export default function EditAchievement() {
 
           {/* DESCRIPTION */}
           <div style={{ marginBottom: "20px" }}>
-            <label style={labelStyle}>
-              Description
-            </label>
+            <label style={labelStyle}>Description</label>
 
             <textarea
               name="description"
@@ -191,9 +180,7 @@ export default function EditAchievement() {
 
           {/* ORGANIZATION */}
           <div style={{ marginBottom: "20px" }}>
-            <label style={labelStyle}>
-              Organization
-            </label>
+            <label style={labelStyle}>Organization</label>
 
             <input
               name="organization"
@@ -224,7 +211,6 @@ export default function EditAchievement() {
                 checked={form.featured}
                 onChange={handleChange}
               />
-
               Featured Achievement
             </label>
           </div>

@@ -24,22 +24,22 @@ const certificates = [
 const CertificatesSection = () => {
   return (
     <section className="py-28 px-6 bg-gradient-to-b from-white to-white-100">
-
       <div className="max-w-6xl mx-auto">
-        
         <h2 className="text-4xl font-bold text-center mb-16">
           🎓 Certificates & Achievements
         </h2>
 
-       
         <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-10">
-
           {certificates.map((item, index) => (
-            <div key={index}  className="relative group rounded-2xl overflow-hidden cursor-pointer">
+            <div
+              key={index}
+              className="relative group rounded-2xl overflow-hidden cursor-pointer"
+            >
+              <img
+                src={item.img}
+                className="w-full h-64 object-cover transition duration-500 group-hover:scale-110"
+              />
 
-             
-              <img src={item.img} className="w-full h-64 object-cover transition duration-500 group-hover:scale-110"/>
-                
               <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px] group-hover:bg-black/60 transition duration-300"></div>
 
               {/* DEFAULT TEXT */}
@@ -50,29 +50,26 @@ const CertificatesSection = () => {
 
               {/* HOVER CONTENT */}
               <div className="absolute inset-0 flex flex-col justify-center items-center text-white opacity-0 group-hover:opacity-100 transition duration-300">
-
-                <h3 className="text-lg font-bold mb-2">
-                  {item.name}
-                </h3>
+                <h3 className="text-lg font-bold mb-2">{item.name}</h3>
 
                 <p className="text-sm text-gray-300 mb-4"> {item.course} </p>
 
-                <button className="px-4 py-2 bg-white text-black rounded-full text-sm hover:scale-105 transition"> View Certificate </button>
-          
+                <button className="px-4 py-2 bg-white text-black rounded-full text-sm hover:scale-105 transition">
+                  {" "}
+                  View Certificate{" "}
+                </button>
               </div>
 
-              
-              <div className="absolute top-3 right-3 bg-green-500 text-white text-xs px-3 py-1 rounded-full shadow-lg"> ✔ Verified </div>
-               
-              <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-blue-400 group-hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] transition"></div>
+              <div className="absolute top-3 right-3 bg-green-500 text-white text-xs px-3 py-1 rounded-full shadow-lg">
+                {" "}
+                ✔ Verified{" "}
+              </div>
 
+              <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-blue-400 group-hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] transition"></div>
             </div>
           ))}
-
         </div>
-
       </div>
-
     </section>
   );
 };

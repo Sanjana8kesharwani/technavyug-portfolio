@@ -1,9 +1,4 @@
-import {
-  Users,
-  Award,
-  LayoutGrid,
-  Trophy,
-} from "lucide-react";
+import { Users, Award, LayoutGrid, Trophy } from "lucide-react";
 
 import {
   ResponsiveContainer,
@@ -77,12 +72,7 @@ const recentUploads = [
   },
 ];
 
-const COLORS = [
-  "#34d399",
-  "#fb923c",
-  "#ef4444",
-  "#3b82f6",
-];
+const COLORS = ["#34d399", "#fb923c", "#ef4444", "#3b82f6"];
 
 export default function AdminDashboard() {
   return (
@@ -453,9 +443,7 @@ export default function AdminDashboard() {
                 gap: "14px",
                 padding: "14px 0",
                 borderBottom:
-                  i !== recentUploads.length - 1
-                    ? "1px solid #f3f4f6"
-                    : "none",
+                  i !== recentUploads.length - 1 ? "1px solid #f3f4f6" : "none",
               }}
             >
               <div

@@ -50,6 +50,10 @@ import AuditLogs from "./pages/admin/settings/AuditLogs";
 import CursorGlow from "./components/CursorGlow";
 import { Toaster } from "react-hot-toast";
 
+const LOGIN_URL = import.meta.env.VITE_LOGIN_URL;
+const FORGOT_PASSWORD_URL = import.meta.env.VITE_FORGOT_PASSWORD_URL;
+const RESET_PASSWORD_URL = import.meta.env.VITE_RESET_PASSWORD_URL;
+
 function App() {
   return (
     <BrowserRouter>
@@ -91,12 +95,16 @@ function App() {
                 <Route path="/blog/:id" element={<BlogDetails />} />
 
                 {/* 🔐 Admin Login */}
-                <Route path="/admin/login" element={<AdminLogin />} />
-                <Route path="/admin/forgot-password" element={<ForgotPassword />} />
-                <Route path="/admin/reset-password" element={<ResetPassword />} />
+                <Route path={`${LOGIN_URL}`} element={<AdminLogin />} />
+                <Route
+                  path={`${FORGOT_PASSWORD_URL}`}
+                  element={<ForgotPassword />}
+                />
+                <Route
+                  path={`${RESET_PASSWORD_URL}`}
+                  element={<ResetPassword />}
+                />
 
-                
- 
                 {/* 🔐 Admin Protected Routes */}
                 <Route
                   path="/admin"
@@ -115,22 +123,37 @@ function App() {
 
                   <Route path="achievements" element={<Achievements />} />
                   <Route path="add-achievement" element={<AddAchievement />} />
-                  <Route path="edit-achievement/:id" element={<EditAchievement />} />
-                    
+                  <Route
+                    path="edit-achievement/:id"
+                    element={<EditAchievement />}
+                  />
+
                   <Route path="projects" element={<AdminProjects />} />
                   <Route path="add-project" element={<AddProject />} />
                   <Route path="edit-project/:id" element={<EditProject />} />
 
                   <Route path="certificates" element={<Certificates />} />
                   <Route path="add-certificate" element={<AddCertificate />} />
-                  <Route path="edit-certificate/:id" element={<EditCertificate />} />
-    
+                  <Route
+                    path="edit-certificate/:id"
+                    element={<EditCertificate />}
+                  />
+
                   <Route path="generate" element={<GenerateCertificate />} />
 
                   <Route path="/admin/settings" element={<Settings />} />
-                  <Route path="/admin/settings/terms" element={<Termsconditions />} />
-                  <Route path="/admin/settings/privacy-policy" element={<Privacypolicy />} />
-                  <Route path="/admin/settings/audit-logs" element={<AuditLogs />} />
+                  <Route
+                    path="/admin/settings/terms"
+                    element={<Termsconditions />}
+                  />
+                  <Route
+                    path="/admin/settings/privacy-policy"
+                    element={<Privacypolicy />}
+                  />
+                  <Route
+                    path="/admin/settings/audit-logs"
+                    element={<AuditLogs />}
+                  />
                 </Route>
               </Routes>
             </ProjectsProvider>

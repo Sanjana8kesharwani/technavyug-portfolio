@@ -4,7 +4,8 @@ const projects = [
     title: "Certificate Verification System",
     category: "Web Development",
     desc: "QR-based secure verification platform",
-    image: "https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?w=800&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?w=800&h=400&fit=crop",
     enrolled: 180,
     lessons: 20,
     internship: "1–6 months",
@@ -60,7 +61,8 @@ const projects = [
     title: "AI Chat App",
     category: "AI",
     desc: "Real-time AI chat using Socket.io",
-    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&h=400&fit=crop",
     enrolled: 210,
     lessons: 22,
     internship: "1–6 months",
@@ -123,7 +125,8 @@ const projects = [
     title: "Food Delivery App",
     category: "Web",
     desc: "Swiggy-like full stack app",
-    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=400&fit=crop",
     enrolled: 193,
     lessons: 28,
     internship: "1–6 months",
@@ -140,7 +143,15 @@ const projects = [
     approach:
       "Used a microservice-inspired MERN architecture with real-time updates via Socket.io and Razorpay for payments.",
 
-    tech: ["React", "Redux", "Node.js", "Express", "MongoDB", "Razorpay", "Socket.io"],
+    tech: [
+      "React",
+      "Redux",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Razorpay",
+      "Socket.io",
+    ],
 
     content: [
       "Restaurant Listing & Menu System",
@@ -186,7 +197,8 @@ const projects = [
     title: "Portfolio Builder",
     category: "Frontend",
     desc: "Dynamic portfolio generator",
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=400&fit=crop",
     enrolled: 158,
     lessons: 18,
     internship: "1–3 months",
@@ -203,7 +215,13 @@ const projects = [
     approach:
       "Created a form-driven portfolio builder with live preview, multiple themes, and JSON-based data export.",
 
-    tech: ["React", "Tailwind CSS", "Context API", "LocalStorage", "html2pdf.js"],
+    tech: [
+      "React",
+      "Tailwind CSS",
+      "Context API",
+      "LocalStorage",
+      "html2pdf.js",
+    ],
 
     content: [
       "Dynamic Form & Live Preview Architecture",

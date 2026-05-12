@@ -2,10 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @keyframes gradientMove {
-  0% { background-position: 0% }
-  100% { background-position: 200% }
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
 }
 
 .animate-gradient {
@@ -13,10 +16,14 @@
   animation: gradientMove 3s linear infinite;
 }
 
-
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .float {
@@ -38,7 +45,6 @@
   }
 }
 
-
 .fade-text {
   animation: dropFade 1s ease;
 }
@@ -53,9 +59,6 @@
     transform: translateY(0);
   }
 }
-
-
-
 
 .nav-link {
   position: relative;
@@ -94,7 +97,6 @@
   animation-play-state: paused;
 }
 
-
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -110,7 +112,6 @@
   animation: scroll 20s linear infinite;
 }
 
-
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -125,27 +126,31 @@
   width: max-content;
   animation: scroll 20s linear infinite;
 }
-
 
 @keyframes slide {
-  0% { transform: translateY(100%); opacity: 0; }
-  50% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-100%); opacity: 0; }
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
 }
 
 .animate-slide {
   animation: slide 2.5s ease-in-out;
 }
 
-
 /* sidebar */
 
-
-
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
-
 
 /* Form filed */
 
@@ -167,7 +172,7 @@ body {
   padding: 20px;
   border-radius: 16px;
   margin-bottom: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 /* form */
@@ -198,7 +203,7 @@ body {
 
 .input:focus {
   border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
 }
 
 .input-error {
@@ -284,8 +289,6 @@ body {
   font-size: 12px;
   color: #555;
 }
-
-
 
 /* Css for AdminProject table */
 

@@ -3,7 +3,6 @@ import MainLayout from "../layouts/MainLayout";
 export default function About() {
   return (
     <MainLayout>
-
       {/* HERO SECTION */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-gray-50 to-white text-center px-6">
         <p className="text-sm tracking-widest text-cyan-600 font-semibold mb-3">
@@ -12,7 +11,10 @@ export default function About() {
 
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight max-w-3xl mx-auto">
           Showcasing Skills.{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600"> Verifying Achievements</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">
+            {" "}
+            Verifying Achievements
+          </span>
         </h1>
 
         <p className="mt-6 text-gray-500 max-w-2xl mx-auto text-lg">
@@ -25,7 +27,6 @@ export default function About() {
       {/* STATS */}
       <section className="px-6 pb-20">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-
           {[
             { value: "1000+", label: "Projects" },
             { value: "500+", label: "Verified Certificates" },
@@ -37,24 +38,19 @@ export default function About() {
               <p className="text-gray-500 text-sm">{item.label}</p>
             </div>
           ))}
-
         </div>
       </section>
 
       {/* VALUES */}
       <section className="px-6 pb-20">
         <div className="max-w-6xl mx-auto">
-
-          <p className="text-sm text-cyan-600 font-semibold mb-2">
-            OUR VALUES
-          </p>
+          <p className="text-sm text-cyan-600 font-semibold mb-2">OUR VALUES</p>
 
           <h2 className="text-3xl font-bold text-gray-900 mb-10">
             What drives everything we do
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6">
-
             {[
               {
                 title: "Portfolio-First",
@@ -73,14 +69,16 @@ export default function About() {
                 desc: "We continuously improve our platform to support developers at every stage.",
               },
             ].map((item, i) => (
-              <div key={i} className="p-6 border rounded-xl bg-white hover:shadow-md transition">
+              <div
+                key={i}
+                className="p-6 border rounded-xl bg-white hover:shadow-md transition"
+              >
                 <h3 className="font-semibold text-lg text-gray-900 mb-2">
                   {item.title}
                 </h3>
                 <p className="text-gray-500">{item.desc}</p>
               </div>
             ))}
-
           </div>
         </div>
       </section>
@@ -88,7 +86,6 @@ export default function About() {
       {/* STORY */}
       <section className="px-6 pb-20">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-
           {/* TEXT */}
           <div>
             <p className="text-sm text-cyan-600 font-semibold mb-2">
@@ -124,10 +121,8 @@ export default function About() {
               className="rounded-xl shadow-md"
             />
           </div>
-
         </div>
       </section>
-
     </MainLayout>
   );
 }

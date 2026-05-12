@@ -5,8 +5,7 @@ import { toast } from "react-hot-toast";
 
 export default function Achievements() {
   const navigate = useNavigate();
-  const { achievements, deleteAchievement, toggleFeatured } =
-    useAchievements();
+  const { achievements, deleteAchievement, toggleFeatured } = useAchievements();
 
   const [search, setSearch] = useState("");
 
@@ -140,25 +139,15 @@ export default function Achievements() {
                     textAlign: "left",
                   }}
                 >
-                  <th style={{ padding: "12px" }}>
-                    Title
-                  </th>
+                  <th style={{ padding: "12px" }}>Title</th>
 
-                  <th style={{ padding: "12px" }}>
-                    Type
-                  </th>
+                  <th style={{ padding: "12px" }}>Type</th>
 
-                  <th style={{ padding: "12px" }}>
-                    Organization
-                  </th>
+                  <th style={{ padding: "12px" }}>Organization</th>
 
-                  <th style={{ padding: "12px" }}>
-                    Featured
-                  </th>
+                  <th style={{ padding: "12px" }}>Featured</th>
 
-                  <th style={{ padding: "12px" }}>
-                    Actions
-                  </th>
+                  <th style={{ padding: "12px" }}>Actions</th>
                 </tr>
               </thead>
 
@@ -211,9 +200,7 @@ export default function Achievements() {
                         {/* EDIT */}
                         <button
                           onClick={() =>
-                            navigate(
-                              `/admin/edit-achievement/${a.id}`,
-                            )
+                            navigate(`/admin/edit-achievement/${a.id}`)
                           }
                           style={{
                             background: "#4f46e5",
@@ -235,15 +222,11 @@ export default function Achievements() {
                           className="delete-btn"
                           onClick={() => {
                             if (
-                              window.confirm(
-                                "Are you sure you want to delete?",
-                              )
+                              window.confirm("Are you sure you want to delete?")
                             ) {
                               deleteAchievement(a.id);
 
-                              toast.success(
-                                "Achievement deleted successfully",
-                              );
+                              toast.success("Achievement deleted successfully");
                             }
                           }}
                         >

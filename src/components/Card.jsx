@@ -21,9 +21,7 @@ const Card = ({ id, name, role, image }) => {
           {name}
         </h2>
 
-        <p className="text-gray-300 text-xs sm:text-sm break-words">
-          {role}
-        </p>
+        <p className="text-gray-300 text-xs sm:text-sm break-words">{role}</p>
       </div>
     </div>
   );

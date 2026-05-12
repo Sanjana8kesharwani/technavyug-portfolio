@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import projects from "../data/projectsData";
 
-
 function ShimmerHero() {
   return (
     <div className="w-full bg-blue-600 px-8 py-16 animate-pulse">
@@ -28,7 +27,6 @@ function ShimmerBody() {
     </div>
   );
 }
-
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -56,9 +54,7 @@ export default function ProjectDetail() {
   if (!project) {
     return (
       <MainLayout>
-        <div className="pt-20 text-center text-red-500">
-          Project not found
-        </div>
+        <div className="pt-20 text-center text-red-500">Project not found</div>
       </MainLayout>
     );
   }
@@ -66,11 +62,9 @@ export default function ProjectDetail() {
   return (
     <MainLayout>
       <div className="pt-16">
-
         {/* ── HERO SECTION ── */}
         <div className="bg-[#1B3765] text-white px-6 py-16">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-center">
-
             <div className="flex-1">
               <span className="inline-block border border-white/50 text-white text-xs px-4 py-1.5 rounded-full mb-4 font-medium">
                 {project.category}
@@ -80,9 +74,7 @@ export default function ProjectDetail() {
                 {project.title}
               </h1>
 
-              <p className="text-blue-100 text-sm mb-6">
-                {project.overview}
-              </p>
+              <p className="text-blue-100 text-sm mb-6">{project.overview}</p>
 
               <button className="bg-blue-500 px-6 py-3 rounded-xl font-bold">
                 Enroll Now →
@@ -96,7 +88,6 @@ export default function ProjectDetail() {
                 className="w-full h-64 object-cover"
               />
             </div>
-
           </div>
         </div>
 
@@ -121,7 +112,10 @@ export default function ProjectDetail() {
           <h2 className="text-2xl font-bold mb-4">Tech Stack</h2>
           <div className="flex flex-wrap gap-3">
             {project.tech?.map((tech, i) => (
-              <span key={i} className="bg-gray-100 px-4 py-2 rounded-full text-sm">
+              <span
+                key={i}
+                className="bg-gray-100 px-4 py-2 rounded-full text-sm"
+              >
                 {tech}
               </span>
             ))}
@@ -137,7 +131,6 @@ export default function ProjectDetail() {
             ))}
           </ul>
         </div>
-
       </div>
     </MainLayout>
   );
